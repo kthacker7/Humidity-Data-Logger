@@ -1,0 +1,1206 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		300D91ED1E0AF50F00660EC2 /* TempoDeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D91EC1E0AF50F00660EC2 /* TempoDeviceGroup.swift */; };
+		300D91F01E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D91EE1E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift */; };
+		300D91F11E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 300D91EF1E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib */; };
+		308A59DB1E0A9B7200D84D46 /* SingleReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59D91E0A9B7200D84D46 /* SingleReadingTableViewCell.swift */; };
+		308A59DC1E0A9B7200D84D46 /* SingleReadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59DA1E0A9B7200D84D46 /* SingleReadingTableViewCell.xib */; };
+		308A59E31E0A9BE400D84D46 /* ExportDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59E11E0A9BE400D84D46 /* ExportDataTableViewCell.swift */; };
+		308A59E41E0A9BE400D84D46 /* ExportDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59E21E0A9BE400D84D46 /* ExportDataTableViewCell.xib */; };
+		308A59EA1E0A9BFD00D84D46 /* GraphsImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59E61E0A9BFD00D84D46 /* GraphsImageTableViewCell.swift */; };
+		308A59EB1E0A9BFD00D84D46 /* GraphsImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59E71E0A9BFD00D84D46 /* GraphsImageTableViewCell.xib */; };
+		308A59EC1E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59E81E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.swift */; };
+		308A59ED1E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59E91E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.xib */; };
+		308A59F11E0A9C2600D84D46 /* DeviceDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59EF1E0A9C2600D84D46 /* DeviceDetailsTableViewCell.swift */; };
+		308A59F21E0A9C2600D84D46 /* DeviceDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59F01E0A9C2600D84D46 /* DeviceDetailsTableViewCell.xib */; };
+		308A59F61E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59F41E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.swift */; };
+		308A59F71E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59F51E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.xib */; };
+		308A59FD1E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59F91E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.swift */; };
+		308A59FE1E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59FA1E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.xib */; };
+		308A59FF1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59FB1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.swift */; };
+		308A5A001E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59FC1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.xib */; };
+		308A5A051E0A9C8000D84D46 /* GlossaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A031E0A9C8000D84D46 /* GlossaryTableViewCell.swift */; };
+		308A5A061E0A9C8000D84D46 /* GlossaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A5A041E0A9C8000D84D46 /* GlossaryTableViewCell.xib */; };
+		308A5A0D1E0A9CF400D84D46 /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A091E0A9CF400D84D46 /* HistoryListViewController.swift */; };
+		308A5A0E1E0A9CF400D84D46 /* DeviceHistoryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A0A1E0A9CF400D84D46 /* DeviceHistoryDetailsViewController.swift */; };
+		308A5A0F1E0A9CF400D84D46 /* BatchHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A0B1E0A9CF400D84D46 /* BatchHistoryViewController.swift */; };
+		308A5A101E0A9CF400D84D46 /* IndividualDeviceDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A0C1E0A9CF400D84D46 /* IndividualDeviceDataViewController.swift */; };
+		308A5A131E0A9D2100D84D46 /* GlossaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A121E0A9D2100D84D46 /* GlossaryViewController.swift */; };
+		308A5A171E0A9D3C00D84D46 /* DeviceDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A151E0A9D3C00D84D46 /* DeviceDetailsViewController.swift */; };
+		308A5A181E0A9D3C00D84D46 /* ResetDevicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A161E0A9D3C00D84D46 /* ResetDevicesViewController.swift */; };
+		308A5A1B1E0A9D5100D84D46 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A5A1A1E0A9D5100D84D46 /* MainTabBarViewController.swift */; };
+		308A5A201E0A9DA400D84D46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308A5A1D1E0A9DA400D84D46 /* Main.storyboard */; };
+		308A5A211E0A9DA400D84D46 /* History.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308A5A1E1E0A9DA400D84D46 /* History.storyboard */; };
+		308A5A221E0A9DA400D84D46 /* Devices.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 308A5A1F1E0A9DA400D84D46 /* Devices.storyboard */; };
+		30AED8C71E31748400B57EF9 /* TempoHelperMethods.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AED8C61E31748400B57EF9 /* TempoHelperMethods.m */; };
+		B348E042FAA81A40FE9426CD /* libPods-Tempo Utility.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F3B5A64DC297B9F6942E40 /* libPods-Tempo Utility.a */; };
+		CB14AD1E1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = CB14AD1B1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataClass.m */; };
+		CB14AD1F1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = CB14AD1D1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataProperties.m */; };
+		CB14AD231D93211D0090AAA2 /* DeviceInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB14AD221D93211D0090AAA2 /* DeviceInfoTableViewController.m */; };
+		CB1674151DB7E2E900BC938A /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = CB1674141DB7E2E900BC938A /* CHCSVParser.m */; };
+		CB16BA371C82E67E00C99C41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA361C82E67E00C99C41 /* main.m */; };
+		CB16BA3A1C82E67E00C99C41 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA391C82E67E00C99C41 /* AppDelegate.m */; };
+		CB16BA401C82E67E00C99C41 /* Main2.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB16BA3E1C82E67E00C99C41 /* Main2.storyboard */; };
+		CB16BA431C82E67E00C99C41 /* TempoDisc.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA411C82E67E00C99C41 /* TempoDisc.xcdatamodeld */; };
+		CB16BA451C82E67E00C99C41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB16BA441C82E67E00C99C41 /* Assets.xcassets */; };
+		CB16BA481C82E67E00C99C41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CB16BA461C82E67E00C99C41 /* LaunchScreen.storyboard */; };
+		CB16BA551C82E75F00C99C41 /* TDDeviceListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA541C82E75F00C99C41 /* TDDeviceListTableViewController.m */; };
+		CB16BA5B1C82ECFE00C99C41 /* TDDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA5A1C82ECFE00C99C41 /* TDDeviceTableViewCell.m */; };
+		CB16BA5D1C82EFA800C99C41 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB16BA5C1C82EFA800C99C41 /* CoreBluetooth.framework */; };
+		CB16BA721C83007B00C99C41 /* Reading+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA651C83007B00C99C41 /* Reading+CoreDataProperties.m */; };
+		CB16BA731C83007B00C99C41 /* Reading.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA671C83007B00C99C41 /* Reading.m */; };
+		CB16BA741C83007B00C99C41 /* ReadingType+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA6A1C83007B00C99C41 /* ReadingType+CoreDataProperties.m */; };
+		CB16BA751C83007B00C99C41 /* ReadingType.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA6C1C83007B00C99C41 /* ReadingType.m */; };
+		CB16BA761C83007B00C99C41 /* TempoDevice+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA6F1C83007B00C99C41 /* TempoDevice+CoreDataProperties.m */; };
+		CB16BA771C83007B00C99C41 /* TempoDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA711C83007B00C99C41 /* TempoDevice.m */; };
+		CB16BA7B1C83123A00C99C41 /* TDHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA7A1C83123A00C99C41 /* TDHelper.m */; };
+		CB16BA7F1C83126600C99C41 /* TDDefaultDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA7E1C83126600C99C41 /* TDDefaultDevice.m */; };
+		CB16BA831C8313ED00C99C41 /* TDDeviceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB16BA821C8313ED00C99C41 /* TDDeviceInfoViewController.m */; };
+		CB242C2A1C974A0800757AEC /* TDSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB242C291C974A0800757AEC /* TDSettingsViewController.m */; };
+		CB256CF31DABFD8400293D81 /* TDDiscDataTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB256CF21DABFD8400293D81 /* TDDiscDataTableViewCell.m */; };
+		CB290B0E1DAFEE3F0012EEEC /* TDDevicesHistoryListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB290B0D1DAFEE3F0012EEEC /* TDDevicesHistoryListTableViewController.m */; };
+		CB290B121DB000230012EEEC /* TDUARTAllDataDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CB290B111DB000230012EEEC /* TDUARTAllDataDownloader.m */; };
+		CB2B639E1D8B308B00B705CB /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBF3AC4F1D8B270800AFDDA2 /* Montserrat-Bold.ttf */; };
+		CB2B639F1D8B308F00B705CB /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CBF3AC501D8B270800AFDDA2 /* Montserrat-Regular.ttf */; };
+		CB2B63A31D8B31B300B705CB /* UIFont+Tempo.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2B63A21D8B31B300B705CB /* UIFont+Tempo.m */; };
+		CB4954F81D91BDAF00C4AAAF /* LogMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4954F71D91BDAF00C4AAAF /* LogMessage.m */; };
+		CB4954FC1D91C5A900C4AAAF /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CB4954FB1D91C5A900C4AAAF /* IBActionSheet.m */; };
+		CB6895631C83355700EB1A65 /* TDDeviceDataTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6895621C83355700EB1A65 /* TDDeviceDataTableViewController.m */; };
+		CB73F9351DA6B9D50012C4D0 /* TDHistoryContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB73F9341DA6B9D50012C4D0 /* TDHistoryContainerViewController.m */; };
+		CB8E7E7C1DE0B5E70084F3CC /* TDLivePlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8E7E7B1DE0B5E70084F3CC /* TDLivePlotViewController.m */; };
+		CB8E7E801DE0B8680084F3CC /* TDLivePlotData.m in Sources */ = {isa = PBXBuildFile; fileRef = CB8E7E7F1DE0B8680084F3CC /* TDLivePlotData.m */; };
+		CB9421EA1C91E6D5000724B5 /* TDOtherDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9421E91C91E6D5000724B5 /* TDOtherDeviceTableViewCell.m */; };
+		CB9421EE1C9200C5000724B5 /* TDGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB9421ED1C9200C5000724B5 /* TDGraphViewController.m */; };
+		CBAB5C411D47CA2200EEBECD /* TDDevicesContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5C401D47CA2200EEBECD /* TDDevicesContainerViewController.m */; };
+		CBAB5C451D47CC9000EEBECD /* SCHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5C441D47CC9000EEBECD /* SCHelper.m */; };
+		CBAB5C491D47E72A00EEBECD /* UIColor+Tempo.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5C481D47E72A00EEBECD /* UIColor+Tempo.m */; };
+		CBAB5C4D1D47F82300EEBECD /* TDDeviceTableContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5C4C1D47F82300EEBECD /* TDDeviceTableContainer.m */; };
+		CBAB5C511D47FF0500EEBECD /* TDBaseDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBAB5C501D47FF0500EEBECD /* TDBaseDeviceViewController.m */; };
+		CBD84AE71D2ED5B1004B0191 /* TDUARTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CBD84AE61D2ED5B1004B0191 /* TDUARTViewController.m */; };
+		CBF066521DA571D200210428 /* TDUARTDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = CBF066511DA571D200210428 /* TDUARTDownloader.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		23F3B5A64DC297B9F6942E40 /* libPods-Tempo Utility.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tempo Utility.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		300D91EC1E0AF50F00660EC2 /* TempoDeviceGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoDeviceGroup.swift; sourceTree = "<group>"; };
+		300D91EE1E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		300D91EF1E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupedSummaryTableViewCell.xib; sourceTree = "<group>"; };
+		308A59D81E0A9B7200D84D46 /* Tempo Utility-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tempo Utility-Bridging-Header.h"; sourceTree = "<group>"; };
+		308A59D91E0A9B7200D84D46 /* SingleReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleReadingTableViewCell.swift; sourceTree = "<group>"; };
+		308A59DA1E0A9B7200D84D46 /* SingleReadingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleReadingTableViewCell.xib; sourceTree = "<group>"; };
+		308A59E11E0A9BE400D84D46 /* ExportDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportDataTableViewCell.swift; sourceTree = "<group>"; };
+		308A59E21E0A9BE400D84D46 /* ExportDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ExportDataTableViewCell.xib; sourceTree = "<group>"; };
+		308A59E61E0A9BFD00D84D46 /* GraphsImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphsImageTableViewCell.swift; sourceTree = "<group>"; };
+		308A59E71E0A9BFD00D84D46 /* GraphsImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphsImageTableViewCell.xib; sourceTree = "<group>"; };
+		308A59E81E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphsSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		308A59E91E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraphsSelectionTableViewCell.xib; sourceTree = "<group>"; };
+		308A59EF1E0A9C2600D84D46 /* DeviceDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		308A59F01E0A9C2600D84D46 /* DeviceDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeviceDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		308A59F41E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalDeviceDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		308A59F51E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InternalDeviceDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		308A59F91E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualDeviceNameTableViewCell.swift; sourceTree = "<group>"; };
+		308A59FA1E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualDeviceNameTableViewCell.xib; sourceTree = "<group>"; };
+		308A59FB1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualDeviceDataTableViewCell.swift; sourceTree = "<group>"; };
+		308A59FC1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualDeviceDataTableViewCell.xib; sourceTree = "<group>"; };
+		308A5A031E0A9C8000D84D46 /* GlossaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryTableViewCell.swift; sourceTree = "<group>"; };
+		308A5A041E0A9C8000D84D46 /* GlossaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlossaryTableViewCell.xib; sourceTree = "<group>"; };
+		308A5A091E0A9CF400D84D46 /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryListViewController.swift; sourceTree = "<group>"; };
+		308A5A0A1E0A9CF400D84D46 /* DeviceHistoryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHistoryDetailsViewController.swift; sourceTree = "<group>"; };
+		308A5A0B1E0A9CF400D84D46 /* BatchHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchHistoryViewController.swift; sourceTree = "<group>"; };
+		308A5A0C1E0A9CF400D84D46 /* IndividualDeviceDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualDeviceDataViewController.swift; sourceTree = "<group>"; };
+		308A5A121E0A9D2100D84D46 /* GlossaryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryViewController.swift; sourceTree = "<group>"; };
+		308A5A151E0A9D3C00D84D46 /* DeviceDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceDetailsViewController.swift; sourceTree = "<group>"; };
+		308A5A161E0A9D3C00D84D46 /* ResetDevicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetDevicesViewController.swift; sourceTree = "<group>"; };
+		308A5A1A1E0A9D5100D84D46 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		308A5A1D1E0A9DA400D84D46 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		308A5A1E1E0A9DA400D84D46 /* History.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = History.storyboard; sourceTree = "<group>"; };
+		308A5A1F1E0A9DA400D84D46 /* Devices.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Devices.storyboard; sourceTree = "<group>"; };
+		30AED8C61E31748400B57EF9 /* TempoHelperMethods.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoHelperMethods.m; sourceTree = "<group>"; };
+		30AED8C81E3174EA00B57EF9 /* TempoHelperMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TempoHelperMethods.h; sourceTree = "<group>"; };
+		821ACA4690AA2A0B5F0C2EC0 /* Pods-Tempo Utility.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tempo Utility.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tempo Utility/Pods-Tempo Utility.release.xcconfig"; sourceTree = "<group>"; };
+		CB14AD1A1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TempoDiscDevice+CoreDataClass.h"; sourceTree = "<group>"; };
+		CB14AD1B1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TempoDiscDevice+CoreDataClass.m"; sourceTree = "<group>"; };
+		CB14AD1C1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TempoDiscDevice+CoreDataProperties.h"; sourceTree = "<group>"; };
+		CB14AD1D1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TempoDiscDevice+CoreDataProperties.m"; sourceTree = "<group>"; };
+		CB14AD211D93211D0090AAA2 /* DeviceInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfoTableViewController.h; sourceTree = "<group>"; };
+		CB14AD221D93211D0090AAA2 /* DeviceInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfoTableViewController.m; sourceTree = "<group>"; };
+		CB1674131DB7E2E900BC938A /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		CB1674141DB7E2E900BC938A /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
+		CB16BA321C82E67E00C99C41 /* Tempo Utility.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tempo Utility.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB16BA361C82E67E00C99C41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		CB16BA381C82E67E00C99C41 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		CB16BA391C82E67E00C99C41 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		CB16BA3F1C82E67E00C99C41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main2.storyboard; sourceTree = "<group>"; };
+		CB16BA421C82E67E00C99C41 /* TempoDisc.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TempoDisc.xcdatamodel; sourceTree = "<group>"; };
+		CB16BA441C82E67E00C99C41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CB16BA471C82E67E00C99C41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		CB16BA491C82E67E00C99C41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB16BA531C82E75F00C99C41 /* TDDeviceListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDeviceListTableViewController.h; sourceTree = "<group>"; };
+		CB16BA541C82E75F00C99C41 /* TDDeviceListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDeviceListTableViewController.m; sourceTree = "<group>"; };
+		CB16BA591C82ECFE00C99C41 /* TDDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDeviceTableViewCell.h; sourceTree = "<group>"; };
+		CB16BA5A1C82ECFE00C99C41 /* TDDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDeviceTableViewCell.m; sourceTree = "<group>"; };
+		CB16BA5C1C82EFA800C99C41 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		CB16BA611C82FB4E00C99C41 /* Tempo UtilityPCH.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tempo UtilityPCH.pch"; sourceTree = "<group>"; };
+		CB16BA641C83007B00C99C41 /* Reading+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Reading+CoreDataProperties.h"; sourceTree = "<group>"; };
+		CB16BA651C83007B00C99C41 /* Reading+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Reading+CoreDataProperties.m"; sourceTree = "<group>"; };
+		CB16BA661C83007B00C99C41 /* Reading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reading.h; sourceTree = "<group>"; };
+		CB16BA671C83007B00C99C41 /* Reading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reading.m; sourceTree = "<group>"; };
+		CB16BA691C83007B00C99C41 /* ReadingType+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ReadingType+CoreDataProperties.h"; sourceTree = "<group>"; };
+		CB16BA6A1C83007B00C99C41 /* ReadingType+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ReadingType+CoreDataProperties.m"; sourceTree = "<group>"; };
+		CB16BA6B1C83007B00C99C41 /* ReadingType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReadingType.h; sourceTree = "<group>"; };
+		CB16BA6C1C83007B00C99C41 /* ReadingType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReadingType.m; sourceTree = "<group>"; };
+		CB16BA6E1C83007B00C99C41 /* TempoDevice+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TempoDevice+CoreDataProperties.h"; sourceTree = "<group>"; };
+		CB16BA6F1C83007B00C99C41 /* TempoDevice+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TempoDevice+CoreDataProperties.m"; sourceTree = "<group>"; };
+		CB16BA701C83007B00C99C41 /* TempoDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TempoDevice.h; sourceTree = "<group>"; };
+		CB16BA711C83007B00C99C41 /* TempoDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TempoDevice.m; sourceTree = "<group>"; };
+		CB16BA791C83123A00C99C41 /* TDHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDHelper.h; sourceTree = "<group>"; };
+		CB16BA7A1C83123A00C99C41 /* TDHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDHelper.m; sourceTree = "<group>"; };
+		CB16BA7D1C83126600C99C41 /* TDDefaultDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDefaultDevice.h; sourceTree = "<group>"; };
+		CB16BA7E1C83126600C99C41 /* TDDefaultDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDefaultDevice.m; sourceTree = "<group>"; };
+		CB16BA811C8313ED00C99C41 /* TDDeviceInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDeviceInfoViewController.h; sourceTree = "<group>"; };
+		CB16BA821C8313ED00C99C41 /* TDDeviceInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDeviceInfoViewController.m; sourceTree = "<group>"; };
+		CB242C281C974A0800757AEC /* TDSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSettingsViewController.h; sourceTree = "<group>"; };
+		CB242C291C974A0800757AEC /* TDSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSettingsViewController.m; sourceTree = "<group>"; };
+		CB242C2B1C97637600757AEC /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		CB256CF11DABFD8400293D81 /* TDDiscDataTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDiscDataTableViewCell.h; sourceTree = "<group>"; };
+		CB256CF21DABFD8400293D81 /* TDDiscDataTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDiscDataTableViewCell.m; sourceTree = "<group>"; };
+		CB290B0C1DAFEE3F0012EEEC /* TDDevicesHistoryListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDevicesHistoryListTableViewController.h; sourceTree = "<group>"; };
+		CB290B0D1DAFEE3F0012EEEC /* TDDevicesHistoryListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDevicesHistoryListTableViewController.m; sourceTree = "<group>"; };
+		CB290B101DB000230012EEEC /* TDUARTAllDataDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUARTAllDataDownloader.h; sourceTree = "<group>"; };
+		CB290B111DB000230012EEEC /* TDUARTAllDataDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUARTAllDataDownloader.m; sourceTree = "<group>"; };
+		CB2B63A11D8B31B300B705CB /* UIFont+Tempo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Tempo.h"; sourceTree = "<group>"; };
+		CB2B63A21D8B31B300B705CB /* UIFont+Tempo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Tempo.m"; sourceTree = "<group>"; };
+		CB4954F61D91BDAF00C4AAAF /* LogMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogMessage.h; sourceTree = "<group>"; };
+		CB4954F71D91BDAF00C4AAAF /* LogMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogMessage.m; sourceTree = "<group>"; };
+		CB4954FA1D91C5A900C4AAAF /* IBActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IBActionSheet.h; sourceTree = "<group>"; };
+		CB4954FB1D91C5A900C4AAAF /* IBActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IBActionSheet.m; sourceTree = "<group>"; };
+		CB6895611C83355700EB1A65 /* TDDeviceDataTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDeviceDataTableViewController.h; sourceTree = "<group>"; };
+		CB6895621C83355700EB1A65 /* TDDeviceDataTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDeviceDataTableViewController.m; sourceTree = "<group>"; };
+		CB73F9331DA6B9D50012C4D0 /* TDHistoryContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDHistoryContainerViewController.h; sourceTree = "<group>"; };
+		CB73F9341DA6B9D50012C4D0 /* TDHistoryContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDHistoryContainerViewController.m; sourceTree = "<group>"; };
+		CB8E7E7A1DE0B5E70084F3CC /* TDLivePlotViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLivePlotViewController.h; sourceTree = "<group>"; };
+		CB8E7E7B1DE0B5E70084F3CC /* TDLivePlotViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLivePlotViewController.m; sourceTree = "<group>"; };
+		CB8E7E7E1DE0B8680084F3CC /* TDLivePlotData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDLivePlotData.h; sourceTree = "<group>"; };
+		CB8E7E7F1DE0B8680084F3CC /* TDLivePlotData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDLivePlotData.m; sourceTree = "<group>"; };
+		CB9421E81C91E6D5000724B5 /* TDOtherDeviceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDOtherDeviceTableViewCell.h; sourceTree = "<group>"; };
+		CB9421E91C91E6D5000724B5 /* TDOtherDeviceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDOtherDeviceTableViewCell.m; sourceTree = "<group>"; };
+		CB9421EC1C9200C5000724B5 /* TDGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDGraphViewController.h; sourceTree = "<group>"; };
+		CB9421ED1C9200C5000724B5 /* TDGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDGraphViewController.m; sourceTree = "<group>"; };
+		CBAB5C3F1D47CA2200EEBECD /* TDDevicesContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDevicesContainerViewController.h; sourceTree = "<group>"; };
+		CBAB5C401D47CA2200EEBECD /* TDDevicesContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDevicesContainerViewController.m; sourceTree = "<group>"; };
+		CBAB5C431D47CC9000EEBECD /* SCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCHelper.h; sourceTree = "<group>"; };
+		CBAB5C441D47CC9000EEBECD /* SCHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCHelper.m; sourceTree = "<group>"; };
+		CBAB5C471D47E72A00EEBECD /* UIColor+Tempo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Tempo.h"; sourceTree = "<group>"; };
+		CBAB5C481D47E72A00EEBECD /* UIColor+Tempo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Tempo.m"; sourceTree = "<group>"; };
+		CBAB5C4B1D47F82300EEBECD /* TDDeviceTableContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDDeviceTableContainer.h; sourceTree = "<group>"; };
+		CBAB5C4C1D47F82300EEBECD /* TDDeviceTableContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDDeviceTableContainer.m; sourceTree = "<group>"; };
+		CBAB5C4F1D47FF0500EEBECD /* TDBaseDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDBaseDeviceViewController.h; sourceTree = "<group>"; };
+		CBAB5C501D47FF0500EEBECD /* TDBaseDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDBaseDeviceViewController.m; sourceTree = "<group>"; };
+		CBD84AE51D2ED5B1004B0191 /* TDUARTViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUARTViewController.h; sourceTree = "<group>"; };
+		CBD84AE61D2ED5B1004B0191 /* TDUARTViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUARTViewController.m; sourceTree = "<group>"; };
+		CBF066501DA571D200210428 /* TDUARTDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDUARTDownloader.h; sourceTree = "<group>"; };
+		CBF066511DA571D200210428 /* TDUARTDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDUARTDownloader.m; sourceTree = "<group>"; };
+		CBF3AC4F1D8B270800AFDDA2 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		CBF3AC501D8B270800AFDDA2 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		E18F34A6DBB02B981295989B /* Pods-Tempo Utility.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tempo Utility.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tempo Utility/Pods-Tempo Utility.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB16BA2F1C82E67E00C99C41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB16BA5D1C82EFA800C99C41 /* CoreBluetooth.framework in Frameworks */,
+				B348E042FAA81A40FE9426CD /* libPods-Tempo Utility.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		300D91EB1E0AF4F300660EC2 /* TempoDeviceGroup */ = {
+			isa = PBXGroup;
+			children = (
+				300D91EC1E0AF50F00660EC2 /* TempoDeviceGroup.swift */,
+			);
+			name = TempoDeviceGroup;
+			sourceTree = "<group>";
+		};
+		308A59D71E0A9B6400D84D46 /* Views New */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A231E0A9DB900D84D46 /* Storyboards */,
+				308A5A1C1E0A9D8200D84D46 /* Custom Cells */,
+			);
+			name = "Views New";
+			sourceTree = "<group>";
+		};
+		308A59E51E0A9BED00D84D46 /* Single Reading Cells */ = {
+			isa = PBXGroup;
+			children = (
+				308A59D91E0A9B7200D84D46 /* SingleReadingTableViewCell.swift */,
+				308A59DA1E0A9B7200D84D46 /* SingleReadingTableViewCell.xib */,
+				308A59E11E0A9BE400D84D46 /* ExportDataTableViewCell.swift */,
+				308A59E21E0A9BE400D84D46 /* ExportDataTableViewCell.xib */,
+			);
+			name = "Single Reading Cells";
+			sourceTree = "<group>";
+		};
+		308A59EE1E0A9C1200D84D46 /* Graphs Cells */ = {
+			isa = PBXGroup;
+			children = (
+				308A59E61E0A9BFD00D84D46 /* GraphsImageTableViewCell.swift */,
+				308A59E71E0A9BFD00D84D46 /* GraphsImageTableViewCell.xib */,
+				308A59E81E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.swift */,
+				308A59E91E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.xib */,
+			);
+			name = "Graphs Cells";
+			sourceTree = "<group>";
+		};
+		308A59F31E0A9C2B00D84D46 /* Device Details Cells */ = {
+			isa = PBXGroup;
+			children = (
+				308A59EF1E0A9C2600D84D46 /* DeviceDetailsTableViewCell.swift */,
+				308A59F01E0A9C2600D84D46 /* DeviceDetailsTableViewCell.xib */,
+				300D91EE1E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift */,
+				300D91EF1E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib */,
+			);
+			name = "Device Details Cells";
+			sourceTree = "<group>";
+		};
+		308A59F81E0A9C4B00D84D46 /* Internal Device Details Cell */ = {
+			isa = PBXGroup;
+			children = (
+				308A59F41E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.swift */,
+				308A59F51E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.xib */,
+			);
+			name = "Internal Device Details Cell";
+			sourceTree = "<group>";
+		};
+		308A5A011E0A9C5E00D84D46 /* Individual Details Cells */ = {
+			isa = PBXGroup;
+			children = (
+				308A59F91E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.swift */,
+				308A59FA1E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.xib */,
+				308A59FB1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.swift */,
+				308A59FC1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.xib */,
+			);
+			name = "Individual Details Cells";
+			sourceTree = "<group>";
+		};
+		308A5A021E0A9C6F00D84D46 /* History Cells */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A011E0A9C5E00D84D46 /* Individual Details Cells */,
+				308A59F81E0A9C4B00D84D46 /* Internal Device Details Cell */,
+				308A59F31E0A9C2B00D84D46 /* Device Details Cells */,
+				308A59EE1E0A9C1200D84D46 /* Graphs Cells */,
+				308A59E51E0A9BED00D84D46 /* Single Reading Cells */,
+			);
+			name = "History Cells";
+			sourceTree = "<group>";
+		};
+		308A5A071E0A9C8E00D84D46 /* Glossary cells */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A031E0A9C8000D84D46 /* GlossaryTableViewCell.swift */,
+				308A5A041E0A9C8000D84D46 /* GlossaryTableViewCell.xib */,
+			);
+			name = "Glossary cells";
+			sourceTree = "<group>";
+		};
+		308A5A081E0A9CEA00D84D46 /* Controllers New */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A1A1E0A9D5100D84D46 /* MainTabBarViewController.swift */,
+				308A5A191E0A9D4700D84D46 /* DevicesControllers */,
+				308A5A141E0A9D2400D84D46 /* GlossaryControllers */,
+				308A5A111E0A9CFA00D84D46 /* History Controllers */,
+			);
+			name = "Controllers New";
+			sourceTree = "<group>";
+		};
+		308A5A111E0A9CFA00D84D46 /* History Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A091E0A9CF400D84D46 /* HistoryListViewController.swift */,
+				308A5A0A1E0A9CF400D84D46 /* DeviceHistoryDetailsViewController.swift */,
+				308A5A0B1E0A9CF400D84D46 /* BatchHistoryViewController.swift */,
+				308A5A0C1E0A9CF400D84D46 /* IndividualDeviceDataViewController.swift */,
+			);
+			name = "History Controllers";
+			sourceTree = "<group>";
+		};
+		308A5A141E0A9D2400D84D46 /* GlossaryControllers */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A121E0A9D2100D84D46 /* GlossaryViewController.swift */,
+			);
+			name = GlossaryControllers;
+			sourceTree = "<group>";
+		};
+		308A5A191E0A9D4700D84D46 /* DevicesControllers */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A151E0A9D3C00D84D46 /* DeviceDetailsViewController.swift */,
+				308A5A161E0A9D3C00D84D46 /* ResetDevicesViewController.swift */,
+			);
+			name = DevicesControllers;
+			sourceTree = "<group>";
+		};
+		308A5A1C1E0A9D8200D84D46 /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A071E0A9C8E00D84D46 /* Glossary cells */,
+				308A5A021E0A9C6F00D84D46 /* History Cells */,
+			);
+			name = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		308A5A231E0A9DB900D84D46 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				308A5A1D1E0A9DA400D84D46 /* Main.storyboard */,
+				308A5A1E1E0A9DA400D84D46 /* History.storyboard */,
+				308A5A1F1E0A9DA400D84D46 /* Devices.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		30AED8C51E31742C00B57EF9 /* Helpers and Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				30AED8C61E31748400B57EF9 /* TempoHelperMethods.m */,
+				30AED8C81E3174EA00B57EF9 /* TempoHelperMethods.h */,
+			);
+			name = "Helpers and Extensions";
+			sourceTree = "<group>";
+		};
+		93111F856E28513BB75AD76A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E18F34A6DBB02B981295989B /* Pods-Tempo Utility.debug.xcconfig */,
+				821ACA4690AA2A0B5F0C2EC0 /* Pods-Tempo Utility.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CB14AD191D9316CA0090AAA2 /* TempoDiscDevice */ = {
+			isa = PBXGroup;
+			children = (
+				CB14AD1A1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataClass.h */,
+				CB14AD1B1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataClass.m */,
+				CB14AD1C1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataProperties.h */,
+				CB14AD1D1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataProperties.m */,
+			);
+			path = TempoDiscDevice;
+			sourceTree = "<group>";
+		};
+		CB14AD201D9321080090AAA2 /* DeviceInfoTable */ = {
+			isa = PBXGroup;
+			children = (
+				CB14AD211D93211D0090AAA2 /* DeviceInfoTableViewController.h */,
+				CB14AD221D93211D0090AAA2 /* DeviceInfoTableViewController.m */,
+			);
+			path = DeviceInfoTable;
+			sourceTree = "<group>";
+		};
+		CB1674121DB7E2E900BC938A /* CSVParser */ = {
+			isa = PBXGroup;
+			children = (
+				CB1674131DB7E2E900BC938A /* CHCSVParser.h */,
+				CB1674141DB7E2E900BC938A /* CHCSVParser.m */,
+			);
+			path = CSVParser;
+			sourceTree = "<group>";
+		};
+		CB16BA291C82E67E00C99C41 = {
+			isa = PBXGroup;
+			children = (
+				CB16BA341C82E67E00C99C41 /* TempoDisc */,
+				CB16BA331C82E67E00C99C41 /* Products */,
+				D1C4DF213B5628AD5B36CA9E /* Frameworks */,
+				93111F856E28513BB75AD76A /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		CB16BA331C82E67E00C99C41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA321C82E67E00C99C41 /* Tempo Utility.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CB16BA341C82E67E00C99C41 /* TempoDisc */ = {
+			isa = PBXGroup;
+			children = (
+				30AED8C51E31742C00B57EF9 /* Helpers and Extensions */,
+				308A5A081E0A9CEA00D84D46 /* Controllers New */,
+				308A59D71E0A9B6400D84D46 /* Views New */,
+				CB16BA4F1C82E70C00C99C41 /* 3rdParty */,
+				CB16BA621C83003200C99C41 /* Models */,
+				CB16BA561C82ECC600C99C41 /* Cells */,
+				CB16BA571C82ECC600C99C41 /* Views */,
+				CB16BA511C82E70C00C99C41 /* ViewControllers */,
+				CB16BA501C82E70C00C99C41 /* Utilities */,
+				CB16BA381C82E67E00C99C41 /* AppDelegate.h */,
+				CB16BA391C82E67E00C99C41 /* AppDelegate.m */,
+				CB16BA3E1C82E67E00C99C41 /* Main2.storyboard */,
+				CB16BA441C82E67E00C99C41 /* Assets.xcassets */,
+				CB16BA461C82E67E00C99C41 /* LaunchScreen.storyboard */,
+				CB16BA491C82E67E00C99C41 /* Info.plist */,
+				308A59D81E0A9B7200D84D46 /* Tempo Utility-Bridging-Header.h */,
+				CB16BA411C82E67E00C99C41 /* TempoDisc.xcdatamodeld */,
+				CB16BA351C82E67E00C99C41 /* Supporting Files */,
+			);
+			path = TempoDisc;
+			sourceTree = "<group>";
+		};
+		CB16BA351C82E67E00C99C41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CBF3AC4F1D8B270800AFDDA2 /* Montserrat-Bold.ttf */,
+				CBF3AC501D8B270800AFDDA2 /* Montserrat-Regular.ttf */,
+				CB16BA361C82E67E00C99C41 /* main.m */,
+				CB16BA611C82FB4E00C99C41 /* Tempo UtilityPCH.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CB16BA4F1C82E70C00C99C41 /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+				CB1674121DB7E2E900BC938A /* CSVParser */,
+				CB4954F91D91C5A900C4AAAF /* IBActionSheet */,
+			);
+			path = 3rdParty;
+			sourceTree = "<group>";
+		};
+		CB16BA501C82E70C00C99C41 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				CB242C2B1C97637600757AEC /* Constants.h */,
+				CB290B0F1DAFFFF80012EEEC /* UARTAllDataDownloader */,
+				CBF0664F1DA571C000210428 /* UARTDownloader */,
+				CB16BA7C1C83125600C99C41 /* DefaultDevice */,
+				CB16BA781C83123A00C99C41 /* Helper */,
+				CBAB5C421D47CC9000EEBECD /* SCHelper */,
+				CBAB5C461D47E72900EEBECD /* UIColor+Tempo */,
+				CB2B63A01D8B316E00B705CB /* UIFont+Tempo */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		CB16BA511C82E70C00C99C41 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB8E7E791DE0B5C80084F3CC /* LivePlot */,
+				CB290B0B1DAFEE1A0012EEEC /* DevicesHistory */,
+				CB73F9321DA6B9C30012C4D0 /* HistoryContainer */,
+				CB14AD201D9321080090AAA2 /* DeviceInfoTable */,
+				CBAB5C4E1D47FEFA00EEBECD /* BaseDevice */,
+				CB6895601C83353F00EB1A65 /* DeviceDataTable */,
+				CB16BA801C8313CD00C99C41 /* DeviceInfo */,
+				CB16BA521C82E74200C99C41 /* DeviceList */,
+				CBAB5C3E1D47CA0F00EEBECD /* DevicesContainer */,
+				CBAB5C4A1D47F81400EEBECD /* DeviceTableContainer */,
+				CB9421EB1C9200A5000724B5 /* Graph */,
+				CB242C271C9749F800757AEC /* Settings */,
+				CBD84AE41D2ED579004B0191 /* UART */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CB16BA521C82E74200C99C41 /* DeviceList */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA531C82E75F00C99C41 /* TDDeviceListTableViewController.h */,
+				CB16BA541C82E75F00C99C41 /* TDDeviceListTableViewController.m */,
+			);
+			path = DeviceList;
+			sourceTree = "<group>";
+		};
+		CB16BA561C82ECC600C99C41 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CB256CF01DABFD1800293D81 /* DiscData */,
+				CB9421E71C91E6C1000724B5 /* OtherDevice */,
+				CB16BA581C82ECE700C99C41 /* Device */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CB16BA571C82ECC600C99C41 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CB16BA581C82ECE700C99C41 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA591C82ECFE00C99C41 /* TDDeviceTableViewCell.h */,
+				CB16BA5A1C82ECFE00C99C41 /* TDDeviceTableViewCell.m */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		CB16BA621C83003200C99C41 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				300D91EB1E0AF4F300660EC2 /* TempoDeviceGroup */,
+				CB8E7E7D1DE0B8590084F3CC /* LivePlotData */,
+				CB4954F51D91BD9B00C4AAAF /* LogMessage */,
+				CB16BA6D1C83007B00C99C41 /* TempoDevice */,
+				CB14AD191D9316CA0090AAA2 /* TempoDiscDevice */,
+				CB16BA681C83007B00C99C41 /* ReadingType */,
+				CB16BA631C83007B00C99C41 /* Reading */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CB16BA631C83007B00C99C41 /* Reading */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA641C83007B00C99C41 /* Reading+CoreDataProperties.h */,
+				CB16BA651C83007B00C99C41 /* Reading+CoreDataProperties.m */,
+				CB16BA661C83007B00C99C41 /* Reading.h */,
+				CB16BA671C83007B00C99C41 /* Reading.m */,
+			);
+			path = Reading;
+			sourceTree = "<group>";
+		};
+		CB16BA681C83007B00C99C41 /* ReadingType */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA691C83007B00C99C41 /* ReadingType+CoreDataProperties.h */,
+				CB16BA6A1C83007B00C99C41 /* ReadingType+CoreDataProperties.m */,
+				CB16BA6B1C83007B00C99C41 /* ReadingType.h */,
+				CB16BA6C1C83007B00C99C41 /* ReadingType.m */,
+			);
+			path = ReadingType;
+			sourceTree = "<group>";
+		};
+		CB16BA6D1C83007B00C99C41 /* TempoDevice */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA6E1C83007B00C99C41 /* TempoDevice+CoreDataProperties.h */,
+				CB16BA6F1C83007B00C99C41 /* TempoDevice+CoreDataProperties.m */,
+				CB16BA701C83007B00C99C41 /* TempoDevice.h */,
+				CB16BA711C83007B00C99C41 /* TempoDevice.m */,
+			);
+			path = TempoDevice;
+			sourceTree = "<group>";
+		};
+		CB16BA781C83123A00C99C41 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA791C83123A00C99C41 /* TDHelper.h */,
+				CB16BA7A1C83123A00C99C41 /* TDHelper.m */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		CB16BA7C1C83125600C99C41 /* DefaultDevice */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA7D1C83126600C99C41 /* TDDefaultDevice.h */,
+				CB16BA7E1C83126600C99C41 /* TDDefaultDevice.m */,
+			);
+			path = DefaultDevice;
+			sourceTree = "<group>";
+		};
+		CB16BA801C8313CD00C99C41 /* DeviceInfo */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA811C8313ED00C99C41 /* TDDeviceInfoViewController.h */,
+				CB16BA821C8313ED00C99C41 /* TDDeviceInfoViewController.m */,
+			);
+			path = DeviceInfo;
+			sourceTree = "<group>";
+		};
+		CB242C271C9749F800757AEC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CB242C281C974A0800757AEC /* TDSettingsViewController.h */,
+				CB242C291C974A0800757AEC /* TDSettingsViewController.m */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		CB256CF01DABFD1800293D81 /* DiscData */ = {
+			isa = PBXGroup;
+			children = (
+				CB256CF11DABFD8400293D81 /* TDDiscDataTableViewCell.h */,
+				CB256CF21DABFD8400293D81 /* TDDiscDataTableViewCell.m */,
+			);
+			path = DiscData;
+			sourceTree = "<group>";
+		};
+		CB290B0B1DAFEE1A0012EEEC /* DevicesHistory */ = {
+			isa = PBXGroup;
+			children = (
+				CB290B0C1DAFEE3F0012EEEC /* TDDevicesHistoryListTableViewController.h */,
+				CB290B0D1DAFEE3F0012EEEC /* TDDevicesHistoryListTableViewController.m */,
+			);
+			path = DevicesHistory;
+			sourceTree = "<group>";
+		};
+		CB290B0F1DAFFFF80012EEEC /* UARTAllDataDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				CB290B101DB000230012EEEC /* TDUARTAllDataDownloader.h */,
+				CB290B111DB000230012EEEC /* TDUARTAllDataDownloader.m */,
+			);
+			path = UARTAllDataDownloader;
+			sourceTree = "<group>";
+		};
+		CB2B63A01D8B316E00B705CB /* UIFont+Tempo */ = {
+			isa = PBXGroup;
+			children = (
+				CB2B63A11D8B31B300B705CB /* UIFont+Tempo.h */,
+				CB2B63A21D8B31B300B705CB /* UIFont+Tempo.m */,
+			);
+			path = "UIFont+Tempo";
+			sourceTree = "<group>";
+		};
+		CB4954F51D91BD9B00C4AAAF /* LogMessage */ = {
+			isa = PBXGroup;
+			children = (
+				CB4954F61D91BDAF00C4AAAF /* LogMessage.h */,
+				CB4954F71D91BDAF00C4AAAF /* LogMessage.m */,
+			);
+			path = LogMessage;
+			sourceTree = "<group>";
+		};
+		CB4954F91D91C5A900C4AAAF /* IBActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				CB4954FA1D91C5A900C4AAAF /* IBActionSheet.h */,
+				CB4954FB1D91C5A900C4AAAF /* IBActionSheet.m */,
+			);
+			path = IBActionSheet;
+			sourceTree = "<group>";
+		};
+		CB6895601C83353F00EB1A65 /* DeviceDataTable */ = {
+			isa = PBXGroup;
+			children = (
+				CB6895611C83355700EB1A65 /* TDDeviceDataTableViewController.h */,
+				CB6895621C83355700EB1A65 /* TDDeviceDataTableViewController.m */,
+			);
+			path = DeviceDataTable;
+			sourceTree = "<group>";
+		};
+		CB73F9321DA6B9C30012C4D0 /* HistoryContainer */ = {
+			isa = PBXGroup;
+			children = (
+				CB73F9331DA6B9D50012C4D0 /* TDHistoryContainerViewController.h */,
+				CB73F9341DA6B9D50012C4D0 /* TDHistoryContainerViewController.m */,
+			);
+			path = HistoryContainer;
+			sourceTree = "<group>";
+		};
+		CB8E7E791DE0B5C80084F3CC /* LivePlot */ = {
+			isa = PBXGroup;
+			children = (
+				CB8E7E7A1DE0B5E70084F3CC /* TDLivePlotViewController.h */,
+				CB8E7E7B1DE0B5E70084F3CC /* TDLivePlotViewController.m */,
+			);
+			path = LivePlot;
+			sourceTree = "<group>";
+		};
+		CB8E7E7D1DE0B8590084F3CC /* LivePlotData */ = {
+			isa = PBXGroup;
+			children = (
+				CB8E7E7E1DE0B8680084F3CC /* TDLivePlotData.h */,
+				CB8E7E7F1DE0B8680084F3CC /* TDLivePlotData.m */,
+			);
+			path = LivePlotData;
+			sourceTree = "<group>";
+		};
+		CB9421E71C91E6C1000724B5 /* OtherDevice */ = {
+			isa = PBXGroup;
+			children = (
+				CB9421E81C91E6D5000724B5 /* TDOtherDeviceTableViewCell.h */,
+				CB9421E91C91E6D5000724B5 /* TDOtherDeviceTableViewCell.m */,
+			);
+			path = OtherDevice;
+			sourceTree = "<group>";
+		};
+		CB9421EB1C9200A5000724B5 /* Graph */ = {
+			isa = PBXGroup;
+			children = (
+				CB9421EC1C9200C5000724B5 /* TDGraphViewController.h */,
+				CB9421ED1C9200C5000724B5 /* TDGraphViewController.m */,
+			);
+			path = Graph;
+			sourceTree = "<group>";
+		};
+		CBAB5C3E1D47CA0F00EEBECD /* DevicesContainer */ = {
+			isa = PBXGroup;
+			children = (
+				CBAB5C3F1D47CA2200EEBECD /* TDDevicesContainerViewController.h */,
+				CBAB5C401D47CA2200EEBECD /* TDDevicesContainerViewController.m */,
+			);
+			path = DevicesContainer;
+			sourceTree = "<group>";
+		};
+		CBAB5C421D47CC9000EEBECD /* SCHelper */ = {
+			isa = PBXGroup;
+			children = (
+				CBAB5C431D47CC9000EEBECD /* SCHelper.h */,
+				CBAB5C441D47CC9000EEBECD /* SCHelper.m */,
+			);
+			path = SCHelper;
+			sourceTree = "<group>";
+		};
+		CBAB5C461D47E72900EEBECD /* UIColor+Tempo */ = {
+			isa = PBXGroup;
+			children = (
+				CBAB5C471D47E72A00EEBECD /* UIColor+Tempo.h */,
+				CBAB5C481D47E72A00EEBECD /* UIColor+Tempo.m */,
+			);
+			path = "UIColor+Tempo";
+			sourceTree = "<group>";
+		};
+		CBAB5C4A1D47F81400EEBECD /* DeviceTableContainer */ = {
+			isa = PBXGroup;
+			children = (
+				CBAB5C4B1D47F82300EEBECD /* TDDeviceTableContainer.h */,
+				CBAB5C4C1D47F82300EEBECD /* TDDeviceTableContainer.m */,
+			);
+			path = DeviceTableContainer;
+			sourceTree = "<group>";
+		};
+		CBAB5C4E1D47FEFA00EEBECD /* BaseDevice */ = {
+			isa = PBXGroup;
+			children = (
+				CBAB5C4F1D47FF0500EEBECD /* TDBaseDeviceViewController.h */,
+				CBAB5C501D47FF0500EEBECD /* TDBaseDeviceViewController.m */,
+			);
+			path = BaseDevice;
+			sourceTree = "<group>";
+		};
+		CBD84AE41D2ED579004B0191 /* UART */ = {
+			isa = PBXGroup;
+			children = (
+				CBD84AE51D2ED5B1004B0191 /* TDUARTViewController.h */,
+				CBD84AE61D2ED5B1004B0191 /* TDUARTViewController.m */,
+			);
+			path = UART;
+			sourceTree = "<group>";
+		};
+		CBF0664F1DA571C000210428 /* UARTDownloader */ = {
+			isa = PBXGroup;
+			children = (
+				CBF066501DA571D200210428 /* TDUARTDownloader.h */,
+				CBF066511DA571D200210428 /* TDUARTDownloader.m */,
+			);
+			path = UARTDownloader;
+			sourceTree = "<group>";
+		};
+		D1C4DF213B5628AD5B36CA9E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CB16BA5C1C82EFA800C99C41 /* CoreBluetooth.framework */,
+				23F3B5A64DC297B9F6942E40 /* libPods-Tempo Utility.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB16BA311C82E67E00C99C41 /* Tempo Utility */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB16BA4C1C82E67E00C99C41 /* Build configuration list for PBXNativeTarget "Tempo Utility" */;
+			buildPhases = (
+				C4F3E125765D4FCB3E31C94E /* [CP] Check Pods Manifest.lock */,
+				CB16BA2E1C82E67E00C99C41 /* Sources */,
+				CB16BA2F1C82E67E00C99C41 /* Frameworks */,
+				CB16BA301C82E67E00C99C41 /* Resources */,
+				BE0F373F93A4DD57968C6DD8 /* [CP] Embed Pods Frameworks */,
+				87030393AA58A3B2D706F8E1 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Tempo Utility";
+			productName = TempoDisc;
+			productReference = CB16BA321C82E67E00C99C41 /* Tempo Utility.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB16BA2A1C82E67E00C99C41 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = BlueMaestro;
+				TargetAttributes = {
+					CB16BA311C82E67E00C99C41 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 8JRVVKJ68M;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = CB16BA2D1C82E67E00C99C41 /* Build configuration list for PBXProject "Tempo Utility" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CB16BA291C82E67E00C99C41;
+			productRefGroup = CB16BA331C82E67E00C99C41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB16BA311C82E67E00C99C41 /* Tempo Utility */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB16BA301C82E67E00C99C41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				308A5A221E0A9DA400D84D46 /* Devices.storyboard in Resources */,
+				CB2B639E1D8B308B00B705CB /* Montserrat-Bold.ttf in Resources */,
+				308A59F71E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.xib in Resources */,
+				CB16BA481C82E67E00C99C41 /* LaunchScreen.storyboard in Resources */,
+				CB16BA451C82E67E00C99C41 /* Assets.xcassets in Resources */,
+				308A5A061E0A9C8000D84D46 /* GlossaryTableViewCell.xib in Resources */,
+				308A5A001E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.xib in Resources */,
+				308A5A201E0A9DA400D84D46 /* Main.storyboard in Resources */,
+				308A59E41E0A9BE400D84D46 /* ExportDataTableViewCell.xib in Resources */,
+				308A59ED1E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.xib in Resources */,
+				308A59F21E0A9C2600D84D46 /* DeviceDetailsTableViewCell.xib in Resources */,
+				CB2B639F1D8B308F00B705CB /* Montserrat-Regular.ttf in Resources */,
+				308A5A211E0A9DA400D84D46 /* History.storyboard in Resources */,
+				CB16BA401C82E67E00C99C41 /* Main2.storyboard in Resources */,
+				308A59DC1E0A9B7200D84D46 /* SingleReadingTableViewCell.xib in Resources */,
+				300D91F11E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib in Resources */,
+				308A59FE1E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.xib in Resources */,
+				308A59EB1E0A9BFD00D84D46 /* GraphsImageTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		87030393AA58A3B2D706F8E1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tempo Utility/Pods-Tempo Utility-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BE0F373F93A4DD57968C6DD8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Tempo Utility/Pods-Tempo Utility-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C4F3E125765D4FCB3E31C94E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB16BA2E1C82E67E00C99C41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB9421EE1C9200C5000724B5 /* TDGraphViewController.m in Sources */,
+				CBAB5C511D47FF0500EEBECD /* TDBaseDeviceViewController.m in Sources */,
+				CB16BA3A1C82E67E00C99C41 /* AppDelegate.m in Sources */,
+				308A59DB1E0A9B7200D84D46 /* SingleReadingTableViewCell.swift in Sources */,
+				CB16BA551C82E75F00C99C41 /* TDDeviceListTableViewController.m in Sources */,
+				CB14AD1F1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataProperties.m in Sources */,
+				308A5A0F1E0A9CF400D84D46 /* BatchHistoryViewController.swift in Sources */,
+				CB16BA831C8313ED00C99C41 /* TDDeviceInfoViewController.m in Sources */,
+				CB290B0E1DAFEE3F0012EEEC /* TDDevicesHistoryListTableViewController.m in Sources */,
+				CBD84AE71D2ED5B1004B0191 /* TDUARTViewController.m in Sources */,
+				308A59F61E0A9C4400D84D46 /* InternalDeviceDetailsTableViewCell.swift in Sources */,
+				300D91ED1E0AF50F00660EC2 /* TempoDeviceGroup.swift in Sources */,
+				CB1674151DB7E2E900BC938A /* CHCSVParser.m in Sources */,
+				CB16BA431C82E67E00C99C41 /* TempoDisc.xcdatamodeld in Sources */,
+				CB4954FC1D91C5A900C4AAAF /* IBActionSheet.m in Sources */,
+				CB9421EA1C91E6D5000724B5 /* TDOtherDeviceTableViewCell.m in Sources */,
+				CB8E7E801DE0B8680084F3CC /* TDLivePlotData.m in Sources */,
+				CB6895631C83355700EB1A65 /* TDDeviceDataTableViewController.m in Sources */,
+				308A59E31E0A9BE400D84D46 /* ExportDataTableViewCell.swift in Sources */,
+				CB242C2A1C974A0800757AEC /* TDSettingsViewController.m in Sources */,
+				CB4954F81D91BDAF00C4AAAF /* LogMessage.m in Sources */,
+				CB73F9351DA6B9D50012C4D0 /* TDHistoryContainerViewController.m in Sources */,
+				308A59FF1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.swift in Sources */,
+				308A5A131E0A9D2100D84D46 /* GlossaryViewController.swift in Sources */,
+				CBAB5C451D47CC9000EEBECD /* SCHelper.m in Sources */,
+				300D91F01E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift in Sources */,
+				308A59EA1E0A9BFD00D84D46 /* GraphsImageTableViewCell.swift in Sources */,
+				308A5A1B1E0A9D5100D84D46 /* MainTabBarViewController.swift in Sources */,
+				308A5A0D1E0A9CF400D84D46 /* HistoryListViewController.swift in Sources */,
+				CB290B121DB000230012EEEC /* TDUARTAllDataDownloader.m in Sources */,
+				CB16BA721C83007B00C99C41 /* Reading+CoreDataProperties.m in Sources */,
+				CBAB5C411D47CA2200EEBECD /* TDDevicesContainerViewController.m in Sources */,
+				CB16BA5B1C82ECFE00C99C41 /* TDDeviceTableViewCell.m in Sources */,
+				308A5A181E0A9D3C00D84D46 /* ResetDevicesViewController.swift in Sources */,
+				CB14AD231D93211D0090AAA2 /* DeviceInfoTableViewController.m in Sources */,
+				308A59F11E0A9C2600D84D46 /* DeviceDetailsTableViewCell.swift in Sources */,
+				CBAB5C491D47E72A00EEBECD /* UIColor+Tempo.m in Sources */,
+				308A5A051E0A9C8000D84D46 /* GlossaryTableViewCell.swift in Sources */,
+				30AED8C71E31748400B57EF9 /* TempoHelperMethods.m in Sources */,
+				CB16BA7B1C83123A00C99C41 /* TDHelper.m in Sources */,
+				CB16BA371C82E67E00C99C41 /* main.m in Sources */,
+				CB16BA731C83007B00C99C41 /* Reading.m in Sources */,
+				CB16BA741C83007B00C99C41 /* ReadingType+CoreDataProperties.m in Sources */,
+				CB16BA761C83007B00C99C41 /* TempoDevice+CoreDataProperties.m in Sources */,
+				308A5A101E0A9CF400D84D46 /* IndividualDeviceDataViewController.swift in Sources */,
+				CB256CF31DABFD8400293D81 /* TDDiscDataTableViewCell.m in Sources */,
+				308A59FD1E0A9C5700D84D46 /* IndividualDeviceNameTableViewCell.swift in Sources */,
+				CBF066521DA571D200210428 /* TDUARTDownloader.m in Sources */,
+				CBAB5C4D1D47F82300EEBECD /* TDDeviceTableContainer.m in Sources */,
+				308A5A0E1E0A9CF400D84D46 /* DeviceHistoryDetailsViewController.swift in Sources */,
+				CB16BA771C83007B00C99C41 /* TempoDevice.m in Sources */,
+				CB8E7E7C1DE0B5E70084F3CC /* TDLivePlotViewController.m in Sources */,
+				308A5A171E0A9D3C00D84D46 /* DeviceDetailsViewController.swift in Sources */,
+				308A59EC1E0A9BFD00D84D46 /* GraphsSelectionTableViewCell.swift in Sources */,
+				CB16BA751C83007B00C99C41 /* ReadingType.m in Sources */,
+				CB2B63A31D8B31B300B705CB /* UIFont+Tempo.m in Sources */,
+				CB14AD1E1D9316CA0090AAA2 /* TempoDiscDevice+CoreDataClass.m in Sources */,
+				CB16BA7F1C83126600C99C41 /* TDDefaultDevice.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		CB16BA3E1C82E67E00C99C41 /* Main2.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB16BA3F1C82E67E00C99C41 /* Base */,
+			);
+			name = Main2.storyboard;
+			sourceTree = "<group>";
+		};
+		CB16BA461C82E67E00C99C41 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CB16BA471C82E67E00C99C41 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		CB16BA4A1C82E67E00C99C41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB16BA4B1C82E67E00C99C41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB16BA4D1C82E67E00C99C41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E18F34A6DBB02B981295989B /* Pods-Tempo Utility.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8JRVVKJ68M;
+				GCC_PREFIX_HEADER = "TempoDisc/Tempo UtilityPCH.pch";
+				INFOPLIST_FILE = TempoDisc/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluemaestro.TempoDisc;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TempoDisc/Tempo Utility-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		CB16BA4E1C82E67E00C99C41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 821ACA4690AA2A0B5F0C2EC0 /* Pods-Tempo Utility.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 8JRVVKJ68M;
+				GCC_PREFIX_HEADER = "TempoDisc/Tempo UtilityPCH.pch";
+				INFOPLIST_FILE = TempoDisc/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bluemaestro.TempoDisc;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "TempoDisc/Tempo Utility-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB16BA2D1C82E67E00C99C41 /* Build configuration list for PBXProject "Tempo Utility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB16BA4A1C82E67E00C99C41 /* Debug */,
+				CB16BA4B1C82E67E00C99C41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CB16BA4C1C82E67E00C99C41 /* Build configuration list for PBXNativeTarget "Tempo Utility" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CB16BA4D1C82E67E00C99C41 /* Debug */,
+				CB16BA4E1C82E67E00C99C41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CB16BA411C82E67E00C99C41 /* TempoDisc.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CB16BA421C82E67E00C99C41 /* TempoDisc.xcdatamodel */,
+			);
+			currentVersion = CB16BA421C82E67E00C99C41 /* TempoDisc.xcdatamodel */;
+			path = TempoDisc.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = CB16BA2A1C82E67E00C99C41 /* Project object */;
+}

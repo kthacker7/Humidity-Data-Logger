@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0E1-AA-KwQ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--History List-->
+        <scene sceneID="wXS-rG-yI3">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fdp-bG-UYW" customClass="HistoryListViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DDi-IM-vZz"/>
+                        <viewControllerLayoutGuide type="bottom" id="eww-zl-fsA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MqY-6S-C87">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JOO-AN-NJV">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="fdp-bG-UYW" id="ifw-sB-pgc"/>
+                                    <outlet property="delegate" destination="fdp-bG-UYW" id="KGv-PR-XWz"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="eww-zl-fsA" firstAttribute="top" secondItem="JOO-AN-NJV" secondAttribute="bottom" id="8kp-iL-4O6"/>
+                            <constraint firstItem="JOO-AN-NJV" firstAttribute="leading" secondItem="MqY-6S-C87" secondAttribute="leading" id="GzK-GI-zXa"/>
+                            <constraint firstItem="JOO-AN-NJV" firstAttribute="top" secondItem="DDi-IM-vZz" secondAttribute="bottom" id="VhF-AU-BCm"/>
+                            <constraint firstAttribute="trailing" secondItem="JOO-AN-NJV" secondAttribute="trailing" id="gAG-1o-BDw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="History List" id="GCK-PP-Cqb"/>
+                    <connections>
+                        <outlet property="tableView" destination="JOO-AN-NJV" id="0ss-1U-dw6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SLe-Vp-1Ao" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2466.4000000000001" y="473.6131934032984"/>
+        </scene>
+        <!--Glossary-->
+        <scene sceneID="v77-xQ-HaI">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="GtU-9c-aha" customClass="GlossaryViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="p4L-nU-r0i"/>
+                        <viewControllerLayoutGuide type="bottom" id="jOZ-oO-tTx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YA8-KI-1Gw">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9OT-tP-i9I">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="GtU-9c-aha" id="2VK-qd-Qxq"/>
+                                    <outlet property="delegate" destination="GtU-9c-aha" id="RUk-G7-iGS"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9OT-tP-i9I" firstAttribute="leading" secondItem="YA8-KI-1Gw" secondAttribute="leading" id="6er-Td-zyn"/>
+                            <constraint firstAttribute="trailing" secondItem="9OT-tP-i9I" secondAttribute="trailing" id="FUP-wJ-Xhe"/>
+                            <constraint firstItem="jOZ-oO-tTx" firstAttribute="top" secondItem="9OT-tP-i9I" secondAttribute="bottom" id="bAI-3C-Shh"/>
+                            <constraint firstItem="9OT-tP-i9I" firstAttribute="top" secondItem="p4L-nU-r0i" secondAttribute="bottom" id="r4B-CP-lwW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Glossary" id="yYn-OT-jzk"/>
+                    <connections>
+                        <outlet property="tableView" destination="9OT-tP-i9I" id="QW8-yw-8ai"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LhP-NO-YqJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="800.79999999999995" y="914.392803598201"/>
+        </scene>
+        <!--Device Details View Controller-->
+        <scene sceneID="xR0-7S-boC">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="aSP-uE-GHO" customClass="DeviceDetailsViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bZE-Sd-hcA"/>
+                        <viewControllerLayoutGuide type="bottom" id="LO5-UY-bsk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Akp-Gl-jWn">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BJx-vF-cjz">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="aSP-uE-GHO" id="z1B-cW-yZV"/>
+                                    <outlet property="delegate" destination="aSP-uE-GHO" id="WtB-a0-4br"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BJx-vF-cjz" firstAttribute="leading" secondItem="Akp-Gl-jWn" secondAttribute="leading" id="2yu-jP-8Kt"/>
+                            <constraint firstItem="LO5-UY-bsk" firstAttribute="top" secondItem="BJx-vF-cjz" secondAttribute="bottom" id="919-G2-SAC"/>
+                            <constraint firstItem="BJx-vF-cjz" firstAttribute="top" secondItem="bZE-Sd-hcA" secondAttribute="bottom" id="cGl-vh-xLV"/>
+                            <constraint firstAttribute="trailing" secondItem="BJx-vF-cjz" secondAttribute="trailing" id="efm-70-kzo"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Oya-dZ-BCE"/>
+                    <connections>
+                        <outlet property="tableView" destination="BJx-vF-cjz" id="HCz-3h-O3O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lqP-qT-ms2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1527.2" y="-181.25937031484258"/>
+        </scene>
+        <!--Main Tab Bar View Controller-->
+        <scene sceneID="d9O-Pe-Nxv">
+            <objects>
+                <tabBarController id="0E1-AA-KwQ" customClass="MainTabBarViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="OMv-Vj-Yof">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="xl6-gE-yCO" kind="relationship" relationship="viewControllers" id="2Zu-rj-vvT"/>
+                        <segue destination="CRF-Fl-Pxl" kind="relationship" relationship="viewControllers" id="l3U-ao-rQh"/>
+                        <segue destination="BZS-72-CCd" kind="relationship" relationship="viewControllers" id="4fV-CC-vMU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CUi-FV-6PW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-362" y="146"/>
+        </scene>
+        <!--Devices-->
+        <scene sceneID="gs7-U1-2FK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xl6-gE-yCO" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Devices" image="DevicesActive" selectedImage="DevicesActive" id="su5-XE-Q8b"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Jhs-nU-E9t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.31372549020000001" green="0.57254901960000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="aSP-uE-GHO" kind="relationship" relationship="rootViewController" id="cR1-3S-wFP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yIu-Fa-mMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="588" y="-181.25937031484258"/>
+        </scene>
+        <!--Glossary-->
+        <scene sceneID="csf-NB-TPu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BZS-72-CCd" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Glossary" image="GlossaryActive" selectedImage="GlossaryActive" id="Bah-5t-0Mh"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="mSm-tS-sO9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.31372549020000001" green="0.57254901960000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="GtU-9c-aha" kind="relationship" relationship="rootViewController" id="ePX-hp-eGB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CEQ-Qk-EFf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-138.40000000000001" y="914.392803598201"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="J8G-uT-SEU">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CRF-Fl-Pxl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="History" image="HistoryActive" selectedImage="HistoryInactive" id="tuy-JZ-EmS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="YO6-zB-NRV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.31372549019607843" green="0.5725490196078431" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fdp-bG-UYW" kind="relationship" relationship="rootViewController" id="P8y-dn-zJV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2bM-Co-jWo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1527.2" y="473.6131934032984"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="DevicesActive" width="18" height="25"/>
+        <image name="GlossaryActive" width="24" height="24"/>
+        <image name="HistoryActive" width="24" height="24"/>
+        <image name="HistoryInactive" width="24" height="24"/>
+    </resources>
+</document>
