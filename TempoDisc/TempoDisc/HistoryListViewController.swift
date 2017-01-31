@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class HistoryListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -19,7 +20,13 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.loadDataSource()
         self.setup()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.loadDataSource()
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,6 +87,26 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func scanButtonTapped() {
         
+    }
+    
+    func loadDataSource() {
+        let request = NSFetchRequest<TempoDiscDevice>(entityName: NSStringFromClass(TempoDiscDevice.classForCoder()))
+        request.predicate = NSPredicate(format: "readingTypes.@count > 0")
+        do {
+            
+            if let delegate =  (UIApplication.shared.delegate) as? AppDelegate {
+                let result = try delegate.managedObjectContext.fetch(request)
+                NSLog(result.description)
+            }
+        }
+        catch {
+            
+        }
+        
+//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TempoDiscDevice class])];
+//        request.predicate = [NSPredicate predicateWithFormat:@"readingTypes.@count > 0"];
+//        NSArray *result = [[(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext] executeFetchRequest:request error:nil];
+//        [self.controllerDeviceList loadDevices:result];
     }
     
     

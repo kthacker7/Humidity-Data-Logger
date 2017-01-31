@@ -15,8 +15,10 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     let flatTexts = ["Flat No. 1 (3)", "Flat No. 12 (2)", "Flat No. 15 (4)", "Flat No. 34 (4)"]
     
+    @IBOutlet weak var greyView: UIView!
     var devices: [TempoDevice] = []
     var deviceGroups : [TempoDeviceGroup] = []
+    var firstAttempt = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,30 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         // Do any additional setup after loading the view.
         self.setup()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Devices count setup
+        self.firstAttempt = true
+//        let bluetoothManager: CBCentralManager = CBCentralManager()
+        self.greyView.isHidden = true
+//        if #available(iOS 10.0, *) {
+//            switch bluetoothManager.state {
+//            case CBManagerState.poweredOff:
+//                let alert = UIAlertController(title: "Oops!", message: "Please turn on bluetooth to be able to use Cornerstone Data Logger app!", preferredStyle: UIAlertControllerStyle.alert)
+//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+//                break
+//            case CBManagerState.poweredOn:
+//                self.scanButtonTapped()
+//                break
+//            default :
+//                break
+//            }
+//        } else {
+//            // Fallback on earlier versions
+//        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,11 +131,11 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
-        // Devices count setup
         
     }
     
     func scanButtonTapped() {
+        greyView.isHidden = false
         LGCentralManager.sharedInstance().scanForPeripherals(byInterval: 5, services: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey : true], completion: { peripherals in
 //            let fetchRequest = NSFetchRequest<TempoDevice>(entityName: "TempoDevice")
 //            do {
@@ -120,8 +145,15 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
 //            } catch {
 //                NSLog("Failed to get fetch request")
 //            }
-            if peripherals == nil || peripherals!.count == 0 {
-                self.scanButtonTapped()
+            if (peripherals == nil || peripherals!.count == 0)  {
+                if (self.firstAttempt) {
+                    self.firstAttempt = false
+                    self.scanButtonTapped()
+                } else {
+                    let alert = UIAlertController(title: "Oops", message: "Oops, no nearby devices found. Please try to scan again, or check if the data loggers are out of battery!", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
             } else {
                 for peripheral in peripherals as! [LGPeripheral] {
                     var toAdd = true
@@ -146,6 +178,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 self.groupDevices()
                 self.tableView.reloadData()
             }
+            self.greyView.isHidden = true
         })
     }
     

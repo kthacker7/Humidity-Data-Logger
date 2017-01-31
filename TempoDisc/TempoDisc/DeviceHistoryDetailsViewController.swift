@@ -212,34 +212,44 @@ class DeviceHistoryDetailsViewController: UIViewController {
     
     @IBAction func downloadAllTapped(_ sender: Any) {
         if self.deviceGroup != nil {
-            if let downloader = TDUARTAllDataDownloader.shared() {
+            if let downloader = TDUARTDownloader.shared() {
                 if let externalDevice = self.deviceGroup!.externalDevice as? TempoDiscDevice {
                     TDDefaultDevice.shared().selectedDevice = externalDevice
                     downloader.downloadData(for: externalDevice, withCompletion: { success in
-                        externalDevice.peripheral?.disconnect(completion: { (error) in
-                            if success && (error == nil) {
-                                for device in self.deviceGroup!.internalDevices {
-                                    if let internalDevice = device as? TempoDiscDevice {
-                                        TDDefaultDevice.shared().selectedDevice = internalDevice
-                                        downloader.downloadData(for: internalDevice, withCompletion: { (error) in
-                                            if (error != nil) {
-                                                let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
-                                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                            } else {
-                                                let alert = UIAlertController(title: "Success", message: "Download of logs were successful! You can now see the logs in the History tab.", preferredStyle: UIAlertControllerStyle.alert)
-                                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                            }
-                                        })
-                                        
+                        if success {
+                            externalDevice.peripheral?.disconnect(completion: { (error) in
+                                if  (error == nil) {
+                                    for device in self.deviceGroup!.internalDevices {
+                                        downloader.refreshDownloader()
+                                        if let internalDevice = device as? TempoDiscDevice {
+                                            TDDefaultDevice.shared().selectedDevice = internalDevice
+                                            downloader.downloadData(for: internalDevice, withCompletion: { (success) in
+                                                if (!success) {
+                                                    let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                    self.present(alert, animated: true, completion: nil)
+                                                } else {
+                                                    let alert = UIAlertController(title: "Success", message: "Download of logs were successful! You can now see the logs in the History tab.", preferredStyle: UIAlertControllerStyle.alert)
+                                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                                    self.present(alert, animated: true, completion: nil)
+                                                }
+                                            })
+                                            
+                                        }
                                     }
+                                    self.setupUI()
+                                } else {
+                                    let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                    self.present(alert, animated: true, completion: nil)
+                                    self.setupUI()
                                 }
-                                self.setupUI()
-                            } else {
-                                let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
-                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                self.setupUI()
-                            }
-                        })
+                            })
+                        } else {
+                            let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
                     })
                 }
                 
@@ -250,6 +260,25 @@ class DeviceHistoryDetailsViewController: UIViewController {
     
     @IBAction func downloadNewTapped(_ sender: Any) {
         self.hideOverlay()
+        if let downloader = TDUARTAllDataDownloader.shared() {
+            for device in self.deviceGroup!.internalDevices {
+                if let internalDevice = device as? TempoDiscDevice {
+                    TDDefaultDevice.shared().selectedDevice = internalDevice
+                    downloader.downloadData(for: internalDevice, withCompletion: { (success) in
+                        if (!success) {
+                            let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        } else {
+                            let alert = UIAlertController(title: "Success", message: "Download of logs were successful! You can now see the logs in the History tab.", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    })
+                    
+                }
+            }
+        }
     }
 
     /*

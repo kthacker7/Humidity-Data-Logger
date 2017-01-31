@@ -7,8 +7,7 @@
 //
 
 #import "TDUARTDownloader.h"
-#import <LGBluetooth/LGBluetooth.h>
-#import "AppDelegate.h"
+
 
 #define uartServiceUUIDString			@"6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 #define uartRXCharacteristicUUIDString	@"6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
@@ -25,12 +24,7 @@
 #define kDataStringDewPoint				@"*logndewp"
 #define kDataStringTransmitEnd			@"*qq"
 
-typedef enum : NSInteger {
-	DataDownloadTypeTemperature,
-	DataDownloadTypeHumidity,
-	DataDownloadTypeDewPoint,
-	DataDownloadTypeFinish
-} DataDownloadType;
+
 
 @interface TDUARTDownloader()
 
@@ -40,7 +34,7 @@ typedef enum : NSInteger {
 @property (nonatomic, strong) LGCharacteristic *writeCharacteristic;
 @property (nonatomic, strong) NSString *dataToSend;
 
-@property (nonatomic, assign) DataDownloadType currentDownloadType;
+
 
 @property (nonatomic, strong) NSMutableArray *currentDataSamples;
 
@@ -62,6 +56,10 @@ typedef enum : NSInteger {
 
 - (int)getIntLsb:(char)lsb msb:(char)msb {
 	return (((int) lsb) & 0xFF) | (((int) msb) << 8);
+}
+
+- (void)refreshDownloader {
+    self.currentDownloadType = DataDownloadTypeTemperature;
 }
 
 
@@ -167,6 +165,10 @@ typedef enum : NSInteger {
 			break;
 		case DataDownloadTypeFinish:
 			downloadType = DataDownloadTypeFinish;
+            if (_completion) {
+                _completion(YES);
+                _completion = nil;
+            }
 			break;
 	}
 	

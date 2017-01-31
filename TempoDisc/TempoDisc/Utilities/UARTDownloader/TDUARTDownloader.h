@@ -8,13 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "TempoDiscDevice+CoreDataProperties.h"
+#import <LGBluetooth/LGBluetooth.h>
+#import "AppDelegate.h"
 
 typedef void(^DataDownloadCompletion)(BOOL);
-
+typedef enum : NSInteger {
+    DataDownloadTypeTemperature,
+    DataDownloadTypeHumidity,
+    DataDownloadTypeDewPoint,
+    DataDownloadTypeFinish
+} DataDownloadType;
 @interface TDUARTDownloader : NSObject
+@property (nonatomic, assign) DataDownloadType currentDownloadType;
 
 + (TDUARTDownloader*)shared;
-
+- (void)refreshDownloader;
 - (void)downloadDataForDevice:(TempoDiscDevice*)device withCompletion:(DataDownloadCompletion)completion;
 
 @end

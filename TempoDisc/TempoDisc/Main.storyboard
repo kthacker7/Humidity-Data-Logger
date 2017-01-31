@@ -12,7 +12,7 @@
         <!--History List-->
         <scene sceneID="wXS-rG-yI3">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fdp-bG-UYW" customClass="HistoryListViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fdp-bG-UYW" customClass="HistoryListViewController" customModule="Tempo_Utility" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DDi-IM-vZz"/>
                         <viewControllerLayoutGuide type="bottom" id="eww-zl-fsA"/>
@@ -50,7 +50,7 @@
         <!--Glossary-->
         <scene sceneID="v77-xQ-HaI">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="GtU-9c-aha" customClass="GlossaryViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="GtU-9c-aha" customClass="GlossaryViewController" customModule="Tempo_Utility" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p4L-nU-r0i"/>
                         <viewControllerLayoutGuide type="bottom" id="jOZ-oO-tTx"/>
@@ -88,7 +88,7 @@
         <!--Device Details View Controller-->
         <scene sceneID="xR0-7S-boC">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="aSP-uE-GHO" customClass="DeviceDetailsViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="aSP-uE-GHO" customClass="DeviceDetailsViewController" customModule="Tempo_Utility" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bZE-Sd-hcA"/>
                         <viewControllerLayoutGuide type="bottom" id="LO5-UY-bsk"/>
@@ -105,17 +105,48 @@
                                     <outlet property="delegate" destination="aSP-uE-GHO" id="WtB-a0-4br"/>
                                 </connections>
                             </tableView>
+                            <view clipsSubviews="YES" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vep-pd-1J6">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="Pu0-LK-GAy">
+                                        <rect key="frame" x="162" y="252" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="KC0-QI-LMo"/>
+                                            <constraint firstAttribute="width" constant="50" id="aqJ-C0-Wqk"/>
+                                        </constraints>
+                                        <color key="color" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scanning.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEW-9y-ANh">
+                                        <rect key="frame" x="147" y="221" width="80.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Pu0-LK-GAy" firstAttribute="top" secondItem="OEW-9y-ANh" secondAttribute="bottom" constant="10" id="NU1-Mp-T4s"/>
+                                    <constraint firstItem="OEW-9y-ANh" firstAttribute="centerX" secondItem="Pu0-LK-GAy" secondAttribute="centerX" id="brG-1k-Wfq"/>
+                                    <constraint firstItem="Pu0-LK-GAy" firstAttribute="centerY" secondItem="vep-pd-1J6" secondAttribute="centerY" id="cl5-hD-Rsm"/>
+                                    <constraint firstItem="Pu0-LK-GAy" firstAttribute="centerX" secondItem="vep-pd-1J6" secondAttribute="centerX" id="g7I-uE-2pA"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="BJx-vF-cjz" firstAttribute="leading" secondItem="Akp-Gl-jWn" secondAttribute="leading" id="2yu-jP-8Kt"/>
                             <constraint firstItem="LO5-UY-bsk" firstAttribute="top" secondItem="BJx-vF-cjz" secondAttribute="bottom" id="919-G2-SAC"/>
+                            <constraint firstAttribute="trailing" secondItem="vep-pd-1J6" secondAttribute="trailing" id="CVU-L2-Y48"/>
+                            <constraint firstItem="vep-pd-1J6" firstAttribute="top" secondItem="bZE-Sd-hcA" secondAttribute="bottom" id="OOT-uT-8Xt"/>
+                            <constraint firstItem="LO5-UY-bsk" firstAttribute="top" secondItem="vep-pd-1J6" secondAttribute="bottom" id="SUY-xT-tRF"/>
                             <constraint firstItem="BJx-vF-cjz" firstAttribute="top" secondItem="bZE-Sd-hcA" secondAttribute="bottom" id="cGl-vh-xLV"/>
                             <constraint firstAttribute="trailing" secondItem="BJx-vF-cjz" secondAttribute="trailing" id="efm-70-kzo"/>
+                            <constraint firstItem="vep-pd-1J6" firstAttribute="leading" secondItem="Akp-Gl-jWn" secondAttribute="leading" id="q4H-DW-ZF6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Oya-dZ-BCE"/>
                     <connections>
+                        <outlet property="greyView" destination="vep-pd-1J6" id="xru-rF-fPz"/>
                         <outlet property="tableView" destination="BJx-vF-cjz" id="HCz-3h-O3O"/>
                     </connections>
                 </viewController>
@@ -126,7 +157,7 @@
         <!--Main Tab Bar View Controller-->
         <scene sceneID="d9O-Pe-Nxv">
             <objects>
-                <tabBarController id="0E1-AA-KwQ" customClass="MainTabBarViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="0E1-AA-KwQ" customClass="MainTabBarViewController" customModule="Tempo_Utility" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="OMv-Vj-Yof">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

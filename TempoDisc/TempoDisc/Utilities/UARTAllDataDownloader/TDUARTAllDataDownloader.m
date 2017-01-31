@@ -24,12 +24,12 @@
 
 #define kDataDownloadString				@"*logall"
 
-typedef enum : NSInteger {
-	DataDownloadTypeTemperature,
-	DataDownloadTypeHumidity,
-	DataDownloadTypeDewPoint,
-	DataDownloadTypeFinish
-} DataDownloadType;
+//typedef enum : NSInteger {
+//	DataDownloadTypeTemperature,
+//	DataDownloadTypeHumidity,
+//	DataDownloadTypeDewPoint,
+//	DataDownloadTypeFinish
+//} DataDownloadType;
 
 @interface TDUARTAllDataDownloader()
 
@@ -107,10 +107,10 @@ typedef enum : NSInteger {
 	char * d = (char*)[data bytes];
 	for (NSInteger i=0; i<length; i+=2) {
 		if ((d[i] == kDataTerminationBetweenValue && d[i+1] == kDataTerminationBetweenValue) ||
-			(_currentDownloadType == DataDownloadTypeDewPoint && d[1] == kDataTerminationValue)) {
+			(self.currentDownloadType == DataDownloadTypeDewPoint && d[1] == kDataTerminationValue)) {
 			//termination symbol found, abort data download and insert into database
 			NSLog(@"Termination symbol recognized.");
-			[self didFinishDownloadForType:_currentDownloadType];
+			[self didFinishDownloadForType:self.currentDownloadType];
 			break;
 		}
 		else {
@@ -148,7 +148,7 @@ typedef enum : NSInteger {
 			break;
 	}
 	
-	_currentDownloadType = downloadType;
+	self.currentDownloadType = downloadType;
 	
 }
 
