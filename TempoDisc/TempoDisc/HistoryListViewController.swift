@@ -13,8 +13,8 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     
-    let flatTexts = ["Flat No. 1", "Flat No. 12", "Flat No. 15"]
-    let batchQuantities = ["(3)", "(2)", "(4)"]
+    var deviceList : [TempoDiscDevice] = []
+    var deviceGroupsList : [TempoDeviceGroup] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,12 +41,26 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.deviceGroupsList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceDetailsTableViewCell", for: indexPath) as! DeviceDetailsTableViewCell
-        cell.flatNumberLabel.text =  "\(self.flatTexts[indexPath.row]) \(batchQuantities[indexPath.row])"
+        if indexPath.row < self.deviceGroupsList.count {
+            let currDeviceGroup = self.deviceGroupsList[indexPath.row]
+            cell.flatNumberLabel.text = currDeviceGroup.groupName + " (\(currDeviceGroup.internalDevices.count + 1))"
+            cell.dewLabel.text = "\(currDeviceGroup.getCurrentDewPoint()) deg"
+            cell.humidityLabel.text = "\(currDeviceGroup.getCurrentHumidity()) % RH"
+            cell.temperatureLabel.text = "\(currDeviceGroup.getAverageTemperature()) Celsius"
+            let bsVal = self.calculateValueForGroup(group: currDeviceGroup)
+            if bsVal < 0.3 {
+                cell.humidityImageView.image = #imageLiteral(resourceName: "WaterDropDry")
+            } else if bsVal >= 0.3 && bsVal < 0.6 {
+                cell.humidityImageView.image = #imageLiteral(resourceName: "WaterDropMoist")
+            } else {
+                cell.humidityImageView.image = #imageLiteral(resourceName: "WaterDropWet")
+            }
+        }
         return cell
     }
 
@@ -55,8 +69,10 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "History", bundle: nil)
         if let vc = storyboard.instantiateViewController(withIdentifier: "DeviceHistoryDetailsViewController") as? DeviceHistoryDetailsViewController  {
-            vc.navTitle = "\(self.flatTexts[indexPath.row]) History"
             vc.selectedTab = .History
+            if indexPath.row < self.deviceGroupsList.count {
+                vc.deviceGroup = self.deviceGroupsList[indexPath.row]
+            }
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -97,16 +113,76 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
             if let delegate =  (UIApplication.shared.delegate) as? AppDelegate {
                 let result = try delegate.managedObjectContext.fetch(request)
                 NSLog(result.description)
+                self.deviceList = result
+                self.groupDevices()
+                self.tableView.reloadData()
             }
         }
         catch {
             
         }
         
-//        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TempoDiscDevice class])];
-//        request.predicate = [NSPredicate predicateWithFormat:@"readingTypes.@count > 0"];
-//        NSArray *result = [[(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext] executeFetchRequest:request error:nil];
-//        [self.controllerDeviceList loadDevices:result];
+    }
+    
+    func groupDevices() {
+        var externals : [TempoDevice] = []
+        for device in self.deviceList {
+            if device.name != nil && device.name!.hasSuffix("-E") {
+                externals.append(device)
+            }
+        }
+        var deviceGroups : [TempoDeviceGroup] = []
+        for external in externals {
+            if external.name != nil {
+                var internals : [TempoDevice] = []
+                var groupName = ""
+                let range = (external.name! as NSString).range(of: "-", options: .backwards)
+                if range.location != NSNotFound {
+                    groupName = String(external.name!.characters.dropLast(external.name!.characters.count - range.location))
+                }
+                for device in self.deviceList {
+                    if device.name != nil && ((device.name! as NSString).range(of: groupName).location != NSNotFound) && device != external {
+                        internals.append(device)
+                    }
+                }
+                let newTempGroup = TempoDeviceGroup()
+                newTempGroup.externalDevice = external
+                newTempGroup.internalDevices = internals
+                newTempGroup.groupName = groupName
+                deviceGroups.append(newTempGroup)
+            }
+        }
+        self.deviceGroupsList = deviceGroups
+    }
+    
+    func calculateValueForGroup(group: TempoDeviceGroup) -> Double{
+        if group.internalDevices.count == 0 || group.externalDevice == nil {
+            return 0.0
+        }
+        var internalGPKgAverage = 0.0
+        var internalVPAverage = 0.0
+        for internalDevice in group.internalDevices {
+            if let intern = internalDevice as? TempoDiscDevice {
+                let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
+                let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
+                let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
+                let gpkg = gpm3 * 0.83174
+                internalGPKgAverage += gpkg
+                internalVPAverage += vp
+            }
+        }
+        if group.internalDevices.count != 0 {
+            internalVPAverage /= Double(group.internalDevices.count)
+            internalGPKgAverage /= Double(group.internalDevices.count)
+        }
+        if let externalDevice = group.externalDevice as? TempoDiscDevice {
+            let svp = 610.78 * exp((Double(externalDevice.averageDayTemperature!) * 17.2694) / (Double(externalDevice.averageDayTemperature!) + 238.3))
+            let vp = (svp / 1000.0) * (Double(externalDevice.averageDayHumidity!) / 100.0)
+            
+            let bsReading = internalVPAverage - vp
+            return bsReading
+        }
+        return 0.0
     }
     
     

@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TempoDisc/HistoryListViewController.swift"
-            timestampString = "507587716.037894"
+            timestampString = "508115099.152625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "loadDataSource()"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TempoDisc/HistoryListViewController.swift"
-            timestampString = "507587597.145097"
+            timestampString = "508115099.152625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "loadDataSource()"
             landmarkType = "7">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TempoDisc/HistoryListViewController.swift"
-            timestampString = "507587716.037894"
+            timestampString = "508115099.152625"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "loadDataSource()"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,7 +474,7 @@
                   moduleName = "Tempo Utility"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kunalthacker/Downloads/IOS-Tempo-Utility-App-SDK-master/TempoDisc/TempoDisc/DeviceHistoryDetailsViewController.swift"
-                  timestampString = "507590610.6292"
+                  timestampString = "508115291.178643"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "263"
@@ -489,7 +489,7 @@
                   moduleName = "Tempo Utility"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kunalthacker/Downloads/IOS-Tempo-Utility-App-SDK-master/TempoDisc/TempoDisc/DeviceHistoryDetailsViewController.swift"
-                  timestampString = "507590610.632414"
+                  timestampString = "508115291.180564"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "263"
@@ -538,7 +538,7 @@
                   moduleName = "Tempo Utility"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kunalthacker/Downloads/IOS-Tempo-Utility-App-SDK-master/TempoDisc/TempoDisc/DeviceHistoryDetailsViewController.swift"
-                  timestampString = "507590610.295857"
+                  timestampString = "508115291.187903"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "215"
@@ -553,7 +553,7 @@
                   moduleName = "Tempo Utility"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/kunalthacker/Downloads/IOS-Tempo-Utility-App-SDK-master/TempoDisc/TempoDisc/DeviceHistoryDetailsViewController.swift"
-                  timestampString = "507590610.298249"
+                  timestampString = "508115291.189797"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "215"
@@ -592,6 +592,22 @@
             startingLineNumber = "222"
             endingLineNumber = "222"
             landmarkName = "downloadAllTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TempoDisc/HistoryListViewController.swift"
+            timestampString = "508115204.4219"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
