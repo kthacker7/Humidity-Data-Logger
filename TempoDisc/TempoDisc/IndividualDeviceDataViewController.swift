@@ -8,6 +8,14 @@
 
 import UIKit
 
+struct CombinedReading {
+    var dewReading : NSDecimalNumber?
+    var tempReading : NSDecimalNumber?
+    var dateReading : NSDate?
+    var logNumber : Int?
+    var humidityReading : NSDecimalNumber?
+}
+
 class IndividualDeviceDataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GraphSelectionDelegate, ExportDataDelegate {
 
     @IBOutlet weak var tableView: UITableView!
@@ -20,9 +28,10 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     @IBOutlet weak var segmentedControlHeightConstraint: NSLayoutConstraint!
     
     let leftLabelValues = ["UUID", "VERSION", "RSSI", "BATTERY", "LOGGING INTERVAL", "NUMBER OF RECORDS", "MODE", "CURRENT", "TEMPERATURE", "HUMIDITY", "DEW POINT", "HIGHEST AND LOWEST RECORDED", "HIGHEST TEMEPERATURE", "HIGHEST HUMIDITY", "LOWEST TEMEPERATURE", "LOWEST HUMIDITY", "LAST 24 HOURS", "HIGHEST TEMEPERATURE", "LOWEST TEMEPERATURE"]
-    let rightLabelValues = ["BA248102-22CD-4056-972C-C4B88F99786C", "22", "30 dBm", "100%", "3600 seconds", "661", "1", "", "21.1 °Celsius", "59% RH", "13 °Celsius", "", "25.9 °Celsius", "73% RH", "11.1 °Celsius", "43% RH", "", "21.6 °Celsius", "15.2 °Celsius"]
     
     let navigationTitles = ["History Device Details", "Device Graphs", "Table"]
+    
+    var readingList : [CombinedReading] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +69,46 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         } else if self.selectedSegment == 1 {
             return 2
         }
-        return 10
+        if self.selectedDevice == nil {
+            return 0
+        }
+       
+        return readingList.count + 1
+        
+//                var toAdd = true
+//                var toAddVal = CombinedReading(dewReading: nil, tempReading: nil, dateReading: reading.timestamp as NSDate?, logNumber: nil, humidityReading: nil)
+//                
+//                for mergedReading in readingList {
+//                    if reading.timestamp == mergedReading.dateReading as? Date {
+//                        if readingType.type == "DewPoint" {
+//                            toAdd = false
+//                            toAddVal.dewReading = reading.avgValue
+//                            readingList.append(CombinedReading(dewReading: reading.avgValue, tempReading: reading.avgValue, dateReading: mergedReading.dateReading, logNumber: nil, humidityReading: mergedReading.humidityReading))
+//                        } else if readingType.type == "Humidity" {
+//                            toAdd = false
+//                            toAddVal.humidityReading = reading.avgValue
+//                            readingList.append(CombinedReading(dewReading: mergedReading.dewReading, tempReading: reading.avgValue, dateReading: mergedReading.dateReading, logNumber: nil, humidityReading: reading.avgValue))
+//                        } else if readingType.type == "Temperature" {
+//                            toAdd = false
+//                            toAddVal.tempReading = reading.avgValue
+//                            readingList.append(CombinedReading(dewReading: mergedReading.dewReading, tempReading: reading.avgValue, dateReading: mergedReading.dateReading, logNumber: nil, humidityReading: mergedReading.humidityReading))
+//                        }
+//                    }
+//                }
+//                if toAdd {
+//                    readingList.append(toAddVal)
+//                }
+//            }
+//            let readings = self.selectedDevice?.readings(forType: readingType.readings)
+//        }
+//        for reading in readingList {
+//            if reading.dateReading != nil && reading.dewReading != nil && reading.humidityReading != nil && reading.tempReading != nil {
+//                NSLog("Found non nil")
+//                NSLog("Temperature = \(reading.tempReading!), humidity = \(reading.humidityReading!), Dew Reading = \(reading.dewReading!)  Recorded on \(reading.dateReading)")
+//            }
+//        }
+//        return 0
+//        return self.selectedDevice?.readings(forType: )
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -103,6 +151,49 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
             self.navigationItem.title = "Device Details"
         }
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: nil, action: nil)
+        // Get logs
+        
+        var tempList : [Reading] = []
+        var humidityList : [Reading] = []
+        var dewList : [Reading] = []
+        
+        for readingType in (self.selectedDevice?.readingTypes)! {
+            if readingType.type == "Temperature" {
+                for reading in (readingType.readings)! {
+                    tempList.append(reading)
+                }
+            } else if readingType.type == "Humidity" {
+                for reading in (readingType.readings)! {
+                    humidityList.append(reading)
+                }
+            } else if readingType.type == "DewPoint" {
+                for reading in (readingType.readings)! {
+                    dewList.append(reading)
+                }
+            }
+        }
+        tempList.sort { (reading1, reading2) -> Bool in
+            return reading1.timestamp!.compare(reading2.timestamp!) == ComparisonResult.orderedAscending
+        }
+        humidityList.sort { (reading1, reading2) -> Bool in
+            return reading1.timestamp!.compare(reading2.timestamp!) == ComparisonResult.orderedAscending
+        }
+        dewList.sort { (reading1, reading2) -> Bool in
+            return reading1.timestamp!.compare(reading2.timestamp!) == ComparisonResult.orderedAscending
+        }
+        var i = 0
+        if dewList.count == humidityList.count && dewList.count == tempList.count {
+            while i < dewList.count {
+                if let dew = dewList[i].avgValue {
+                    if let humidity = humidityList[i].avgValue {
+                        if let temp = tempList[i].avgValue {
+                            readingList.append(CombinedReading(dewReading: dew, tempReading: temp, dateReading: tempList[i].timestamp as NSDate?, logNumber: i, humidityReading: humidity))
+                        }
+                    }
+                }
+                i += 1
+            }
+        }
     }
     
     func getDetailsCell(indexPath: IndexPath) -> UITableViewCell {
@@ -112,7 +203,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
             return cell
         }
         if let cell = self.tableView.dequeueReusableCell(withIdentifier: "IndividualDeviceDataTableViewCell", for: indexPath) as? IndividualDeviceDataTableViewCell {
-            if indexPath.row - 1 < leftLabelValues.count && indexPath.row - 1 < rightLabelValues.count {
+            if indexPath.row - 1 < leftLabelValues.count {
                 let leftLabelText = leftLabelValues[indexPath.row - 1] + ":"
                 let rightLabelText = self.getRightLabelText(indexPath: indexPath)
                 if rightLabelText == ""  {
@@ -226,8 +317,15 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     }
     
     func getReadingCell(indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row != 9 {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "SingleReadingTableViewCell", for: indexPath)
+        if indexPath.row != self.readingList.count {
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "SingleReadingTableViewCell", for: indexPath) as! SingleReadingTableViewCell
+            if indexPath.row < self.readingList.count {
+                let reading = self.readingList[indexPath.row]
+                cell.dateLabel.text = "\(reading.dateReading!.description)"
+                cell.dewLabel.text = "\(reading.dewReading!) °C"
+                cell.tempLabel.text = "\(reading.tempReading!) °C"
+                cell.humidityLabel.text = "\(reading.humidityReading!) RH"
+            }
             return cell
         }
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "ExportDataTableViewCell", for: indexPath) as! ExportDataTableViewCell
