@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 struct CombinedReading {
     var dewReading : NSDecimalNumber?
@@ -16,9 +17,10 @@ struct CombinedReading {
     var humidityReading : NSDecimalNumber?
 }
 
-class IndividualDeviceDataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GraphSelectionDelegate, ExportDataDelegate {
+class IndividualDeviceDataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GraphSelectionDelegate, ExportDataDelegate, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottomExportView: UIView!
     
     var selectedSegment = 0
     var selectedTab: SelecedTab = .Devices
@@ -49,6 +51,11 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         } else {
             self.segmentedControlHeightConstraint.constant = 28
             self.segmentedControl.isHidden = false
+            if self.selectedSegment == 2 {
+                self.bottomExportView.isHidden = false
+            } else {
+                self.bottomExportView.isHidden = true
+            }
         }
     }
 
@@ -73,42 +80,8 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
             return 0
         }
        
-        return readingList.count + 1
+        return readingList.count
         
-//                var toAdd = true
-//                var toAddVal = CombinedReading(dewReading: nil, tempReading: nil, dateReading: reading.timestamp as NSDate?, logNumber: nil, humidityReading: nil)
-//                
-//                for mergedReading in readingList {
-//                    if reading.timestamp == mergedReading.dateReading as? Date {
-//                        if readingType.type == "DewPoint" {
-//                            toAdd = false
-//                            toAddVal.dewReading = reading.avgValue
-//                            readingList.append(CombinedReading(dewReading: reading.avgValue, tempReading: reading.avgValue, dateReading: mergedReading.dateReading, logNumber: nil, humidityReading: mergedReading.humidityReading))
-//                        } else if readingType.type == "Humidity" {
-//                            toAdd = false
-//                            toAddVal.humidityReading = reading.avgValue
-//                            readingList.append(CombinedReading(dewReading: mergedReading.dewReading, tempReading: reading.avgValue, dateReading: mergedReading.dateReading, logNumber: nil, humidityReading: reading.avgValue))
-//                        } else if readingType.type == "Temperature" {
-//                            toAdd = false
-//                            toAddVal.tempReading = reading.avgValue
-//                            readingList.append(CombinedReading(dewReading: mergedReading.dewReading, tempReading: reading.avgValue, dateReading: mergedReading.dateReading, logNumber: nil, humidityReading: mergedReading.humidityReading))
-//                        }
-//                    }
-//                }
-//                if toAdd {
-//                    readingList.append(toAddVal)
-//                }
-//            }
-//            let readings = self.selectedDevice?.readings(forType: readingType.readings)
-//        }
-//        for reading in readingList {
-//            if reading.dateReading != nil && reading.dewReading != nil && reading.humidityReading != nil && reading.tempReading != nil {
-//                NSLog("Found non nil")
-//                NSLog("Temperature = \(reading.tempReading!), humidity = \(reading.humidityReading!), Dew Reading = \(reading.dewReading!)  Recorded on \(reading.dateReading)")
-//            }
-//        }
-//        return 0
-//        return self.selectedDevice?.readings(forType: )
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -337,6 +310,11 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         self.selectedSegment = sender.selectedSegmentIndex
         self.navigationItem.title = self.navigationTitles[self.selectedSegment]
         self.tableView.reloadData()
+        if self.selectedSegment == 2 {
+            self.bottomExportView.isHidden = false
+        } else {
+            self.bottomExportView.isHidden = true
+        }
     }
     
     // MARK: Graph Selection Delegate
@@ -351,12 +329,42 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     
     // MARK: Export Data Delegate
     
+    @IBAction func exportAsPDFTapped(_ sender: Any) {
+        self.exportAsPDF()
+    }
+    
+    @IBAction func exportAsCSVTapped(_ sender: Any) {
+        self.exportAsCSV()
+    }
+    
+    
     func exportAsPDF() {
         
     }
     
     func exportAsCSV() {
-        
+        if let device = self.selectedDevice {
+            if let filePath = TempoHelperMethods.createCSVFileFordevice(device) {
+                let mailComposeVC = MFMailComposeViewController()
+                mailComposeVC.mailComposeDelegate = self
+                mailComposeVC.modalPresentationStyle = .pageSheet
+                mailComposeVC.setSubject("Device Data Export")
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy"
+                let data = NSData.dataWithContentsOfMappedFile(filePath)
+                if device.name != nil {
+                    let date = dateFormatter.string(from: Date())
+                    mailComposeVC.addAttachmentData(data as! Data, mimeType: "text/csv", fileName: device.name! + " " + date)
+                }
+                self.present(mailComposeVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    // MARK: Mail Compose Delegate
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
     
 
