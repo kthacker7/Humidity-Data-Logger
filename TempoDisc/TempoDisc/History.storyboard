@@ -23,6 +23,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="McR-zx-cys">
+                                <rect key="frame" x="10" y="551" width="355" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Export Group Data as CSV">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="exportButtonTapped:" destination="j7H-0M-vA7" eventType="touchUpInside" id="p9o-c6-wVG"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="44g-LJ-YYn">
                                 <rect key="frame" x="0.0" y="20" width="375" height="106"/>
                                 <subviews>
@@ -259,21 +269,21 @@
                                 </constraints>
                             </view>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-C7-44h">
-                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyN-r9-yu3">
                                 <rect key="frame" x="20" y="492" width="335" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYw-6t-YcU">
-                                        <rect key="frame" x="0.0" y="50" width="335" height="1"/>
+                                        <rect key="frame" x="0.0" y="49.5" width="335" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="PxJ-Ae-ZgR"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKV-Mh-261">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="49.5"/>
                                         <state key="normal" title="Download All">
                                             <color key="titleColor" red="0.0" green="0.17254901959999999" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -282,7 +292,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2r-ox-FRJ">
-                                        <rect key="frame" x="0.0" y="51" width="335" height="49"/>
+                                        <rect key="frame" x="0.0" y="50.5" width="335" height="49.5"/>
                                         <state key="normal" title="Download New">
                                             <color key="titleColor" red="0.0" green="0.17254901959999999" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -327,7 +337,9 @@
                             <constraint firstItem="whS-D5-u6M" firstAttribute="centerY" secondItem="c2K-s2-PAN" secondAttribute="centerY" id="2hH-xB-bTY"/>
                             <constraint firstItem="fTc-6V-B4f" firstAttribute="leading" secondItem="NfE-Js-KyG" secondAttribute="leading" id="3Xv-za-e2B"/>
                             <constraint firstItem="VKU-eO-wpo" firstAttribute="leading" secondItem="I5D-sz-Wgm" secondAttribute="leading" id="4Uf-0f-sRI"/>
+                            <constraint firstItem="McR-zx-cys" firstAttribute="leading" secondItem="NfE-Js-KyG" secondAttribute="leading" constant="10" id="8og-Vf-5oV"/>
                             <constraint firstItem="6kL-C7-44h" firstAttribute="width" secondItem="NfE-Js-KyG" secondAttribute="width" id="9KN-ZC-DKr"/>
+                            <constraint firstAttribute="trailing" secondItem="McR-zx-cys" secondAttribute="trailing" constant="10" id="9w9-zF-5Uw"/>
                             <constraint firstItem="Q1n-So-JgT" firstAttribute="top" secondItem="4fI-Cl-8QI" secondAttribute="bottom" id="BXB-SA-mzm"/>
                             <constraint firstAttribute="trailing" secondItem="I5D-sz-Wgm" secondAttribute="trailing" id="Eu3-B5-k12"/>
                             <constraint firstItem="y6a-So-vOb" firstAttribute="leading" secondItem="Q1n-So-JgT" secondAttribute="leading" id="FN2-io-sTE"/>
@@ -350,6 +362,7 @@
                             <constraint firstItem="6kL-C7-44h" firstAttribute="centerX" secondItem="NfE-Js-KyG" secondAttribute="centerX" id="afW-WG-Gla"/>
                             <constraint firstAttribute="trailing" secondItem="4fI-Cl-8QI" secondAttribute="trailing" id="b6c-vt-pwf"/>
                             <constraint firstItem="6kL-C7-44h" firstAttribute="centerY" secondItem="NfE-Js-KyG" secondAttribute="centerY" id="e11-Wg-Ck5"/>
+                            <constraint firstItem="I5D-sz-Wgm" firstAttribute="top" secondItem="McR-zx-cys" secondAttribute="bottom" constant="10" id="eLm-Yd-df8"/>
                             <constraint firstAttribute="trailing" secondItem="44g-LJ-YYn" secondAttribute="trailing" id="egf-mJ-aYY"/>
                             <constraint firstItem="zyN-r9-yu3" firstAttribute="leading" secondItem="pUg-c9-9BB" secondAttribute="leading" id="fbg-lY-Jkh"/>
                             <constraint firstItem="Dnl-bn-XiV" firstAttribute="leading" secondItem="c2K-s2-PAN" secondAttribute="leading" id="fjS-tG-4H6"/>
@@ -387,6 +400,7 @@
                         <outlet property="devicesCountLabel" destination="UFJ-Rv-Ucx" id="DWt-Gu-rCr"/>
                         <outlet property="downloadButtonsView" destination="zyN-r9-yu3" id="h9d-9H-jGP"/>
                         <outlet property="downloadLogButton" destination="9t0-m0-1B8" id="2bd-zX-9kc"/>
+                        <outlet property="exportGroupDataAsCsvButton" destination="McR-zx-cys" id="bS4-5e-5gU"/>
                         <outlet property="externalAHLabel" destination="MqL-I8-Qu5" id="I2P-MD-wvl"/>
                         <outlet property="externalPressureLabel" destination="914-wF-K2e" id="I5t-U3-A0F"/>
                         <outlet property="greyView" destination="6kL-C7-44h" id="t8d-mu-z99"/>
@@ -477,18 +491,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOB-nS-Qdr">
                                 <rect key="frame" x="0.0" y="597" width="375" height="70"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0c-qf-mLG">
-                                        <rect key="frame" x="10" y="11.5" width="150" height="47"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" title="Export as PDF">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="exportAsPDFTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="E8Y-ud-YgQ"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ulw-3A-SVI">
-                                        <rect key="frame" x="215" y="11.5" width="150" height="47"/>
+                                        <rect key="frame" x="10" y="10" width="355" height="50"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Export as CSV">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -500,15 +504,11 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Ulw-3A-SVI" secondAttribute="trailing" constant="10" id="XaT-80-DiG"/>
-                                    <constraint firstItem="T0c-qf-mLG" firstAttribute="height" secondItem="BOB-nS-Qdr" secondAttribute="height" multiplier="2:3" id="Zas-vE-x7s"/>
-                                    <constraint firstItem="Ulw-3A-SVI" firstAttribute="centerY" secondItem="T0c-qf-mLG" secondAttribute="centerY" id="eh6-ao-bzF"/>
-                                    <constraint firstItem="Ulw-3A-SVI" firstAttribute="height" secondItem="T0c-qf-mLG" secondAttribute="height" id="huh-T7-vEU"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ulw-3A-SVI" secondAttribute="bottom" constant="10" id="D17-QI-8uj"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ulw-3A-SVI" secondAttribute="trailing" constant="10" id="UN8-aP-eZf"/>
+                                    <constraint firstItem="Ulw-3A-SVI" firstAttribute="leading" secondItem="BOB-nS-Qdr" secondAttribute="leading" constant="10" id="aUf-j1-jQQ"/>
                                     <constraint firstAttribute="height" constant="70" id="nVZ-za-HKt"/>
-                                    <constraint firstItem="T0c-qf-mLG" firstAttribute="centerY" secondItem="BOB-nS-Qdr" secondAttribute="centerY" id="pvD-kp-8cj"/>
-                                    <constraint firstItem="T0c-qf-mLG" firstAttribute="leading" secondItem="BOB-nS-Qdr" secondAttribute="leading" constant="10" id="qFD-Ow-3XS"/>
-                                    <constraint firstItem="T0c-qf-mLG" firstAttribute="width" secondItem="BOB-nS-Qdr" secondAttribute="width" multiplier="1:2.5" id="tMv-wx-GFQ"/>
-                                    <constraint firstItem="Ulw-3A-SVI" firstAttribute="width" secondItem="T0c-qf-mLG" secondAttribute="width" id="yyQ-dc-cDJ"/>
+                                    <constraint firstItem="Ulw-3A-SVI" firstAttribute="top" secondItem="BOB-nS-Qdr" secondAttribute="top" constant="10" id="pB0-Nl-XYM"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -527,6 +527,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomExportView" destination="BOB-nS-Qdr" id="ReF-Uu-Juz"/>
+                        <outlet property="exportAsCSVButton" destination="Ulw-3A-SVI" id="aMv-dA-9Xq"/>
                         <outlet property="segmentedControl" destination="WmL-0w-bkB" id="Uxt-9u-GVd"/>
                         <outlet property="segmentedControlHeightConstraint" destination="0D4-1i-7Ql" id="D0C-9Z-cnr"/>
                         <outlet property="tableView" destination="gPf-hI-XV5" id="p6x-iQ-bS7"/>
