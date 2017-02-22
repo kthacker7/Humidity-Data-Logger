@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import MessageUI
 
 enum SelecedTab {
     case Devices
     case History
 }
 
-class DeviceHistoryDetailsViewController: UIViewController {
+class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var devicesButtonView: UIView!
     
@@ -209,7 +210,20 @@ class DeviceHistoryDetailsViewController: UIViewController {
     
     @IBAction func exportButtonTapped(_ sender: Any) {
         if self.deviceGroup != nil {
-            let fileName = TempoHelperMethods.createCSVFileForGroup(self.deviceGroup!)
+            let filePath = TempoHelperMethodsSwift.createCSVFileForGroup(deviceGroup: self.deviceGroup!)
+            let mailComposeVC = MFMailComposeViewController()
+            mailComposeVC.mailComposeDelegate = self
+            mailComposeVC.modalPresentationStyle = .pageSheet
+            mailComposeVC.setSubject("Group Device Data Export for \(self.deviceGroup!.groupName)")
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy"
+            let data = NSData.dataWithContentsOfMappedFile(filePath)
+            if self.deviceGroup?.groupName != nil {
+                let date = dateFormatter.string(from: Date())
+                mailComposeVC.addAttachmentData(data as! Data, mimeType: "text/csv", fileName: (self.deviceGroup?.groupName)! + " " + date)
+            }
+            self.present(mailComposeVC, animated: true, completion: nil)
         }
     }
     
@@ -292,6 +306,11 @@ class DeviceHistoryDetailsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // MARK: Mail Compose Delegate
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
     /*

@@ -10,6 +10,7 @@
 		300D91ED1E0AF50F00660EC2 /* TempoDeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D91EC1E0AF50F00660EC2 /* TempoDeviceGroup.swift */; };
 		300D91F01E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D91EE1E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift */; };
 		300D91F11E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 300D91EF1E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib */; };
+		306E023B1E5BD5B100E0B417 /* TempoHelperMethodsSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306E023A1E5BD5B100E0B417 /* TempoHelperMethodsSwift.swift */; };
 		308A59DB1E0A9B7200D84D46 /* SingleReadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59D91E0A9B7200D84D46 /* SingleReadingTableViewCell.swift */; };
 		308A59DC1E0A9B7200D84D46 /* SingleReadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308A59DA1E0A9B7200D84D46 /* SingleReadingTableViewCell.xib */; };
 		308A59E31E0A9BE400D84D46 /* ExportDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 308A59E11E0A9BE400D84D46 /* ExportDataTableViewCell.swift */; };
@@ -92,6 +93,7 @@
 		300D91EC1E0AF50F00660EC2 /* TempoDeviceGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoDeviceGroup.swift; sourceTree = "<group>"; };
 		300D91EE1E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		300D91EF1E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupedSummaryTableViewCell.xib; sourceTree = "<group>"; };
+		306E023A1E5BD5B100E0B417 /* TempoHelperMethodsSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoHelperMethodsSwift.swift; sourceTree = "<group>"; };
 		308A59D81E0A9B7200D84D46 /* Tempo Utility-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tempo Utility-Bridging-Header.h"; sourceTree = "<group>"; };
 		308A59D91E0A9B7200D84D46 /* SingleReadingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleReadingTableViewCell.swift; sourceTree = "<group>"; };
 		308A59DA1E0A9B7200D84D46 /* SingleReadingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SingleReadingTableViewCell.xib; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			children = (
 				30AED8C61E31748400B57EF9 /* TempoHelperMethods.m */,
 				30AED8C81E3174EA00B57EF9 /* TempoHelperMethods.h */,
+				306E023A1E5BD5B100E0B417 /* TempoHelperMethodsSwift.swift */,
 			);
 			name = "Helpers and Extensions";
 			sourceTree = "<group>";
@@ -992,6 +995,7 @@
 				308A5A181E0A9D3C00D84D46 /* ResetDevicesViewController.swift in Sources */,
 				CB14AD231D93211D0090AAA2 /* DeviceInfoTableViewController.m in Sources */,
 				308A59F11E0A9C2600D84D46 /* DeviceDetailsTableViewCell.swift in Sources */,
+				306E023B1E5BD5B100E0B417 /* TempoHelperMethodsSwift.swift in Sources */,
 				CBAB5C491D47E72A00EEBECD /* UIColor+Tempo.m in Sources */,
 				308A5A051E0A9C8000D84D46 /* GlossaryTableViewCell.swift in Sources */,
 				30AED8C71E31748400B57EF9 /* TempoHelperMethods.m in Sources */,

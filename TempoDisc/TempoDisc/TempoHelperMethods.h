@@ -10,7 +10,6 @@
 #import <CorePlot/ios/CorePlot.h>
 #import "LogMessage.h"
 #import "CHCSVParser.h"
-#import "Tempo_Utility-Swift.h"
 
 @interface TempoHelperMethods : NSObject
 
@@ -27,5 +26,5 @@
 - (void)setupDevice;
 + (NSString *)createCSVFileFordevice:(TempoDevice *) device;
 + (void)configureAxesForGraph:(CPTGraph *)graph plot:(CPTScatterPlot *)plot;
-+ (NSString *) createCSVFileForGroup:(TempoDeviceGroup *) deviceGroup;
++ (NSString*)createFileNameWithAttachmentType:(NSString *)type withPath:(BOOL)includePath;
 @end

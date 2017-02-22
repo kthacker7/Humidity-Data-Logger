@@ -154,52 +154,6 @@
     
 }
 
-+(NSString *) createCSVFileForGroup:(TempoDeviceGroup *) deviceGroup {
-    NSString *fileName = [self createFileNameWithAttachmentType:@"CSV" withPath:YES];
-    NSOutputStream *output = [NSOutputStream outputStreamToMemory];
-    CHCSVWriter *writer = [[CHCSVWriter alloc] initWithOutputStream:output encoding:NSUTF8StringEncoding delimiter:','];
-    //wrting header name for csv file
-    [writer writeField:@"Location"];
-    [writer writeField:@"RH (%)"];
-    [writer writeField:@"Temperature (°C)"];
-    [writer writeField:@"TD (°C)"];
-    [writer writeField:@"G/Kg"];
-    [writer writeField:@"VP(kPa)"];
-    [writer writeField:@"G/M3"];
-    [writer writeField:@"SVP"];
-    [writer finishLine];
-    
-    
-    TempoDevice *external = deviceGroup.externalDevice;
-    if (external != NULL) {
-        TempoDiscDevice *externalDisc = (TempoDiscDevice *) external;
-        [writer writeField:external.name];
-        [writer writeField:[[external currentHumidity] stringValue]];
-        [writer writeField:[[external currentTemperature] stringValue]];
-        [writer writeField:[externalDisc.dewPoint stringValue]];
-        double svp = 610.78 * exp([(externalDisc.averageDayTemperature) doubleValue] * 17.2694) / ([externalDisc.averageDayTemperature doubleValue] + 238.3);
-        double vp = (svp / 1000.0) * ([externalDisc.averageDayHumidity doubleValue] / 100.0);
-        double gpm3 = ((vp * 1000.0) / ((273.0 + [externalDisc.averageDayTemperature doubleValue]) * 461.5) * 1000.0);
-        double gpkg = gpm3 * 0.83174;
-        [writer writeField:[NSString stringWithFormat:@"%g", gpkg]];
-        [writer writeField:[NSString stringWithFormat:@"%g", vp]];
-        [writer writeField:[NSString stringWithFormat:@"%g", gpm3]];
-        [writer writeField:[NSString stringWithFormat:@"%g", svp]];
-        [writer finishLine];
-//        let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
-//        let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
-//        let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
-//        let gpkg = gpm3 * 0.83174
-    }
-    [writer closeStream];
-    
-    NSData *buffer = [output propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
-    [[NSFileManager defaultManager] createFileAtPath:fileName
-                                            contents:buffer
-                                          attributes:nil];
-    return fileName;
-}
-
 +(NSString *)createCSVFileFordevice:(TempoDevice *) device{
     NSString *fileName = [self createFileNameWithAttachmentType:@"CSV" withPath:YES];
     NSOutputStream *output = [NSOutputStream outputStreamToMemory];
