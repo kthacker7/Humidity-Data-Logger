@@ -6,11 +6,7 @@
 //  Copyright © 2017 BlueMaestro. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "TempoHelperMethods.h"
-#import "LogMessage.h"
-#import "CHCSVParser.h"
-#import <CorePlot/ios/CorePlot.h>
 
 #define uartServiceUUIDString			@"6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 #define uartRXCharacteristicUUIDString	@"6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
@@ -158,7 +154,6 @@
     
 }
 
-
 +(NSString *)createCSVFileFordevice:(TempoDevice *) device{
     NSString *fileName = [self createFileNameWithAttachmentType:@"CSV" withPath:YES];
     NSOutputStream *output = [NSOutputStream outputStreamToMemory];
@@ -217,7 +212,7 @@
     return fileName;
 }
 
-- (void)configureAxesForGraph:(CPTGraph*)graph plot:(CPTScatterPlot*)plot
++ (void)configureAxesForGraph:(CPTGraph*)graph plot:(CPTScatterPlot*)plot
 {
     // Set up axis.
     CPTXYAxisSet * axisSet = (CPTXYAxisSet *) graph.axisSet;

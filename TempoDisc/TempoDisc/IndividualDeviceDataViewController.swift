@@ -29,6 +29,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var segmentedControlHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var exportAsCSVButton: UIButton!
     let leftLabelValues = ["UUID", "VERSION", "RSSI", "BATTERY", "LOGGING INTERVAL", "NUMBER OF RECORDS", "MODE", "CURRENT", "TEMPERATURE", "HUMIDITY", "DEW POINT", "HIGHEST AND LOWEST RECORDED", "HIGHEST TEMEPERATURE", "HIGHEST HUMIDITY", "LOWEST TEMEPERATURE", "LOWEST HUMIDITY", "LAST 24 HOURS", "HIGHEST TEMEPERATURE", "LOWEST TEMEPERATURE"]
     
     let navigationTitles = ["History Device Details", "Device Graphs", "Table"]
@@ -167,6 +168,11 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 i += 1
             }
         }
+        
+        // Export as csv setup
+        self.exportAsCSVButton.layer.cornerRadius = 5.0
+        self.exportAsCSVButton.layer.borderWidth = 1.0
+        self.exportAsCSVButton.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
     }
     
     func getDetailsCell(indexPath: IndexPath) -> UITableViewCell {
@@ -329,9 +335,6 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     
     // MARK: Export Data Delegate
     
-    @IBAction func exportAsPDFTapped(_ sender: Any) {
-        self.exportAsPDF()
-    }
     
     @IBAction func exportAsCSVTapped(_ sender: Any) {
         self.exportAsCSV()

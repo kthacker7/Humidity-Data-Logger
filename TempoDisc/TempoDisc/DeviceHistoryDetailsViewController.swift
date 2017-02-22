@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import MessageUI
 
 enum SelecedTab {
     case Devices
     case History
 }
 
-class DeviceHistoryDetailsViewController: UIViewController {
+class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewControllerDelegate {
 
     @IBOutlet weak var devicesButtonView: UIView!
     
@@ -48,6 +49,7 @@ class DeviceHistoryDetailsViewController: UIViewController {
     @IBOutlet weak var outcomeImageView: UIImageView!
     
     @IBOutlet weak var devicesCountLabel: UILabel!
+    @IBOutlet weak var exportGroupDataAsCsvButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +91,9 @@ class DeviceHistoryDetailsViewController: UIViewController {
         // Setup overlay
         self.cancelButton.layer.cornerRadius = 15.0
         self.downloadButtonsView.layer.cornerRadius = 15.0
+        self.exportGroupDataAsCsvButton.layer.cornerRadius = 5.0
+        self.exportGroupDataAsCsvButton.layer.borderWidth = 1.0
+        self.exportGroupDataAsCsvButton.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
         self.hideOverlay()
     }
     
@@ -164,12 +169,13 @@ class DeviceHistoryDetailsViewController: UIViewController {
             self.resetDevicesHeightConstraint.constant = 0
             self.topSeparator.isHidden = true
             self.bottomSeparator.isHidden = true
+            self.exportGroupDataAsCsvButton.isHidden = false
         } else {
             self.downloadLogButton.isHidden = false
             self.resetDevicesHeightConstraint.constant = 28
             self.topSeparator.isHidden = false
             self.bottomSeparator.isHidden = false
-            
+            self.exportGroupDataAsCsvButton.isHidden = true
         }
     }
     
@@ -202,6 +208,26 @@ class DeviceHistoryDetailsViewController: UIViewController {
         helper.connectAndWrite("*rst")
     }
     
+    @IBAction func exportButtonTapped(_ sender: Any) {
+        if self.deviceGroup != nil {
+            let filePath = TempoHelperMethodsSwift.createCSVFileForGroup(deviceGroup: self.deviceGroup!)
+            let mailComposeVC = MFMailComposeViewController()
+            mailComposeVC.mailComposeDelegate = self
+            mailComposeVC.modalPresentationStyle = .pageSheet
+            mailComposeVC.setSubject("Group Device Data Export for \(self.deviceGroup!.groupName)")
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd-MM-yyyy"
+            let data = NSData.dataWithContentsOfMappedFile(filePath)
+            if self.deviceGroup?.groupName != nil {
+                let date = dateFormatter.string(from: Date())
+                mailComposeVC.addAttachmentData(data as! Data, mimeType: "text/csv", fileName: (self.deviceGroup?.groupName)! + " " + date)
+            }
+            self.present(mailComposeVC, animated: true, completion: nil)
+        }
+    }
+    
+    
     @IBAction func downloadLogPressed(_ sender: Any) {
         self.showOverlay()
     }
@@ -209,6 +235,7 @@ class DeviceHistoryDetailsViewController: UIViewController {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         self.hideOverlay()
     }
+    
     
     @IBAction func downloadAllTapped(_ sender: Any) {
         if self.deviceGroup != nil {
@@ -279,6 +306,11 @@ class DeviceHistoryDetailsViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    // MARK: Mail Compose Delegate
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
     /*
