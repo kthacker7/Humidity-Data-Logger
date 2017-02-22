@@ -20,5 +20,6 @@
 
 - (void)connectAndWrite:(NSString*)data;
 - (void)setupDevice;
-
++ (NSString *)createCSVFileFordevice:(TempoDevice *) device;
++ (void)configureAxesForGraph:(CPTGraph*)graph plot:(CPTScatterPlot*)plot;
 @end

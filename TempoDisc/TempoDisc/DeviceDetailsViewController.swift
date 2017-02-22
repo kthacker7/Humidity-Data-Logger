@@ -31,9 +31,10 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         super.viewWillAppear(animated)
         // Devices count setup
         self.firstAttempt = true
-//        let bluetoothManager: CBCentralManager = CBCentralManager()
+
         self.greyView.isHidden = true
 //        if #available(iOS 10.0, *) {
+//        let bluetoothManager: CBCentralManager = CBCentralManager()
 //            switch bluetoothManager.state {
 //            case CBManagerState.poweredOff:
 //                let alert = UIAlertController(title: "Oops!", message: "Please turn on bluetooth to be able to use Cornerstone Data Logger app!", preferredStyle: UIAlertControllerStyle.alert)

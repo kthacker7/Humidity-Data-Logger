@@ -51,7 +51,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G/Kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCL-f7-foa">
-                                        <rect key="frame" x="210" y="50" width="28" height="15"/>
+                                        <rect key="frame" x="210" y="49" width="28" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kPa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nqe-jC-1L4">
-                                        <rect key="frame" x="344" y="50" width="21" height="15"/>
+                                        <rect key="frame" x="344" y="49" width="21" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -75,13 +75,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="G/Kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZM7-1W-QDh">
-                                        <rect key="frame" x="211" y="80" width="28" height="15"/>
+                                        <rect key="frame" x="211" y="79" width="28" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kPa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lR-zm-J55">
-                                        <rect key="frame" x="344" y="80" width="21" height="15"/>
+                                        <rect key="frame" x="344" y="79" width="21" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -169,7 +169,7 @@
                                 <rect key="frame" x="146" y="167" width="229" height="174"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WaterDropDry" translatesAutoresizingMaskIntoConstraints="NO" id="Iww-0p-NPb">
-                                        <rect key="frame" x="46" y="20" width="139" height="134"/>
+                                        <rect key="frame" x="45" y="20" width="139" height="134"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Iww-0p-NPb" secondAttribute="height" multiplier="27:26" id="maq-8A-doU"/>
                                         </constraints>
@@ -259,7 +259,7 @@
                                 </constraints>
                             </view>
                             <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-C7-44h">
-                                <rect key="frame" x="-1" y="-1" width="376" height="668"/>
+                                <rect key="frame" x="-0.5" y="-0.5" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyN-r9-yu3">
@@ -474,18 +474,59 @@
                                     <outlet property="delegate" destination="GvD-Rg-MDE" id="BCK-Fn-SVR"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BOB-nS-Qdr">
+                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T0c-qf-mLG">
+                                        <rect key="frame" x="10" y="11.5" width="150" height="47"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" title="Export as PDF">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exportAsPDFTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="E8Y-ud-YgQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ulw-3A-SVI">
+                                        <rect key="frame" x="215" y="11.5" width="150" height="47"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Export as CSV">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exportAsCSVTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="PKI-zd-KkL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Ulw-3A-SVI" secondAttribute="trailing" constant="10" id="XaT-80-DiG"/>
+                                    <constraint firstItem="T0c-qf-mLG" firstAttribute="height" secondItem="BOB-nS-Qdr" secondAttribute="height" multiplier="2:3" id="Zas-vE-x7s"/>
+                                    <constraint firstItem="Ulw-3A-SVI" firstAttribute="centerY" secondItem="T0c-qf-mLG" secondAttribute="centerY" id="eh6-ao-bzF"/>
+                                    <constraint firstItem="Ulw-3A-SVI" firstAttribute="height" secondItem="T0c-qf-mLG" secondAttribute="height" id="huh-T7-vEU"/>
+                                    <constraint firstAttribute="height" constant="70" id="nVZ-za-HKt"/>
+                                    <constraint firstItem="T0c-qf-mLG" firstAttribute="centerY" secondItem="BOB-nS-Qdr" secondAttribute="centerY" id="pvD-kp-8cj"/>
+                                    <constraint firstItem="T0c-qf-mLG" firstAttribute="leading" secondItem="BOB-nS-Qdr" secondAttribute="leading" constant="10" id="qFD-Ow-3XS"/>
+                                    <constraint firstItem="T0c-qf-mLG" firstAttribute="width" secondItem="BOB-nS-Qdr" secondAttribute="width" multiplier="1:2.5" id="tMv-wx-GFQ"/>
+                                    <constraint firstItem="Ulw-3A-SVI" firstAttribute="width" secondItem="T0c-qf-mLG" secondAttribute="width" id="yyQ-dc-cDJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BOB-nS-Qdr" secondAttribute="trailing" id="3Om-hb-7pl"/>
                             <constraint firstItem="WmL-0w-bkB" firstAttribute="top" secondItem="iwF-Up-570" secondAttribute="bottom" constant="5" id="7Gi-TI-SyP"/>
                             <constraint firstItem="SPL-5U-dpM" firstAttribute="top" secondItem="gPf-hI-XV5" secondAttribute="bottom" id="Eov-G4-7x2"/>
+                            <constraint firstItem="SPL-5U-dpM" firstAttribute="top" secondItem="BOB-nS-Qdr" secondAttribute="bottom" id="Nq5-Lp-ehy"/>
                             <constraint firstItem="gPf-hI-XV5" firstAttribute="top" secondItem="WmL-0w-bkB" secondAttribute="bottom" constant="5" id="Q2z-dU-R1n"/>
+                            <constraint firstItem="BOB-nS-Qdr" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="Xf7-Wg-NZM"/>
                             <constraint firstItem="WmL-0w-bkB" firstAttribute="centerX" secondItem="0tJ-se-ZxD" secondAttribute="centerX" id="e27-bi-wuv"/>
                             <constraint firstItem="gPf-hI-XV5" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="sdy-wz-qk7"/>
                             <constraint firstAttribute="trailing" secondItem="gPf-hI-XV5" secondAttribute="trailing" id="xVM-UB-4rj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomExportView" destination="BOB-nS-Qdr" id="ReF-Uu-Juz"/>
                         <outlet property="segmentedControl" destination="WmL-0w-bkB" id="Uxt-9u-GVd"/>
                         <outlet property="segmentedControlHeightConstraint" destination="0D4-1i-7Ql" id="D0C-9Z-cnr"/>
                         <outlet property="tableView" destination="gPf-hI-XV5" id="p6x-iQ-bS7"/>
