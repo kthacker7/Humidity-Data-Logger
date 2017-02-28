@@ -11,7 +11,7 @@
 #import "LogMessage.h"
 #import "CHCSVParser.h"
 
-@interface TempoHelperMethods : NSObject
+@interface TempoHelperMethods : NSObject<CPTScatterPlotDataSource, CPTScatterPlotDelegate, CPTPlotSpaceDelegate>
 
 
 @property (nonatomic, strong) NSMutableArray *dataSourceLogMessages;

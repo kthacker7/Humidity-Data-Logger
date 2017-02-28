@@ -10,3 +10,4 @@
 #import "TDUARTAllDataDownloader.h"
 #import "TDDefaultDevice.h"
 #import "TempoHelperMethods.h"
+#import <CorePlot/ios/CorePlot.h>

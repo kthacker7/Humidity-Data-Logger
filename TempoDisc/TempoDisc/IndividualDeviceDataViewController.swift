@@ -19,6 +19,7 @@ struct CombinedReading {
 
 class IndividualDeviceDataViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GraphSelectionDelegate, ExportDataDelegate, MFMailComposeViewControllerDelegate {
 
+    @IBOutlet weak var selectTypeView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomExportView: UIView!
     
@@ -168,6 +169,11 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 i += 1
             }
         }
+        
+        self.selectTypeView.isHidden = true
+        self.selectTypeView.layer.cornerRadius = 5.0
+        self.selectTypeView.layer.borderWidth = 1.0
+        self.selectTypeView.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
         
         // Export as csv setup
         self.exportAsCSVButton.layer.cornerRadius = 5.0
@@ -330,7 +336,18 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     }
     
     func selectRange() {
-        
+        self.selectTypeView.isHidden = false
+    }
+    @IBAction func temperatureButtonTapped(_ sender: Any) {
+        self.selectTypeView.isHidden = true
+    }
+    
+    @IBAction func humidityButtonTapped(_ sender: Any) {
+        self.selectTypeView.isHidden = true
+    }
+    
+    @IBAction func dewpointButtonTapped(_ sender: Any) {
+        self.selectTypeView.isHidden = true
     }
     
     // MARK: Export Data Delegate

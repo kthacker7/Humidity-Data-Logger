@@ -294,6 +294,168 @@
     
 }
 
+-(CPTGraphHostingView*)configureHost:(UIView*)graphView forGraph:(CPTGraphHostingView*)host
+{
+    for (UIView* subview in graphView.subviews) {
+        [subview removeFromSuperview];
+    }
+    host = [(CPTGraphHostingView *)[CPTGraphHostingView alloc] initWithFrame:CGRectInset(graphView.bounds, 10, 12)];
+    host.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    [graphView addSubview:host];
+    return host;
+}
 
+- (CPTGraph*)configureGraph:(CPTGraph*)graph hostView:(CPTGraphHostingView*)hostView graphView:(UIView*)viewGraph title:(NSString*)title
+{
+    // 1 - Create the graph
+    graph = [[CPTXYGraph alloc] initWithFrame:CGRectInset(viewGraph.bounds, 10, 10)];
+    graph.title = title;
+    graph.titleDisplacement = CGPointMake(0, 15.0);
+    hostView.hostedGraph = graph;
+    //	_graph.plotAreaFrame.plotArea.delegate = self;
+    
+    // Set up the look of the plot. Want
+    [graph applyTheme:[CPTTheme themeNamed:kCPTDarkGradientTheme]];
+    
+    // Make things see through.
+    graph.backgroundColor = nil;
+    graph.fill = [CPTFill fillWithColor:[CPTColor whiteColor]];
+    graph.plotAreaFrame.fill = nil;
+    graph.plotAreaFrame.plotArea.fill = nil;
+    graph.plotAreaFrame.borderLineStyle = nil;
+    graph.plotAreaFrame.masksToBorder = NO;
+    
+    CPTMutableTextStyle *whiteText = [CPTMutableTextStyle textStyle];
+    whiteText.color = [CPTColor colorWithComponentRed:62.0f/255.0f green:62.0f/255.0f blue:62.0f/255.0f alpha:1];
+    whiteText.fontName=@"Montserrat-Regular";
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        whiteText.fontSize=15;
+    }
+    else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)//iPad
+    {
+        whiteText.fontSize=25;
+    }
+    
+    graph.titleTextStyle = whiteText;
+    
+    hostView.allowPinchScaling = NO;
+    
+    UIPinchGestureRecognizer *pGes = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    [viewGraph addGestureRecognizer:pGes];
+    
+    return graph;
+}
+
+- (CPTScatterPlot*)configurePlot:(CPTScatterPlot*)plot forGraph:(CPTGraph*)graph identifier:(NSString*)identifier
+{
+    //plot average
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+    plotSpace.allowsUserInteraction = YES;
+    plotSpace.delegate = self;
+    
+    // Set up the plot, including the look of the plot itself.
+    plot = [self plotWithIdentifier:identifier];
+    for (id plot in graph.allPlots) {
+        [graph removePlot:plot];
+    }
+    [graph addPlot:plot toPlotSpace:plotSpace];
+    
+    return plot;
+}
+
+- (void)configureAxesForGraph:(CPTGraph*)graph plot:(CPTScatterPlot*)plot
+{
+    // Set up axis.
+    CPTXYAxisSet * axisSet = (CPTXYAxisSet *) graph.axisSet;
+    
+    axisSet.xAxis.labelingPolicy = CPTAxisLabelingPolicyEqualDivisions;//CPTAxisLabelingPolicyAutomatic
+    axisSet.xAxis.preferredNumberOfMajorTicks = 6;
+    axisSet.xAxis.minorTickLineStyle = nil;
+    axisSet.xAxis.axisConstraints = [CPTConstraints constraintWithLowerOffset:0.0];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd MMM\nHH:mm"];
+    CPTTimeFormatter *timeFormatter = [[CPTTimeFormatter alloc] initWithDateFormatter:formatter];
+    timeFormatter.referenceDate = [NSDate dateWithTimeIntervalSince1970:0];
+    [(CPTXYAxisSet *)graph.axisSet xAxis].labelFormatter = timeFormatter;
+    
+    axisSet.yAxis.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+    //    axisSet.yAxis.preferredNumberOfMajorTicks = 6;
+    CPTMutableLineStyle *majorGridLineStyle = [CPTMutableLineStyle lineStyle];
+    majorGridLineStyle.lineColor = [CPTColor colorWithGenericGray:0.7];
+    majorGridLineStyle.lineWidth = 0.5;
+    
+    CPTMutableLineStyle *minorGridLineStyle = [CPTMutableLineStyle lineStyle];
+    minorGridLineStyle.lineColor = [CPTColor colorWithGenericGray:0.8];
+    minorGridLineStyle.lineWidth = 0.25;
+    
+    CPTMutableLineStyle *tickLineStyle = [CPTMutableLineStyle lineStyle];
+    tickLineStyle.lineColor = [CPTColor colorWithGenericGray:0.1];
+    tickLineStyle.lineWidth = 0.25;
+    
+    axisSet.yAxis.minorTickLineStyle = tickLineStyle;
+    axisSet.yAxis.majorGridLineStyle = majorGridLineStyle;
+    axisSet.yAxis.minorGridLineStyle = minorGridLineStyle;
+    axisSet.yAxis.axisConstraints = [CPTConstraints constraintWithLowerOffset:0.0];
+    
+    NSNumberFormatter *formatterY = [[NSNumberFormatter alloc] init];
+    [formatterY setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatterY setGeneratesDecimalNumbers:NO];
+    axisSet.yAxis.labelFormatter = formatterY;
+    
+    axisSet.yAxis.axisConstraints = [CPTConstraints constraintWithLowerOffset:0.0];
+    
+    CPTMutableTextStyle *labelTextStyle = [[CPTMutableTextStyle alloc] init];
+    labelTextStyle.textAlignment = CPTTextAlignmentCenter;
+    labelTextStyle.color = kColorGraphAxis;
+    labelTextStyle.fontName=kFontGraphAxis;
+    
+    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
+    {
+        labelTextStyle.fontSize = kGraphiPhoneFontSize;
+    }
+    else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)//iPad
+    {
+        labelTextStyle.fontSize = kGraphiPadFontSize;
+    }
+    
+    axisSet.xAxis.labelTextStyle = labelTextStyle;
+    axisSet.yAxis.labelTextStyle = labelTextStyle;
+    
+    //25-3
+    CPTColor *linecolor = kColorGraphAverage;
+    
+    CPTMutableLineStyle *minrangeLineStyle = [plot.dataLineStyle mutableCopy];
+    minrangeLineStyle.lineWidth = kGraphLineWidth;
+    minrangeLineStyle.lineColor = kColorGraphAverage;
+    
+    plot.dataLineStyle=minrangeLineStyle;
+    plot.interpolation=GRAPH_LINE_TYPE;
+    
+    CPTMutableLineStyle *newSymbolLineStyle = [CPTMutableLineStyle lineStyle];
+    newSymbolLineStyle.lineColor=kColorGraphAverage;
+    newSymbolLineStyle.lineWidth=1.0;
+    
+    CPTPlotSymbol *temperatureSymbol = [CPTPlotSymbol ellipsePlotSymbol];  //dot symbol
+    temperatureSymbol.lineStyle = minrangeLineStyle;
+    temperatureSymbol.size=kGraphSymbolSize;
+    temperatureSymbol.fill=[CPTFill fillWithColor:linecolor];
+    temperatureSymbol.lineStyle = newSymbolLineStyle;
+    plot.plotSymbol = temperatureSymbol;
+    
+}
+
+- (CPTScatterPlot *)plotWithIdentifier:(NSString *)identifier
+{
+    // Set up the plot, including the look of the plot itself.
+    CPTScatterPlot *plot = [[CPTScatterPlot alloc] init];
+    plot.dataSource = self;
+    plot.delegate = self;
+    plot.identifier=identifier;
+    plot.plotSymbolMarginForHitDetection = kGraphSymboldTouchArea;
+    return plot;
+}
 
 @end

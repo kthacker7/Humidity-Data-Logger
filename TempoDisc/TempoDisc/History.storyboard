@@ -276,14 +276,14 @@
                                 <rect key="frame" x="20" y="492" width="335" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYw-6t-YcU">
-                                        <rect key="frame" x="0.0" y="49.5" width="335" height="1"/>
+                                        <rect key="frame" x="0.0" y="50" width="335" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="PxJ-Ae-ZgR"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKV-Mh-261">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="49.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <state key="normal" title="Download All">
                                             <color key="titleColor" red="0.0" green="0.17254901959999999" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -292,7 +292,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2r-ox-FRJ">
-                                        <rect key="frame" x="0.0" y="50.5" width="335" height="49.5"/>
+                                        <rect key="frame" x="0.0" y="51" width="335" height="49"/>
                                         <state key="normal" title="Download New">
                                             <color key="titleColor" red="0.0" green="0.17254901959999999" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -511,6 +511,44 @@
                                     <constraint firstItem="Ulw-3A-SVI" firstAttribute="top" secondItem="BOB-nS-Qdr" secondAttribute="top" constant="10" id="pB0-Nl-XYM"/>
                                 </constraints>
                             </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roQ-R1-roN">
+                                <rect key="frame" x="20" y="267" width="335" height="132"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eg-VC-tLp">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="laq-yg-6U0"/>
+                                        </constraints>
+                                        <state key="normal" title="Temperature"/>
+                                        <connections>
+                                            <action selector="temperatureButtonTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="Mfc-Cq-WWL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njG-U4-0ii">
+                                        <rect key="frame" x="0.0" y="88" width="335" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Dew point"/>
+                                        <connections>
+                                            <action selector="dewpointButtonTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="1II-6c-M7U"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awR-wV-HZG">
+                                        <rect key="frame" x="0.0" y="44" width="335" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Humidity"/>
+                                        <connections>
+                                            <action selector="humidityButtonTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="LuC-Zq-jZG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="9eg-VC-tLp" secondAttribute="trailing" id="9Wh-VP-Hs2"/>
+                                    <constraint firstItem="9eg-VC-tLp" firstAttribute="top" secondItem="roQ-R1-roN" secondAttribute="top" id="JfX-NB-Zx7"/>
+                                    <constraint firstAttribute="height" constant="132" id="KKb-lW-o5L"/>
+                                    <constraint firstItem="9eg-VC-tLp" firstAttribute="leading" secondItem="roQ-R1-roN" secondAttribute="leading" id="Sgc-Q3-oIS"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -520,8 +558,11 @@
                             <constraint firstItem="SPL-5U-dpM" firstAttribute="top" secondItem="BOB-nS-Qdr" secondAttribute="bottom" id="Nq5-Lp-ehy"/>
                             <constraint firstItem="gPf-hI-XV5" firstAttribute="top" secondItem="WmL-0w-bkB" secondAttribute="bottom" constant="5" id="Q2z-dU-R1n"/>
                             <constraint firstItem="BOB-nS-Qdr" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="Xf7-Wg-NZM"/>
+                            <constraint firstItem="roQ-R1-roN" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" constant="20" id="dU6-2O-sDv"/>
                             <constraint firstItem="WmL-0w-bkB" firstAttribute="centerX" secondItem="0tJ-se-ZxD" secondAttribute="centerX" id="e27-bi-wuv"/>
+                            <constraint firstItem="roQ-R1-roN" firstAttribute="centerY" secondItem="0tJ-se-ZxD" secondAttribute="centerY" id="hOI-PM-GHi"/>
                             <constraint firstItem="gPf-hI-XV5" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="sdy-wz-qk7"/>
+                            <constraint firstAttribute="trailing" secondItem="roQ-R1-roN" secondAttribute="trailing" constant="20" id="uiH-BJ-f0l"/>
                             <constraint firstAttribute="trailing" secondItem="gPf-hI-XV5" secondAttribute="trailing" id="xVM-UB-4rj"/>
                         </constraints>
                     </view>
@@ -530,6 +571,7 @@
                         <outlet property="exportAsCSVButton" destination="Ulw-3A-SVI" id="aMv-dA-9Xq"/>
                         <outlet property="segmentedControl" destination="WmL-0w-bkB" id="Uxt-9u-GVd"/>
                         <outlet property="segmentedControlHeightConstraint" destination="0D4-1i-7Ql" id="D0C-9Z-cnr"/>
+                        <outlet property="selectTypeView" destination="roQ-R1-roN" id="Tij-NU-aqw"/>
                         <outlet property="tableView" destination="gPf-hI-XV5" id="p6x-iQ-bS7"/>
                     </connections>
                 </viewController>
