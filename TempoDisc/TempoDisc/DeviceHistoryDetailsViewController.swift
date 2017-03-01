@@ -201,11 +201,10 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     }
     
     func resetButtonTapped() {
-//        let storyboard = UIStoryboard(name: "Devices", bundle: nil)
-//        let vc = storyboard.instantiateViewController(withIdentifier: "ResetDevicesViewController")
-//        self.navigationController?.pushViewController(vc, animated: true)
-        let helper = TempoHelperMethods()
-        helper.connectAndWrite("*rst")
+        let storyboard = UIStoryboard(name: "Devices", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "ResetDevicesViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
     
     @IBAction func exportButtonTapped(_ sender: Any) {

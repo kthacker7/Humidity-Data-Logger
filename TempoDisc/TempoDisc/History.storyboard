@@ -276,14 +276,14 @@
                                 <rect key="frame" x="20" y="492" width="335" height="100"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYw-6t-YcU">
-                                        <rect key="frame" x="0.0" y="49.5" width="335" height="1"/>
+                                        <rect key="frame" x="0.0" y="50" width="335" height="1"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="PxJ-Ae-ZgR"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKV-Mh-261">
-                                        <rect key="frame" x="0.0" y="0.0" width="335" height="49.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <state key="normal" title="Download All">
                                             <color key="titleColor" red="0.0" green="0.17254901959999999" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -292,7 +292,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g2r-ox-FRJ">
-                                        <rect key="frame" x="0.0" y="50.5" width="335" height="49.5"/>
+                                        <rect key="frame" x="0.0" y="51" width="335" height="49"/>
                                         <state key="normal" title="Download New">
                                             <color key="titleColor" red="0.0" green="0.17254901959999999" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -465,21 +465,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WmL-0w-bkB">
-                                <rect key="frame" x="100" y="25" width="176" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="0D4-1i-7Ql"/>
-                                </constraints>
-                                <segments>
-                                    <segment title="Details"/>
-                                    <segment title="Graphs"/>
-                                    <segment title="Table"/>
-                                </segments>
-                                <color key="tintColor" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <action selector="segmentedControlTapped:" destination="GvD-Rg-MDE" eventType="valueChanged" id="OM3-EK-j71"/>
-                                </connections>
-                            </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gPf-hI-XV5">
                                 <rect key="frame" x="0.0" y="58" width="375" height="609"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -511,26 +496,161 @@
                                     <constraint firstItem="Ulw-3A-SVI" firstAttribute="top" secondItem="BOB-nS-Qdr" secondAttribute="top" constant="10" id="pB0-Nl-XYM"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u7T-iM-gra">
+                                <rect key="frame" x="0.0" y="53" width="375" height="539"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgA-gZ-sT9">
+                                <rect key="frame" x="0.0" y="53" width="375" height="539"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wJn-Am-y1d">
+                                <rect key="frame" x="0.0" y="20" width="375" height="572"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="roQ-R1-roN">
+                                <rect key="frame" x="20" y="267" width="335" height="132"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eg-VC-tLp">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="laq-yg-6U0"/>
+                                        </constraints>
+                                        <state key="normal" title="Temperature">
+                                            <color key="titleColor" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="temperatureButtonTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="Mfc-Cq-WWL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="njG-U4-0ii">
+                                        <rect key="frame" x="0.0" y="88" width="335" height="44"/>
+                                        <state key="normal" title="Dew point">
+                                            <color key="titleColor" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="dewpointButtonTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="1II-6c-M7U"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awR-wV-HZG">
+                                        <rect key="frame" x="0.0" y="44" width="335" height="44"/>
+                                        <state key="normal" title="Humidity">
+                                            <color key="titleColor" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="humidityButtonTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="LuC-Zq-jZG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="njG-U4-0ii" firstAttribute="height" secondItem="9eg-VC-tLp" secondAttribute="height" id="67P-R5-eoX"/>
+                                    <constraint firstAttribute="trailing" secondItem="9eg-VC-tLp" secondAttribute="trailing" id="9Wh-VP-Hs2"/>
+                                    <constraint firstItem="njG-U4-0ii" firstAttribute="width" secondItem="9eg-VC-tLp" secondAttribute="width" id="Aod-su-hHn"/>
+                                    <constraint firstItem="9eg-VC-tLp" firstAttribute="top" secondItem="roQ-R1-roN" secondAttribute="top" id="JfX-NB-Zx7"/>
+                                    <constraint firstAttribute="height" constant="132" id="KKb-lW-o5L"/>
+                                    <constraint firstItem="9eg-VC-tLp" firstAttribute="leading" secondItem="roQ-R1-roN" secondAttribute="leading" id="Sgc-Q3-oIS"/>
+                                    <constraint firstItem="njG-U4-0ii" firstAttribute="leading" secondItem="9eg-VC-tLp" secondAttribute="leading" id="Tem-Im-djL"/>
+                                    <constraint firstItem="awR-wV-HZG" firstAttribute="width" secondItem="njG-U4-0ii" secondAttribute="width" id="YFb-6K-j7f"/>
+                                    <constraint firstItem="njG-U4-0ii" firstAttribute="top" secondItem="9eg-VC-tLp" secondAttribute="bottom" constant="44" id="aJp-aT-Epi"/>
+                                    <constraint firstItem="awR-wV-HZG" firstAttribute="leading" secondItem="njG-U4-0ii" secondAttribute="leading" id="hvs-5i-Ec2"/>
+                                    <constraint firstItem="njG-U4-0ii" firstAttribute="top" secondItem="awR-wV-HZG" secondAttribute="bottom" id="qKX-qd-2ht"/>
+                                    <constraint firstItem="awR-wV-HZG" firstAttribute="height" secondItem="njG-U4-0ii" secondAttribute="height" id="rWk-mo-1Hw"/>
+                                </constraints>
+                            </view>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LTy-CS-LXT">
+                                <rect key="frame" x="-0.5" y="597" width="375" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QEQ-Ie-UTr">
+                                        <rect key="frame" x="197.5" y="20" width="167.5" height="30"/>
+                                        <state key="normal" title="All Data">
+                                            <color key="titleColor" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="allDataButtonTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="hXl-F0-0ud"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b8a-Qh-4qt">
+                                        <rect key="frame" x="10" y="20" width="167.5" height="30"/>
+                                        <state key="normal" title="Select Type">
+                                            <color key="titleColor" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectTypeTapped:" destination="GvD-Rg-MDE" eventType="touchUpInside" id="VmB-Vl-j10"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="b8a-Qh-4qt" firstAttribute="width" secondItem="QEQ-Ie-UTr" secondAttribute="width" id="FRr-Xd-TAP"/>
+                                    <constraint firstAttribute="trailing" secondItem="QEQ-Ie-UTr" secondAttribute="trailing" constant="10" id="JTs-8i-CGK"/>
+                                    <constraint firstItem="QEQ-Ie-UTr" firstAttribute="centerY" secondItem="LTy-CS-LXT" secondAttribute="centerY" id="Rw1-Yu-78p"/>
+                                    <constraint firstItem="QEQ-Ie-UTr" firstAttribute="width" secondItem="LTy-CS-LXT" secondAttribute="width" multiplier="0.5" constant="-20" id="o5q-80-jNs"/>
+                                    <constraint firstItem="b8a-Qh-4qt" firstAttribute="leading" secondItem="LTy-CS-LXT" secondAttribute="leading" constant="10" id="tnQ-9P-X1c"/>
+                                    <constraint firstItem="b8a-Qh-4qt" firstAttribute="centerY" secondItem="QEQ-Ie-UTr" secondAttribute="centerY" id="vpV-MB-b5x"/>
+                                </constraints>
+                            </view>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="WmL-0w-bkB">
+                                <rect key="frame" x="100" y="25" width="176" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="0D4-1i-7Ql"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Details"/>
+                                    <segment title="Graphs"/>
+                                    <segment title="Table"/>
+                                </segments>
+                                <color key="tintColor" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="segmentedControlTapped:" destination="GvD-Rg-MDE" eventType="valueChanged" id="OM3-EK-j71"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="BOB-nS-Qdr" secondAttribute="trailing" id="3Om-hb-7pl"/>
+                            <constraint firstItem="LTy-CS-LXT" firstAttribute="height" secondItem="BOB-nS-Qdr" secondAttribute="height" id="4Hi-FZ-lnl"/>
+                            <constraint firstItem="BOB-nS-Qdr" firstAttribute="top" secondItem="u7T-iM-gra" secondAttribute="bottom" constant="5" id="5bd-uT-WFb"/>
                             <constraint firstItem="WmL-0w-bkB" firstAttribute="top" secondItem="iwF-Up-570" secondAttribute="bottom" constant="5" id="7Gi-TI-SyP"/>
+                            <constraint firstItem="u7T-iM-gra" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="8AD-6i-Nfu"/>
+                            <constraint firstItem="LTy-CS-LXT" firstAttribute="width" secondItem="BOB-nS-Qdr" secondAttribute="width" id="B7e-Hq-ow2"/>
                             <constraint firstItem="SPL-5U-dpM" firstAttribute="top" secondItem="gPf-hI-XV5" secondAttribute="bottom" id="Eov-G4-7x2"/>
+                            <constraint firstAttribute="trailing" secondItem="TgA-gZ-sT9" secondAttribute="trailing" id="GYa-lH-QSH"/>
+                            <constraint firstAttribute="trailing" secondItem="wJn-Am-y1d" secondAttribute="trailing" id="HQ2-VP-71V"/>
                             <constraint firstItem="SPL-5U-dpM" firstAttribute="top" secondItem="BOB-nS-Qdr" secondAttribute="bottom" id="Nq5-Lp-ehy"/>
+                            <constraint firstItem="LTy-CS-LXT" firstAttribute="centerY" secondItem="BOB-nS-Qdr" secondAttribute="centerY" id="OEI-6Q-Zns"/>
+                            <constraint firstItem="wJn-Am-y1d" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="Pcp-dg-H9x"/>
                             <constraint firstItem="gPf-hI-XV5" firstAttribute="top" secondItem="WmL-0w-bkB" secondAttribute="bottom" constant="5" id="Q2z-dU-R1n"/>
+                            <constraint firstItem="BOB-nS-Qdr" firstAttribute="top" secondItem="TgA-gZ-sT9" secondAttribute="bottom" constant="5" id="QSl-Tb-57D"/>
+                            <constraint firstItem="wJn-Am-y1d" firstAttribute="top" secondItem="iwF-Up-570" secondAttribute="bottom" id="XFZ-Qc-szJ"/>
                             <constraint firstItem="BOB-nS-Qdr" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="Xf7-Wg-NZM"/>
+                            <constraint firstItem="u7T-iM-gra" firstAttribute="top" secondItem="WmL-0w-bkB" secondAttribute="bottom" id="ZaR-7i-6y1"/>
+                            <constraint firstItem="TgA-gZ-sT9" firstAttribute="top" secondItem="WmL-0w-bkB" secondAttribute="bottom" id="a03-vV-VV5"/>
+                            <constraint firstItem="roQ-R1-roN" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" constant="20" id="dU6-2O-sDv"/>
                             <constraint firstItem="WmL-0w-bkB" firstAttribute="centerX" secondItem="0tJ-se-ZxD" secondAttribute="centerX" id="e27-bi-wuv"/>
+                            <constraint firstItem="TgA-gZ-sT9" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="gWM-7C-vMg"/>
+                            <constraint firstItem="roQ-R1-roN" firstAttribute="centerY" secondItem="0tJ-se-ZxD" secondAttribute="centerY" id="hOI-PM-GHi"/>
+                            <constraint firstAttribute="trailing" secondItem="u7T-iM-gra" secondAttribute="trailing" id="p2m-Ax-RU9"/>
+                            <constraint firstItem="LTy-CS-LXT" firstAttribute="centerX" secondItem="BOB-nS-Qdr" secondAttribute="centerX" id="q74-k7-1mf"/>
                             <constraint firstItem="gPf-hI-XV5" firstAttribute="leading" secondItem="0tJ-se-ZxD" secondAttribute="leading" id="sdy-wz-qk7"/>
+                            <constraint firstAttribute="trailing" secondItem="roQ-R1-roN" secondAttribute="trailing" constant="20" id="uiH-BJ-f0l"/>
                             <constraint firstAttribute="trailing" secondItem="gPf-hI-XV5" secondAttribute="trailing" id="xVM-UB-4rj"/>
+                            <constraint firstItem="BOB-nS-Qdr" firstAttribute="top" secondItem="wJn-Am-y1d" secondAttribute="bottom" constant="5" id="y4V-Pm-cGl"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="allDataButton" destination="QEQ-Ie-UTr" id="N7n-GS-DfH"/>
                         <outlet property="bottomExportView" destination="BOB-nS-Qdr" id="ReF-Uu-Juz"/>
+                        <outlet property="dewpointGraphView" destination="TgA-gZ-sT9" id="63v-Bl-tym"/>
                         <outlet property="exportAsCSVButton" destination="Ulw-3A-SVI" id="aMv-dA-9Xq"/>
+                        <outlet property="graphsBottomView" destination="LTy-CS-LXT" id="Ma2-Pp-aPU"/>
+                        <outlet property="humidityGraphView" destination="wJn-Am-y1d" id="K1t-U8-WcZ"/>
                         <outlet property="segmentedControl" destination="WmL-0w-bkB" id="Uxt-9u-GVd"/>
                         <outlet property="segmentedControlHeightConstraint" destination="0D4-1i-7Ql" id="D0C-9Z-cnr"/>
+                        <outlet property="selectTypeButton" destination="b8a-Qh-4qt" id="Rgk-Vj-EXu"/>
+                        <outlet property="selectTypeView" destination="roQ-R1-roN" id="Tij-NU-aqw"/>
                         <outlet property="tableView" destination="gPf-hI-XV5" id="p6x-iQ-bS7"/>
+                        <outlet property="temperatureGraphView" destination="u7T-iM-gra" id="2RO-aT-pCe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K7V-S0-Kbw" userLabel="First Responder" sceneMemberID="firstResponder"/>
