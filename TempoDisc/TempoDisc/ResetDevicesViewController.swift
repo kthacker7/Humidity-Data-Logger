@@ -47,6 +47,8 @@ class ResetDevicesViewController: UIViewController {
     }
 
     @IBAction func resetButtonTapped(_ sender: Any) {
+        let helper = TempoHelperMethods()
+        helper.connectAndWrite("*rst")
         let _ = self.navigationController?.popViewController(animated: true)
     }
     /*

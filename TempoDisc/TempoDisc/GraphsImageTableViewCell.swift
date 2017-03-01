@@ -21,6 +21,8 @@ class GraphsImageTableViewCell: UITableViewCell {
     @IBOutlet weak var humidityGraphView: UIView!
     @IBOutlet weak var dewpointGraphView: UIView!
     
+    let helper : TempoHelperMethods = TempoHelperMethods()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -37,7 +39,19 @@ class GraphsImageTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func switchTo(type: GraphType) {
-        
+    
+    func switchTo(type: GraphType, device: TempoDevice) {
+        self.humidityGraphView.isHidden = true
+        self.dewpointGraphView.isHidden = true
+        self.helper.selectedDevice = device
+        var hostViewTemperature : CPTGraphHostingView = CPTGraphHostingView()
+        hostViewTemperature = helper.configureHost(temperatureGraphView, forGraph: hostViewTemperature)
+        var graphTemperature: CPTGraph = CPTXYGraph(frame: hostViewTemperature.bounds.insetBy(dx: 10, dy: 10))
+//        graph = [[CPTXYGraph alloc] initWithFrame:CGRectInset(viewGraph.bounds, 10, 10)];
+        graphTemperature = helper.configureGraph(graphTemperature, hostView: hostViewTemperature, graphView: temperatureGraphView, title: nil)
+        var plotTemperature: CPTScatterPlot = CPTScatterPlot()
+        plotTemperature = helper.configurePlot(plotTemperature, for: graphTemperature, identifier: "Temperature")
+        helper.configureAxes(for: graphTemperature, plot: plotTemperature)
+//        helper.adjustPlotsRange(graphTemperature.defaultPlotSpace!)
     }
 }

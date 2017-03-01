@@ -23,9 +23,23 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomExportView: UIView!
     
+    // Graph Views
+    @IBOutlet weak var temperatureGraphView: UIView!
+    @IBOutlet weak var humidityGraphView: UIView!
+    @IBOutlet weak var dewpointGraphView: UIView!
+    
+    // Graph Button buttons and Views
+    @IBOutlet weak var graphsBottomView: UIView!
+    @IBOutlet weak var allDataButton: UIButton!
+    @IBOutlet weak var selectTypeButton: UIButton!
+    
+    
     var selectedSegment = 0
     var selectedTab: SelecedTab = .Devices
     var selectedDevice: TempoDevice?
+    let helper : TempoHelperMethods = TempoHelperMethods()
+    var allDataSelected = false
+    var currentType : GraphType = .temperature
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var segmentedControlHeightConstraint: NSLayoutConstraint!
@@ -170,10 +184,27 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
             }
         }
         
+        // Setup graph views
+        self.dewpointGraphView.isHidden = true
+        self.temperatureGraphView.isHidden = true
+        self.humidityGraphView.isHidden = true
+        self.dewpointGraphView.isUserInteractionEnabled = true
+        self.temperatureGraphView.isUserInteractionEnabled = true
+        self.humidityGraphView.isUserInteractionEnabled = true
+        
         self.selectTypeView.isHidden = true
         self.selectTypeView.layer.cornerRadius = 5.0
         self.selectTypeView.layer.borderWidth = 1.0
         self.selectTypeView.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
+        
+        self.graphsBottomView.isHidden = true
+        self.allDataButton.layer.cornerRadius = 5.0
+        self.allDataButton.layer.borderWidth = 1.0
+        self.allDataButton.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
+        
+        self.selectTypeButton.layer.cornerRadius = 5.0
+        self.selectTypeButton.layer.borderWidth = 1.0
+        self.selectTypeButton.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
         
         // Export as csv setup
         self.exportAsCSVButton.layer.cornerRadius = 5.0
@@ -230,7 +261,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 return "-"
             }
         case 6:
-            if let numberOfRecords = tempoDiscDevice?.intervalCounter {
+            if let numberOfRecords = tempoDiscDevice?.logCount {
                 return "\(numberOfRecords)"
             } else {
                 return "-"
@@ -292,7 +323,10 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     
     func getGraphsCell(indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let cell = self.tableView.dequeueReusableCell(withIdentifier: "GraphsImageTableViewCell", for: indexPath)
+            let cell = self.tableView.dequeueReusableCell(withIdentifier: "GraphsImageTableViewCell", for: indexPath) as! GraphsImageTableViewCell
+            if self.selectedDevice != nil {
+                cell.switchTo(type: .temperature, device: self.selectedDevice!)
+            }
             return cell
         }
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "GraphsSelectionTableViewCell", for: indexPath) as! GraphsSelectionTableViewCell
@@ -327,7 +361,80 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         } else {
             self.bottomExportView.isHidden = true
         }
+        if self.selectedSegment == 1 {
+            self.dewpointGraphView.isHidden = true
+            self.temperatureGraphView.isHidden = false
+            self.humidityGraphView.isHidden = true
+            self.tableView.isHidden = true
+            self.graphsBottomView.isHidden = false
+            self.switchTo(type: .temperature)
+        } else {
+            self.graphsBottomView.isHidden = true
+            self.tableView.isHidden = false
+            self.temperatureGraphView.isHidden = true
+            self.dewpointGraphView.isHidden = true
+            self.humidityGraphView.isHidden = true
+        }
     }
+    
+    func switchTo(type: GraphType) {
+        self.currentType = type
+        if self.selectedDevice != nil {
+            var stringType : String?
+            var chosenView : UIView?
+            if type == .temperature {
+                self.temperatureGraphView.isHidden = false
+                self.humidityGraphView.isHidden = true
+                self.dewpointGraphView.isHidden = true
+                chosenView = self.temperatureGraphView
+                stringType = "Temperature"
+            } else if type == .humidity {
+                self.temperatureGraphView.isHidden = true
+                self.humidityGraphView.isHidden = false
+                self.dewpointGraphView.isHidden = true
+                chosenView = self.humidityGraphView
+                stringType = "Humidity"
+            } else {
+                self.temperatureGraphView.isHidden = false
+                self.humidityGraphView.isHidden = true
+                self.dewpointGraphView.isHidden = false
+                chosenView = self.dewpointGraphView
+                stringType = "DewPoint"
+            }
+            self.helper.allDataSelected = self.allDataSelected
+            self.helper.selectedDevice = self.selectedDevice!
+            var hostViewTemperature : CPTGraphHostingView = CPTGraphHostingView()
+            hostViewTemperature = helper.configureHost(chosenView!, forGraph: hostViewTemperature)
+            var graphTemperature: CPTGraph = CPTXYGraph(frame: hostViewTemperature.bounds.insetBy(dx: 10, dy: 10))
+            //        graph = [[CPTXYGraph alloc] initWithFrame:CGRectInset(viewGraph.bounds, 10, 10)];
+            graphTemperature = helper.configureGraph(graphTemperature, hostView: hostViewTemperature, graphView: temperatureGraphView, title: nil)
+            var plotTemperature: CPTScatterPlot = CPTScatterPlot()
+            plotTemperature = helper.configurePlot(plotTemperature, for: graphTemperature, identifier: stringType!)
+            helper.configureAxes(for: graphTemperature, plot: plotTemperature)
+            helper.adjustPlotsRange(graphTemperature.defaultPlotSpace!, forType: stringType!)
+        }
+    }
+    
+    // MARK: Graphs Bottom view Methods
+    
+    @IBAction func allDataButtonTapped(_ sender: Any) {
+        if (!self.allDataSelected) {
+            self.allDataButton.backgroundColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0)
+            self.allDataButton.setTitleColor(UIColor.white, for: .normal)
+            self.allDataButton.titleLabel?.textColor = UIColor.white
+        } else {
+            self.allDataButton.backgroundColor = UIColor.white
+            self.allDataButton.setTitleColor(UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0), for: .normal)
+        }
+        allDataSelected = !allDataSelected
+        self.switchTo(type: self.currentType)
+    }
+    
+    
+    @IBAction func selectTypeTapped(_ sender: Any) {
+        self.selectRange()
+    }
+    
     
     // MARK: Graph Selection Delegate
     
@@ -340,14 +447,17 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     }
     @IBAction func temperatureButtonTapped(_ sender: Any) {
         self.selectTypeView.isHidden = true
+        self.switchTo(type: .temperature)
     }
     
     @IBAction func humidityButtonTapped(_ sender: Any) {
         self.selectTypeView.isHidden = true
+        self.switchTo(type: .humidity)
     }
     
     @IBAction func dewpointButtonTapped(_ sender: Any) {
         self.selectTypeView.isHidden = true
+        self.switchTo(type: .dewpoint)
     }
     
     // MARK: Export Data Delegate

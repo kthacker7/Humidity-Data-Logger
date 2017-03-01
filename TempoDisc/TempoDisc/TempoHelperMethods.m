@@ -15,6 +15,7 @@
 #define kDeviceReconnectTimeout			2.0
 
 #define kDeviceConnectTimeout			10.0
+#define kInitialDataLoadCount           140
 
 @implementation TempoHelperMethods
 
@@ -93,7 +94,7 @@
 }
 
 - (void)writeData:(NSString*)data toCharacteristic:(LGCharacteristic*)characteristic {
-//    __weak typeof(self) weakself = self;
+    //    __weak typeof(self) weakself = self;
     [characteristic writeValue:[data dataUsingEncoding:NSUTF8StringEncoding] completion:^(NSError *error) {
         if (!error) {
             //			[weakself addLogMessage:@"Sucessefully wrote data to write characteristic" type:LogMessageTypeInbound];
@@ -175,10 +176,10 @@
     NSArray *dewPoint = [device readingsForType:@"DewPoint"];
     
     temperature = [temperature sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-            Reading *reading1 = obj1;
-            Reading *reading2 = obj2;
-            return [reading1.timestamp compare:reading2.timestamp];
-        }];
+        Reading *reading1 = obj1;
+        Reading *reading2 = obj2;
+        return [reading1.timestamp compare:reading2.timestamp];
+    }];
     humidity = [humidity sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
         Reading *reading1 = obj1;
         Reading *reading2 = obj2;
@@ -210,6 +211,45 @@
                                             contents:buffer
                                           attributes:nil];
     return fileName;
+}
+
+- (void)adjustPlotsRange:(CPTPlotSpace *) plotSpaceOrig
+                 forType:(NSString *) type {
+    TempoDevice *device = self.selectedDevice;
+    /**
+     *	Adjust range for plot so that all points fit in the view with one hour before and after
+     **/
+    if ([type isEqualToString:@"Temperature"]) {
+        CPTXYPlotSpace* plotSpace = (CPTXYPlotSpace *) plotSpaceOrig;
+        NSArray *readings = [[device readingsForType:@"Temperature"] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+        if (!self.allDataSelected) {
+            readings = [readings subarrayWithRange:NSMakeRange(0, MIN(readings.count, kInitialDataLoadCount))];
+        }
+        double lastReading = [[(Reading*)[readings firstObject] timestamp] timeIntervalSince1970];
+        double firstReading = [[(Reading*)[readings lastObject] timestamp] timeIntervalSince1970];
+        plotSpace.xRange = [[CPTPlotRange alloc] initWithLocationDecimal:CPTDecimalFromFloat(firstReading-60*60) lengthDecimal:CPTDecimalFromFloat(MAX(60*60*2, lastReading-firstReading+60*60*2))];
+        plotSpace.yRange = [[CPTPlotRange alloc] initWithLocationDecimal:CPTDecimalFromFloat([TDHelper temperature:@(0.0) forDevice:device].floatValue) lengthDecimal:CPTDecimalFromFloat([TDHelper temperature:@(35.0) forDevice:device].floatValue)];
+    } else if ([type isEqualToString:@"Humidity"]) {
+        CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)plotSpaceOrig;
+        NSArray *readings = [[self.selectedDevice readingsForType:@"Humidity"] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+        if (!self.allDataSelected) {
+            readings = [readings subarrayWithRange:NSMakeRange(0, MIN(readings.count, kInitialDataLoadCount))];
+        }
+        double lastReading = [[(Reading*)[readings firstObject] timestamp] timeIntervalSince1970];
+        double firstReading = [[(Reading*)[readings lastObject] timestamp] timeIntervalSince1970];
+        plotSpace.xRange = [[CPTPlotRange alloc] initWithLocationDecimal:CPTDecimalFromFloat(firstReading-60*60) lengthDecimal:CPTDecimalFromFloat(MAX(60*60*2, lastReading-firstReading+60*60*2))];
+        plotSpace.yRange = [[CPTPlotRange alloc] initWithLocationDecimal:CPTDecimalFromFloat(0.0) lengthDecimal:CPTDecimalFromFloat(100)];
+    } else {
+        CPTXYPlotSpace *plotSpaceDewPoint = (CPTXYPlotSpace *)plotSpaceOrig;
+        NSArray *readings = [[self.selectedDevice readingsForType:@"DewPoint"] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+        if (!self.allDataSelected) {
+            readings = [readings subarrayWithRange:NSMakeRange(0, MIN(readings.count, kInitialDataLoadCount))];
+        }
+        double lastReading = [[(Reading*)[readings firstObject] timestamp] timeIntervalSince1970];
+        double firstReading = [[(Reading*)[readings lastObject] timestamp] timeIntervalSince1970];
+        plotSpaceDewPoint.xRange = [[CPTPlotRange alloc] initWithLocationDecimal:CPTDecimalFromFloat(firstReading-60*60) lengthDecimal:CPTDecimalFromFloat(MAX(60*60*2, lastReading-firstReading+60*60*2))];
+        plotSpaceDewPoint.yRange = [[CPTPlotRange alloc] initWithLocationDecimal:CPTDecimalFromFloat([TDHelper temperature:@(0.0) forDevice:device].floatValue) lengthDecimal:CPTDecimalFromFloat([TDHelper temperature:@(35.0) forDevice:device].floatValue)];
+    }
 }
 
 + (void)configureAxesForGraph:(CPTGraph*)graph plot:(CPTScatterPlot*)plot
@@ -299,7 +339,7 @@
     for (UIView* subview in graphView.subviews) {
         [subview removeFromSuperview];
     }
-    host = [(CPTGraphHostingView *)[CPTGraphHostingView alloc] initWithFrame:CGRectInset(graphView.bounds, 10, 12)];
+    host = [(CPTGraphHostingView *)[CPTGraphHostingView alloc] initWithFrame:CGRectInset(graphView.bounds, 20, 20)];
     host.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     [graphView addSubview:host];
     return host;
@@ -340,10 +380,10 @@
     
     graph.titleTextStyle = whiteText;
     
-    hostView.allowPinchScaling = NO;
+    hostView.allowPinchScaling = YES;
     
-    UIPinchGestureRecognizer *pGes = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
-    [viewGraph addGestureRecognizer:pGes];
+    //    UIPinchGestureRecognizer *pGes = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    //    [viewGraph addGestureRecognizer:pGes];
     
     return graph;
 }
@@ -457,5 +497,81 @@
     plot.plotSymbolMarginForHitDetection = kGraphSymboldTouchArea;
     return plot;
 }
+
+- (NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
+{
+    if ([plot.identifier isEqual:@"Temperature"]) {
+        if (!self.allDataSelected) {
+            return MIN([self.selectedDevice readingsForType:@"Temperature"].count, kInitialDataLoadCount);
+        }
+        else {
+            return [self.selectedDevice readingsForType:@"Temperature"].count;
+        }
+    }
+    else if ([plot.identifier isEqual:@"Humidity"]) {
+        if (!self.allDataSelected) {
+            return MIN([self.selectedDevice readingsForType:@"Humidity"].count, kInitialDataLoadCount);
+        }
+        else {
+            return [self.selectedDevice readingsForType:@"Humidity"].count;
+        }
+    }
+    else if ([plot.identifier isEqual:@"DewPoint"]) {
+        if (!self.allDataSelected) {
+            return MIN([self.selectedDevice readingsForType:@"DewPoint"].count, kInitialDataLoadCount);
+        }
+        else {
+            return [self.selectedDevice readingsForType:@"DewPoint"].count;
+        }
+    }
+    else {
+        return 0;
+    }
+}
+
+- (NSNumber *) numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+{
+    NSArray *dataSource = @[];
+    Reading *reading;
+    if ([plot.identifier isEqual:@"Temperature"]) {
+        dataSource = [[self.selectedDevice readingsForType:@"Temperature"] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+    }
+    else if ([plot.identifier isEqual:@"Humidity"]) {
+        dataSource = [[self.selectedDevice readingsForType:@"Humidity"] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+    }
+    else if ([plot.identifier isEqual:@"DewPoint"]) {
+        dataSource = [[self.selectedDevice readingsForType:@"DewPoint"] sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"timestamp" ascending:NO]]];
+    }
+    reading = [dataSource objectAtIndex:index];
+    
+    switch (fieldEnum) {
+        case CPTScatterPlotFieldX:
+            if (fieldEnum == CPTScatterPlotFieldX)
+            {
+                return [NSNumber numberWithDouble:[reading.timestamp timeIntervalSince1970]];
+            }
+            break;
+            
+        case CPTScatterPlotFieldY:
+            if ([plot.identifier isEqual:@"Humidity"]) {
+                return reading.avgValue;
+            }
+            else {
+                return [TDHelper temperature:reading.avgValue forDevice:self.selectedDevice];
+            }
+            
+            break;
+    }
+    return [NSNumber numberWithFloat:0.0];
+}
+
+#pragma mark - CPTScatterPlotDelegate
+
+- (CPTPlotSymbol *)symbolForScatterPlot:(CPTScatterPlot *)plot recordIndex:(NSUInteger)idx {
+    CPTPlotSymbol *temperatureSymbol = [CPTPlotSymbol diamondPlotSymbol];
+    temperatureSymbol.fill = [CPTFill fillWithColor:[CPTColor colorWithGenericGray:1.0]];
+    return temperatureSymbol;
+}
+
 
 @end
