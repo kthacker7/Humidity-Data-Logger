@@ -179,7 +179,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xl6-gE-yCO" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Devices" image="DevicesActive" selectedImage="DevicesActive" id="su5-XE-Q8b"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="Jhs-nU-E9t">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Jhs-nU-E9t">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.31372549020000001" green="0.57254901960000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -202,7 +202,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BZS-72-CCd" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Glossary" image="GlossaryActive" selectedImage="GlossaryActive" id="Bah-5t-0Mh"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="mSm-tS-sO9">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="mSm-tS-sO9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.31372549020000001" green="0.57254901960000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -225,7 +225,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CRF-Fl-Pxl" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="History" image="HistoryActive" selectedImage="HistoryInactive" id="tuy-JZ-EmS"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="YO6-zB-NRV">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="YO6-zB-NRV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.31372549019607843" green="0.5725490196078431" blue="0.80784313725490198" alpha="1" colorSpace="calibratedRGB"/>

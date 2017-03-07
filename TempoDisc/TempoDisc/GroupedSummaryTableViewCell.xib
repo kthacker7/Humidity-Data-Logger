@@ -57,8 +57,16 @@
                             <constraint firstItem="k2Z-tA-MKR" firstAttribute="leading" secondItem="XDT-zT-JZG" secondAttribute="leading" constant="15" id="rVs-kE-zcX"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lc-Fs-f4j">
+                        <rect key="frame" x="0.0" y="128" width="320" height="1.5"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1.5" id="gk6-rz-ZTU"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="bottom" secondItem="3lc-Fs-f4j" secondAttribute="bottom" id="ALE-Md-6Vy"/>
                     <constraint firstItem="QEj-tV-rTu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="MFH-xn-Zrc"/>
                     <constraint firstItem="k2Z-tA-MKR" firstAttribute="bottom" secondItem="QEj-tV-rTu" secondAttribute="bottom" id="QQh-ZV-H84"/>
                     <constraint firstItem="jXv-eH-Vjy" firstAttribute="top" secondItem="QEj-tV-rTu" secondAttribute="top" priority="750" id="RfA-vk-OCo"/>
@@ -66,6 +74,8 @@
                     <constraint firstItem="QEj-tV-rTu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32.5" id="fr8-Yd-nm6"/>
                     <constraint firstAttribute="bottom" secondItem="XDT-zT-JZG" secondAttribute="bottom" id="jhP-yK-d4k"/>
                     <constraint firstItem="XDT-zT-JZG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="m9U-Q8-Zz2"/>
+                    <constraint firstItem="3lc-Fs-f4j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mFT-QI-Rre"/>
+                    <constraint firstAttribute="trailing" secondItem="3lc-Fs-f4j" secondAttribute="trailing" id="pT0-1J-v6S"/>
                     <constraint firstItem="QEj-tV-rTu" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uXU-UK-hfg"/>
                     <constraint firstAttribute="trailing" secondItem="XDT-zT-JZG" secondAttribute="trailing" id="z9K-0H-Fxl"/>
                 </constraints>
