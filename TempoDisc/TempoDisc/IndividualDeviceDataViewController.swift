@@ -33,6 +33,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     @IBOutlet weak var allDataButton: UIButton!
     @IBOutlet weak var selectTypeButton: UIButton!
     
+    @IBOutlet weak var greyView: UIView!
     
     var selectedSegment = 0
     var selectedTab: SelecedTab = .Devices
@@ -193,6 +194,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         self.humidityGraphView.isUserInteractionEnabled = true
         
         self.selectTypeView.isHidden = true
+        self.greyView.isHidden = true
         self.selectTypeView.layer.cornerRadius = 5.0
         self.selectTypeView.layer.borderWidth = 1.0
         self.selectTypeView.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
@@ -444,19 +446,23 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     
     func selectRange() {
         self.selectTypeView.isHidden = false
+        self.greyView.isHidden = false
     }
     @IBAction func temperatureButtonTapped(_ sender: Any) {
         self.selectTypeView.isHidden = true
+        self.greyView.isHidden = true
         self.switchTo(type: .temperature)
     }
     
     @IBAction func humidityButtonTapped(_ sender: Any) {
         self.selectTypeView.isHidden = true
+        self.greyView.isHidden = true
         self.switchTo(type: .humidity)
     }
     
     @IBAction func dewpointButtonTapped(_ sender: Any) {
         self.selectTypeView.isHidden = true
+        self.greyView.isHidden = true
         self.switchTo(type: .dewpoint)
     }
     

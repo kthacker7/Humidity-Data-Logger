@@ -90,20 +90,12 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         
         // Navigation bar setup
         self.navigationItem.title = "Batch List"
-        let scanButton = UIBarButtonItem(title: "Scan", style: .plain, target: self, action: #selector(DeviceDetailsViewController.scanButtonTapped))
-        scanButton.tintColor = UIColor.white
-        scanButton.setTitleTextAttributes([NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)], for: .normal)
-        self.navigationItem.rightBarButtonItem = scanButton
-        
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: nil, action: nil)
         self.navigationController?.navigationBar.backIndicatorImage = UIImage()
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
-    func scanButtonTapped() {
-        
-    }
     
     func loadDataSource() {
         let request = NSFetchRequest<TempoDiscDevice>(entityName: NSStringFromClass(TempoDiscDevice.classForCoder()))

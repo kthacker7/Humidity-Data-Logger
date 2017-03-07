@@ -202,7 +202,8 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     
     func resetButtonTapped() {
         let storyboard = UIStoryboard(name: "Devices", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "ResetDevicesViewController")
+        let vc = storyboard.instantiateViewController(withIdentifier: "ResetDevicesViewController") as! ResetDevicesViewController
+        vc.deviceGroup = self.deviceGroup
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
