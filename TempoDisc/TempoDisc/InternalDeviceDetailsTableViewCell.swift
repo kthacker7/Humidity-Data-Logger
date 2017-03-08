@@ -31,7 +31,7 @@ class InternalDeviceDetailsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupUsingDevice(device: TempoDevice?) {
+    func setupUsingDevice(device: TDTempoDisc?) {
         if device == nil {
             self.uuidLabel.text = "-"
             self.versionLabel.text = "-"
@@ -49,7 +49,7 @@ class InternalDeviceDetailsTableViewCell: UITableViewCell {
         } else {
             self.rssiLabel.text = "-"
         }
-        self.versionLabel.text = device!.version
+        self.versionLabel.text = device!.version?.description
         if let battery = device!.battery {
             self.batteryLabel.text = "\(battery)%"
         } else {
@@ -65,7 +65,7 @@ class InternalDeviceDetailsTableViewCell: UITableViewCell {
         } else {
             self.currentHumidityLabel.text = "-"
         }
-        if let tempoDiscDevice = device! as? TempoDiscDevice {
+        if let tempoDiscDevice = device {
             if let dewPoint = tempoDiscDevice.dewPoint {
                 self.currentDewPointLabel.text = "\(dewPoint)°C"
             } else {

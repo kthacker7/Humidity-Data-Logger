@@ -1,6 +1,6 @@
 //
 //  TempoDiscDevice+CoreDataClass.h
-//  
+//
 //
 //  Created by Nikola Misic on 9/21/16.
 //
@@ -12,6 +12,9 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TempoDiscDevice : TempoDevice
+
+
+- (void)fillDataForPersistentStore:(TDTempoDisc*)device;
 
 @end
 

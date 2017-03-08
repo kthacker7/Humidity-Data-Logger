@@ -13,7 +13,7 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     
-    var deviceList : [TempoDiscDevice] = []
+    var deviceList : [TDTempoDisc] = []
     var deviceGroupsList : [TempoDeviceGroup] = []
     
     override func viewDidLoad() {
@@ -103,11 +103,12 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         do {
             
             if let delegate =  (UIApplication.shared.delegate) as? AppDelegate {
-                let result = try delegate.managedObjectContext.fetch(request)
-                NSLog(result.description)
-                self.deviceList = result
-                self.groupDevices()
-                self.tableView.reloadData()
+                let resultt = try delegate.managedObjectContext.fetch(request)
+//                if let result = (resultt as? [TDTempoDisc]) {
+//                    self.deviceList = result
+//                    self.groupDevices()
+//                    self.tableView.reloadData()
+//                }
             }
         }
         catch {
@@ -117,7 +118,7 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func groupDevices() {
-        var externals : [TempoDevice] = []
+        var externals : [TDTempoDisc] = []
         for device in self.deviceList {
             if device.name != nil && device.name!.hasSuffix("-E") {
                 externals.append(device)
@@ -126,7 +127,7 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         var deviceGroups : [TempoDeviceGroup] = []
         for external in externals {
             if external.name != nil {
-                var internals : [TempoDevice] = []
+                var internals : [TDTempoDisc] = []
                 var groupName = ""
                 let range = (external.name! as NSString).range(of: "-", options: .backwards)
                 if range.location != NSNotFound {

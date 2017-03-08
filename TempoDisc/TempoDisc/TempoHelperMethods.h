@@ -10,6 +10,7 @@
 #import <CorePlot/ios/CorePlot.h>
 #import "LogMessage.h"
 #import "CHCSVParser.h"
+#import "TempoDiscDevice+CoreDataClass.h"
 
 @interface TempoHelperMethods : NSObject<CPTScatterPlotDataSource, CPTScatterPlotDelegate, CPTPlotSpaceDelegate>
 
@@ -36,4 +37,5 @@
 - (CPTScatterPlot *)plotWithIdentifier:(NSString *)identifier;
 - (void)adjustPlotsRange:(CPTPlotSpace *) plotSpaceOrig
                  forType:(NSString *) type;
++ (TempoDiscDevice *) tdToTempo: (TDTempoDisc *) device;
 @end

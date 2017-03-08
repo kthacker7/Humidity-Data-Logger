@@ -37,7 +37,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     
     var selectedSegment = 0
     var selectedTab: SelecedTab = .Devices
-    var selectedDevice: TempoDevice?
+    var selectedDevice: TDTempoDisc?
     let helper : TempoHelperMethods = TempoHelperMethods()
     var allDataSelected = false
     var currentType : GraphType = .temperature
@@ -146,8 +146,8 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         var tempList : [Reading] = []
         var humidityList : [Reading] = []
         var dewList : [Reading] = []
-        
-        for readingType in (self.selectedDevice?.readingTypes)! {
+        let device = TempoHelperMethods.td(toTempo: self.selectedDevice)
+        for readingType in (device?.readingTypes)! {
             if readingType.type == "Temperature" {
                 for reading in (readingType.readings)! {
                     tempList.append(reading)
@@ -236,14 +236,14 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     }
     
     func getRightLabelText(indexPath: IndexPath) -> String? {
-        let tempoDiscDevice = self.selectedDevice as? TempoDiscDevice
+        let tempoDiscDevice = self.selectedDevice
         switch indexPath.row {
         case 0:
             return ""
         case 1:
             return self.selectedDevice?.uuid
         case 2:
-            return self.selectedDevice?.version
+            return self.selectedDevice?.version?.description
         case 3:
             if let rssi = self.selectedDevice?.peripheral?.rssi {
                 return "\(rssi) dBm"
@@ -404,7 +404,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 stringType = "DewPoint"
             }
             self.helper.allDataSelected = self.allDataSelected
-            self.helper.selectedDevice = self.selectedDevice!
+            self.helper.selectedDevice = TempoHelperMethods.td(toTempo: self.selectedDevice!)
             var hostViewTemperature : CPTGraphHostingView = CPTGraphHostingView()
             hostViewTemperature = helper.configureHost(chosenView!, forGraph: hostViewTemperature)
             var graphTemperature: CPTGraph = CPTXYGraph(frame: hostViewTemperature.bounds.insetBy(dx: 10, dy: 10))
@@ -480,7 +480,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     
     func exportAsCSV() {
         if let device = self.selectedDevice {
-            if let filePath = TempoHelperMethods.createCSVFileFordevice(device) {
+            if let filePath = TempoHelperMethods.createCSVFileFordevice(TempoHelperMethods.td(toTempo: device)) {
                 let mailComposeVC = MFMailComposeViewController()
                 mailComposeVC.mailComposeDelegate = self
                 mailComposeVC.modalPresentationStyle = .pageSheet

@@ -1,6 +1,6 @@
 //
 //  TempoDevice+CoreDataProperties.m
-//  
+//
 //
 //  Created by Nikola Misic on 2/28/16.
 //
@@ -23,10 +23,13 @@
 @dynamic currentMinTemperature;
 @dynamic currentHumidity;
 @dynamic currentPressure;
-@dynamic currentPressureDelta;
+@dynamic currentPressureData;
 @dynamic lastDownload;
 @dynamic readingTypes;
 @dynamic isBlueMaestroDevice;
 @dynamic isFahrenheit;
+@dynamic startTimestamp;
+@dynamic inRange;
+@dynamic lastDetected;
 
 @end

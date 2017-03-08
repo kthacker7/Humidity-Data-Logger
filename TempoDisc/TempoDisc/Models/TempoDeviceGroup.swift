@@ -10,8 +10,8 @@ import Foundation
 
 @objc class TempoDeviceGroup : NSObject {
     var groupName : String = ""
-    var internalDevices : [TempoDevice] = []
-    var externalDevice  : TempoDevice?
+    var internalDevices : [TDTempoDisc] = []
+    var externalDevice  : TDTempoDisc?
     
     func getAverageTemperature() -> Double {
         var totalTemp = 0.0

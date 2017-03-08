@@ -31,14 +31,14 @@ class DeviceDetailsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupUsingExternalDevice(device: TempoDevice?, name: String) {
+    func setupUsingExternalDevice(device: TDTempoDisc?, name: String) {
         self.flatNumberLabel.text = name
         if device == nil {
             self.temperatureLabel.text = "-"
             self.humidityLabel.text = "-"
             self.dewLabel.text = "-"
         }
-        if let tempoDiscDevice = device! as? TempoDiscDevice {
+        if let tempoDiscDevice = device {
             if let temperature = tempoDiscDevice.averageDayTemperature {
                 self.temperatureLabel.text = "\(temperature)°C"
             } else {
