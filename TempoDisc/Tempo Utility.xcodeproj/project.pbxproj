@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300CC7161E6F663300BF030D /* TDTempoDisc.m in Sources */ = {isa = PBXBuildFile; fileRef = 300CC7151E6F663300BF030D /* TDTempoDisc.m */; };
 		300D91ED1E0AF50F00660EC2 /* TempoDeviceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D91EC1E0AF50F00660EC2 /* TempoDeviceGroup.swift */; };
 		300D91F01E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 300D91EE1E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift */; };
 		300D91F11E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 300D91EF1E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib */; };
@@ -90,6 +91,8 @@
 
 /* Begin PBXFileReference section */
 		23F3B5A64DC297B9F6942E40 /* libPods-Tempo Utility.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tempo Utility.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		300CC7151E6F663300BF030D /* TDTempoDisc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTempoDisc.m; sourceTree = "<group>"; };
+		300CC7171E6F664900BF030D /* TDTempoDisc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TDTempoDisc.h; sourceTree = "<group>"; };
 		300D91EC1E0AF50F00660EC2 /* TempoDeviceGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempoDeviceGroup.swift; sourceTree = "<group>"; };
 		300D91EE1E0B14A800660EC2 /* GroupedSummaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupedSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		300D91EF1E0B14A800660EC2 /* GroupedSummaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupedSummaryTableViewCell.xib; sourceTree = "<group>"; };
@@ -227,6 +230,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		300CC7141E6F65F200BF030D /* TempoDiscScanning */ = {
+			isa = PBXGroup;
+			children = (
+				300CC7151E6F663300BF030D /* TDTempoDisc.m */,
+				300CC7171E6F664900BF030D /* TDTempoDisc.h */,
+			);
+			name = TempoDiscScanning;
+			sourceTree = "<group>";
+		};
 		300D91EB1E0AF4F300660EC2 /* TempoDeviceGroup */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +572,7 @@
 		CB16BA621C83003200C99C41 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				300CC7141E6F65F200BF030D /* TempoDiscScanning */,
 				300D91EB1E0AF4F300660EC2 /* TempoDeviceGroup */,
 				CB8E7E7D1DE0B8590084F3CC /* LivePlotData */,
 				CB4954F51D91BD9B00C4AAAF /* LogMessage */,
@@ -999,6 +1012,7 @@
 				CBAB5C491D47E72A00EEBECD /* UIColor+Tempo.m in Sources */,
 				308A5A051E0A9C8000D84D46 /* GlossaryTableViewCell.swift in Sources */,
 				30AED8C71E31748400B57EF9 /* TempoHelperMethods.m in Sources */,
+				300CC7161E6F663300BF030D /* TDTempoDisc.m in Sources */,
 				CB16BA7B1C83123A00C99C41 /* TDHelper.m in Sources */,
 				CB16BA371C82E67E00C99C41 /* main.m in Sources */,
 				CB16BA731C83007B00C99C41 /* Reading.m in Sources */,

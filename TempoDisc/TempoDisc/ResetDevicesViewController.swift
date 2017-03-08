@@ -59,7 +59,7 @@ class ResetDevicesViewController: UIViewController {
         if self.deviceGroup != nil {
             //            if let downloader = TDUARTDownloader.shared() {
             if let externalDevice = self.deviceGroup!.externalDevice {
-                TDDefaultDevice.shared().selectedDevice = externalDevice
+//                TDDefaultDevice.shared().selectedDevice = externalDevice
                 helper.connectAndWrite("*clr")
                 helper.connectAndWrite(dateToWrite)
                 externalDevice.peripheral?.disconnect(completion: { (error) in
@@ -67,7 +67,7 @@ class ResetDevicesViewController: UIViewController {
                         for internalDevice in self.deviceGroup!.internalDevices {
                             //                            downloader.refreshDownloader()
                             
-                            TDDefaultDevice.shared().selectedDevice = internalDevice
+//                            TDDefaultDevice.shared().selectedDevice = internalDevice
                             helper.connectAndWrite("*clr")
                             helper.connectAndWrite(dateToWrite)
                             

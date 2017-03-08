@@ -16,7 +16,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     let flatTexts = ["Flat No. 1 (3)", "Flat No. 12 (2)", "Flat No. 15 (4)", "Flat No. 34 (4)"]
     
     @IBOutlet weak var greyView: UIView!
-    var devices: [TempoDevice] = []
+    var devices: [TDTempoDisc] = []
     var deviceGroups : [TempoDeviceGroup] = []
     var firstAttempt = false
     
@@ -157,6 +157,10 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 }
             } else {
                 for peripheral in peripherals as! [LGPeripheral] {
+                    let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+//                    [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
+                    
+                    // [TempoDiscDevice deviceWithName:peripheral.name data:peripheral.advertisingData uuid:peripheral.cbPeripheral.identifier.UUIDString context:context];
                     var toAdd = true
                     var i = 0
                     if let newDevice = TDHelper.findOrCreateDevice(for: peripheral) {
@@ -169,6 +173,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                             i += 1
                         }
                         if toAdd {
+                            
                             self.devices.append(newDevice)
                         } else {
                             self.devices.remove(at: i)
@@ -184,25 +189,29 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func groupDevices() {
-        var externals : [TempoDevice] = []
+        var externals : [TDTempoDisc] = []
+        
         for device in self.devices {
             if device.name != nil && device.name!.hasSuffix("-E") {
                 externals.append(device)
             }
+            
         }
         var deviceGroups : [TempoDeviceGroup] = []
         for external in externals {
             if external.name != nil {
-                var internals : [TempoDevice] = []
+                var internals : [TDTempoDisc] = []
                 var groupName = ""
                 let range = (external.name! as NSString).range(of: "-", options: .backwards)
                 if range.location != NSNotFound {
                     groupName = String(external.name!.characters.dropLast(external.name!.characters.count - range.location))
                 }
+                
                 for device in self.devices {
                     if device.name != nil && ((device.name! as NSString).range(of: groupName).location != NSNotFound) && device != external {
                         internals.append(device)
                     }
+                    
                 }
                 let newTempGroup = TempoDeviceGroup()
                 newTempGroup.externalDevice = external
@@ -220,21 +229,21 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         var internalGPKgAverage = 0.0
         var internalVPAverage = 0.0
-        for internalDevice in group.internalDevices {
-            if let intern = internalDevice as? TempoDiscDevice {
-                let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
-                let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
-                let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
-                let gpkg = gpm3 * 0.83174
-                internalGPKgAverage += gpkg
-                internalVPAverage += vp
-            }
+        for intern in group.internalDevices {
+            
+            let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
+            let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
+            let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
+            let gpkg = gpm3 * 0.83174
+            internalGPKgAverage += gpkg
+            internalVPAverage += vp
+            
         }
         if group.internalDevices.count != 0 {
             internalVPAverage /= Double(group.internalDevices.count)
             internalGPKgAverage /= Double(group.internalDevices.count)
         }
-        if let externalDevice = group.externalDevice as? TempoDiscDevice {
+        if let externalDevice = group.externalDevice {
             let svp = 610.78 * exp((Double(externalDevice.averageDayTemperature!) * 17.2694) / (Double(externalDevice.averageDayTemperature!) + 238.3))
             let vp = (svp / 1000.0) * (Double(externalDevice.averageDayHumidity!) / 100.0)
             

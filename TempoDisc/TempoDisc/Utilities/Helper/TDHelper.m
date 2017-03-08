@@ -16,63 +16,33 @@
 #import "TempoDiscDevice+CoreDataProperties.h"
 #import "AppDelegate.h"
 
+
 @implementation TDHelper
 
-+ (TempoDevice*)findOrCreateDeviceForPeripheral:(LGPeripheral*)peripheral {
++ (TDTempoDisc*)findOrCreateDeviceForPeripheral:(LGPeripheral*)peripheral {
     /**
      *	If there is no manufacturer data see if the device is already inserted and return that device.
      **/
     BOOL hasManufacturerData = [TempoDevice hasManufacturerData:peripheral.advertisingData];
     
-    /**
-     *	TDT-2 Non Tempo Disc devices should still be visible, with limited data
-     **/
-    BOOL isTempoDiscDevice = [TempoDevice isTempoDiscDeviceWithAdvertisementData:peripheral.advertisingData];
     BOOL isBlueMaestroDevice = [TempoDevice isBlueMaestroDeviceWithAdvertisementData:peripheral.advertisingData];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TempoDevice class])];
-    request.predicate = [NSPredicate predicateWithFormat:@"self.uuid = %@", peripheral.cbPeripheral.identifier.UUIDString];
-    NSError *fetchError;
-    NSManagedObjectContext *context = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
-    NSArray *result = [context executeFetchRequest:request error:&fetchError];
+    BOOL isTempoDisc22 = [TempoDevice isTempoDisc22WithAdvertisementDate:peripheral.advertisingData];
+    BOOL isTempoDisc23 = [TempoDevice isTempoDisc23WithAdvertisementDate:peripheral.advertisingData];
+    BOOL isTempoDisc27 = [TempoDevice isTempoDisc27WithAdvertisementDate:peripheral.advertisingData];
+    BOOL isTempoDisc99 = [TempoDevice isTempoDisc99WithAdvertisementDate:peripheral.advertisingData];
     
-    TempoDevice *device;
-    if (!fetchError && result.count > 0) {
-        //found existing device
-        device = [result firstObject];
-        if (isBlueMaestroDevice && hasManufacturerData) {
-            [device fillWithData:peripheral.advertisingData name:peripheral.name uuid:peripheral.cbPeripheral.identifier.UUIDString];
-        }
-        else {
-            device.name = peripheral.name;
-            device.uuid = peripheral.cbPeripheral.identifier.UUIDString;
-        }
-        if (hasManufacturerData) {
-            device.isBlueMaestroDevice = @(isBlueMaestroDevice);
-        }
-    }
-    else if (!fetchError && hasManufacturerData) {
-        //detected new device
-        if (isTempoDiscDevice) {
-            device = [TempoDiscDevice deviceWithName:peripheral.name data:peripheral.advertisingData uuid:peripheral.cbPeripheral.identifier.UUIDString context:context];
-        }
-        else {
-            device = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TempoDevice class]) inManagedObjectContext:context];
-            device.name = peripheral.name;
-            device.uuid = peripheral.cbPeripheral.identifier.UUIDString;
-        }
-        device.isBlueMaestroDevice = @(isBlueMaestroDevice);
-    }
-    else if (hasManufacturerData || fetchError) {
-        NSLog(@"Error fetching devices: %@", fetchError.localizedDescription);
-    }
+    if (isTempoDisc22) {NSLog(@"Found Tempo Disc 22");}
+    if (isTempoDisc23) {NSLog(@"Found Tempo Disc 23");}
+    if (isTempoDisc27) {NSLog(@"Found Tempo Disc 27");}
+    if (isTempoDisc99) {NSLog(@"Found Pacif-i v2");}
     
-    NSError *saveError;
-    [context save:&saveError];
-    if (saveError) {
-        NSLog(@"Error saving device named %@: %@", peripheral.name, saveError.localizedDescription);
+    TDTempoDisc *device = [[TDTempoDisc alloc] init];
+    if (isBlueMaestroDevice && hasManufacturerData) {
+        [device fillWithData:peripheral.advertisingData name:peripheral.name uuid:peripheral.cbPeripheral.identifier.UUIDString];
+        NSLog(@"Refreshing with data");
+        return device;
     }
-    
-    return device;
+    return nil;
 }
 
 + (NSNumber *)temperature:(NSNumber *)temp forDevice:(TempoDevice *)device

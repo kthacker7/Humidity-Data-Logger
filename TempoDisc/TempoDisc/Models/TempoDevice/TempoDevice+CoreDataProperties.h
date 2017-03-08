@@ -1,6 +1,6 @@
 //
 //  TempoDevice+CoreDataProperties.h
-//  
+//
 //
 //  Created by Nikola Misic on 2/28/16.
 //
@@ -20,17 +20,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *name;
 @property (nullable, nonatomic, retain) NSDecimalNumber *battery;
 @property (nullable, nonatomic, retain) NSString *modelType;
-@property (nullable, nonatomic, retain) NSString *version;
+@property (nullable, nonatomic, retain) NSNumber *version;
 @property (nullable, nonatomic, retain) NSNumber *currentTemperature;
 @property (nullable, nonatomic, retain) NSNumber *currentMinTemperature;
 @property (nullable, nonatomic, retain) NSNumber *currentMaxTemperature;
 @property (nullable, nonatomic, retain) NSNumber *currentHumidity;
 @property (nullable, nonatomic, retain) NSNumber *currentPressure;
-@property (nullable, nonatomic, retain) NSNumber *currentPressureDelta;
+@property (nullable, nonatomic, retain) NSNumber *currentPressureData;
 @property (nullable, nonatomic, retain) NSDate *lastDownload;
 @property (nullable, nonatomic, retain) NSNumber *isBlueMaestroDevice;
 @property (nullable, nonatomic, retain) NSNumber *isFahrenheit;//BOOL
 @property (nullable, nonatomic, retain) NSNumber *inRange;//BOOL, transient
+@property (nullable, nonatomic, retain) NSDate *startTimestamp;
+@property (nullable, nonatomic, retain) NSDate *lastDetected;//transient
+
 
 @property (nullable, nonatomic, retain) NSSet<ReadingType *> *readingTypes;
 

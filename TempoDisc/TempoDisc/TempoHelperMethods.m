@@ -7,6 +7,8 @@
 //
 
 #import "TempoHelperMethods.h"
+#import "AppDelegate.h"
+
 
 #define uartServiceUUIDString			@"6E400001-B5A3-F393-E0A9-E50E24DCCA9E"
 #define uartRXCharacteristicUUIDString	@"6E400002-B5A3-F393-E0A9-E50E24DCCA9E"
@@ -28,6 +30,7 @@
 
 - (void)setupDevice {
     __weak typeof(self) weakself = self;
+    
     [[TDDefaultDevice sharedDevice].selectedDevice.peripheral connectWithTimeout:kDeviceConnectTimeout completion:^(NSError *error) {
         weakself.didDisconnect = NO;
         if (!error) {
@@ -106,6 +109,10 @@
 
 
 - (void)connectAndWrite:(NSString*)data {
+    TempoDiscDevice *device = (TempoDiscDevice*)[TDDefaultDevice sharedDevice].selectedDevice;
+//    NSLog([device.averageDayDew description]);
+//    NSLog([device.averageDayHumidity description]);
+//    NSLog([device.averageDayTemperature description]);
     if (_writeCharacteristic) {
         [self writeData:data toCharacteristic:_writeCharacteristic];
     }
@@ -571,6 +578,36 @@
     CPTPlotSymbol *temperatureSymbol = [CPTPlotSymbol diamondPlotSymbol];
     temperatureSymbol.fill = [CPTFill fillWithColor:[CPTColor colorWithGenericGray:1.0]];
     return temperatureSymbol;
+}
+
++ (TempoDiscDevice *) tdToTempo: (TDTempoDisc *) device {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([TempoDevice class])];
+    request.predicate = [NSPredicate predicateWithFormat:@"self.uuid == %@", device.uuid];
+    NSLog(@"activeDevice is %@", device.name);
+    NSError *error;
+    NSManagedObjectContext *context = [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
+    NSArray *result = [context executeFetchRequest:request error:&error];
+    TempoDiscDevice *discDevice;
+    if (!error) {
+        if (result.count > 0) {
+            discDevice = [result firstObject];
+        }
+        else {
+            discDevice = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([TempoDiscDevice class]) inManagedObjectContext:context];
+        }
+        
+        [discDevice fillDataForPersistentStore:device];
+        
+    }
+    else {
+        NSLog(@"Error fetching device from storage: %@", error);
+    }
+    NSError *saveError;
+    [context save:&saveError];
+    if (saveError) {
+        NSLog(@"Error saving context on device fetch: %@", saveError);
+    }
+    return discDevice;
 }
 
 

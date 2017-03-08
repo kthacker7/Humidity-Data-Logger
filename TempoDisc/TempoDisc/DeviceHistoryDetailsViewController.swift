@@ -105,21 +105,21 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
             self.devicesCountLabel.text = "(\(group.internalDevices.count + 1))"
             var internalGPKgAverage = 0.0
             var internalVPAverage = 0.0
-            for internalDevice in group.internalDevices {
-                if let intern = internalDevice as? TempoDiscDevice {
+            for intern in group.internalDevices {
+//                if let intern = internalDevice as? TempoDiscDevice {
                     let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
                     let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
                     let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
                     let gpkg = gpm3 * 0.83174
                     internalGPKgAverage += gpkg
                     internalVPAverage += vp
-                }
+//                }
             }
             if group.internalDevices.count != 0 {
                 internalVPAverage /= Double(group.internalDevices.count)
                 internalGPKgAverage /= Double(group.internalDevices.count)
             }
-            if let externalDevice = group.externalDevice as? TempoDiscDevice {
+            if let externalDevice = group.externalDevice {
                 let svp = 610.78 * exp((Double(externalDevice.averageDayTemperature!) * 17.2694) / (Double(externalDevice.averageDayTemperature!) + 238.3))
                 let vp = (svp / 1000.0) * (Double(externalDevice.averageDayHumidity!) / 100.0)
                 let gpm3 = ((vp * 1000.0) / ((273.0 + Double(externalDevice.averageDayTemperature!)) * 461.5)) * 1000.0

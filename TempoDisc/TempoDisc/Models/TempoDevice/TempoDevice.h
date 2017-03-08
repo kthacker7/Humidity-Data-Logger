@@ -1,6 +1,6 @@
 //
 //  TempoDevice.h
-//  
+//
 //
 //  Created by Nikola Misic on 2/28/16.
 //
@@ -10,15 +10,16 @@
 #import <CoreData/CoreData.h>
 #import <LGPeripheral.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 typedef enum : NSInteger {
-	TempoDeviceTypeUnknown = 0,
-	TempoDeviceTypeLegacy,
-	TempoDeviceTypeT30,
-	TempoDeviceTypeTHP,
-	
+    TempoDeviceTypeUnknown = 0,
+    TempoDeviceType22,
+    TempoDeviceType23,
+    TempoDeviceType27,
+    TempoDeviceType99
+    
 } TempoDeviceType ;
+
+NS_ASSUME_NONNULL_BEGIN
 
 @interface TempoDevice : NSManagedObject
 
@@ -26,18 +27,25 @@ typedef enum : NSInteger {
 
 @property (nullable ,nonatomic, strong) LGPeripheral *peripheral;
 
-+ (BOOL)isTempoDiscDeviceWithAdvertisementData:(NSDictionary*)custom;
+- (NSInteger)classID;
+
 + (BOOL)isBlueMaestroDeviceWithAdvertisementData:(NSDictionary*)data;
++ (BOOL)isTempoDisc22WithAdvertisementDate:(NSDictionary*)data;
++ (BOOL)isTempoDisc23WithAdvertisementDate:(NSDictionary*)data;
++ (BOOL)isTempoDisc27WithAdvertisementDate:(NSDictionary*)data;
++ (BOOL)isTempoDisc99WithAdvertisementDate:(NSDictionary*)data;
 + (BOOL)hasManufacturerData:(NSDictionary*)data;
 
 + (TempoDevice*)deviceWithName:(NSString*)name data:(NSDictionary*)data uuid:(NSString*)uuid context:(NSManagedObjectContext*)context;
+- (void)deleteOldData:(NSString *)type context:(NSManagedObjectContext *)context;
 - (void)addData:(NSArray *)data forReadingType:(NSString *)type startTimestamp:(NSDate*)timestamp interval:(NSInteger)interval context:(NSManagedObjectContext *)context;
-- (void)fillWithData:(NSDictionary*)data name:(NSString*)name uuid:(NSString*)uuid;
 
 - (TempoDeviceType)deviceType;
 
-- (void)addData:(NSArray*)data forReadingType:(NSString*)type context:(NSManagedObjectContext*)context;
+- (void)addDataFirst:(NSArray*)data forReadingType:(NSString*)type context:(NSManagedObjectContext*)context;
+- (void)fillWithData:(NSDictionary *)advertisedData name:(NSString *)name uuid:(nonnull NSString *)uuid;
 - (NSArray*)readingsForType:(NSString*)type;
+- (BOOL)hasDataForType:(NSString*)type;
 
 @end
 

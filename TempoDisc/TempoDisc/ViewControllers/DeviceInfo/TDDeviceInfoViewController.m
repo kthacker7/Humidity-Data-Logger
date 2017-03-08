@@ -444,8 +444,8 @@
 			break;
 	}
 	if (readingType) {
-		[[TDDefaultDevice sharedDevice].selectedDevice addData:collection forReadingType:readingType context:[(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext]];
-	}
+        [[TDDefaultDevice sharedDevice].selectedDevice addDataFirst:collection forReadingType:readingType context:[(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext]];
+    }
 }
 
 - (void)finishedDataReadForDataType:(TempoReadingType)type collection:(NSMutableArray*)collection {
