@@ -138,14 +138,6 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     func scanButtonTapped() {
         greyView.isHidden = false
         LGCentralManager.sharedInstance().scanForPeripherals(byInterval: 5, services: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey : true], completion: { peripherals in
-//            let fetchRequest = NSFetchRequest<TempoDevice>(entityName: "TempoDevice")
-//            do {
-//                if let result = try (UIApplication.shared.delegate as? AppDelegate)?.managedObjectContext.fetch(fetchRequest) {
-//                    self.devices = result
-//                }
-//            } catch {
-//                NSLog("Failed to get fetch request")
-//            }
             if (peripherals == nil || peripherals!.count == 0)  {
                 if (self.firstAttempt) {
                     self.firstAttempt = false
@@ -189,18 +181,21 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func groupDevices() {
-        var externals : [TDTempoDisc] = []
+        var externals : [TempoDiscDevice] = []
         
         for device in self.devices {
             if device.name != nil && device.name!.hasSuffix("-E") {
-                externals.append(device)
+                if let toAdd = TempoHelperMethods.td(toTempo: device) {
+                    toAdd.peripheral = device.peripheral
+                    externals.append(toAdd)
+                }
             }
             
         }
         var deviceGroups : [TempoDeviceGroup] = []
         for external in externals {
             if external.name != nil {
-                var internals : [TDTempoDisc] = []
+                var internals : [TempoDiscDevice] = []
                 var groupName = ""
                 let range = (external.name! as NSString).range(of: "-", options: .backwards)
                 if range.location != NSNotFound {
@@ -208,8 +203,11 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 }
                 
                 for device in self.devices {
-                    if device.name != nil && ((device.name! as NSString).range(of: groupName).location != NSNotFound) && device != external {
-                        internals.append(device)
+                    if device.name != nil && ((device.name! as NSString).range(of: groupName).location != NSNotFound) && device.name != external.name {
+                        if let toAdd = TempoHelperMethods.td(toTempo: device) {
+                            toAdd.peripheral = device.peripheral
+                            internals.append(toAdd)
+                        }
                     }
                     
                 }
@@ -217,7 +215,9 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 newTempGroup.externalDevice = external
                 newTempGroup.internalDevices = internals
                 newTempGroup.groupName = groupName
-                deviceGroups.append(newTempGroup)
+                if (newTempGroup.externalDevice != nil || newTempGroup.externalDiscDevice != nil) && (newTempGroup.internalDiscDevices.count > 0 || newTempGroup.internalDevices.count > 0) {
+                    deviceGroups.append(newTempGroup)
+                }
             }
         }
         self.deviceGroups = deviceGroups

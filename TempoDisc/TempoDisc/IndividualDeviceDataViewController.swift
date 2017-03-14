@@ -37,7 +37,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     
     var selectedSegment = 0
     var selectedTab: SelecedTab = .Devices
-    var selectedDevice: TDTempoDisc?
+    var selectedDevice: TempoDiscDevice?
     let helper : TempoHelperMethods = TempoHelperMethods()
     var allDataSelected = false
     var currentType : GraphType = .temperature
@@ -146,19 +146,20 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         var tempList : [Reading] = []
         var humidityList : [Reading] = []
         var dewList : [Reading] = []
-        let device = TempoHelperMethods.td(toTempo: self.selectedDevice)
-        for readingType in (device?.readingTypes)! {
-            if readingType.type == "Temperature" {
-                for reading in (readingType.readings)! {
-                    tempList.append(reading)
-                }
-            } else if readingType.type == "Humidity" {
-                for reading in (readingType.readings)! {
-                    humidityList.append(reading)
-                }
-            } else if readingType.type == "DewPoint" {
-                for reading in (readingType.readings)! {
-                    dewList.append(reading)
+        if let device = self.selectedDevice {
+            for readingType in (device.readingTypes)! {
+                if readingType.type == "Temperature" {
+                    for reading in (readingType.readings)! {
+                        tempList.append(reading)
+                    }
+                } else if readingType.type == "Humidity" {
+                    for reading in (readingType.readings)! {
+                        humidityList.append(reading)
+                    }
+                } else if readingType.type == "DewPoint" {
+                    for reading in (readingType.readings)! {
+                        dewList.append(reading)
+                    }
                 }
             }
         }
@@ -263,7 +264,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 return "-"
             }
         case 6:
-            if let numberOfRecords = tempoDiscDevice?.logCount {
+            if let numberOfRecords = tempoDiscDevice?.readings(forType: "Temperature").count {
                 return "\(numberOfRecords)"
             } else {
                 return "-"
@@ -404,7 +405,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 stringType = "DewPoint"
             }
             self.helper.allDataSelected = self.allDataSelected
-            self.helper.selectedDevice = TempoHelperMethods.td(toTempo: self.selectedDevice!)
+            self.helper.selectedDevice = self.selectedDevice
             var hostViewTemperature : CPTGraphHostingView = CPTGraphHostingView()
             hostViewTemperature = helper.configureHost(chosenView!, forGraph: hostViewTemperature)
             var graphTemperature: CPTGraph = CPTXYGraph(frame: hostViewTemperature.bounds.insetBy(dx: 10, dy: 10))
@@ -480,7 +481,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     
     func exportAsCSV() {
         if let device = self.selectedDevice {
-            if let filePath = TempoHelperMethods.createCSVFileFordevice(TempoHelperMethods.td(toTempo: device)) {
+            if let filePath = TempoHelperMethods.createCSVFileFordevice(device) {
                 let mailComposeVC = MFMailComposeViewController()
                 mailComposeVC.mailComposeDelegate = self
                 mailComposeVC.modalPresentationStyle = .pageSheet
