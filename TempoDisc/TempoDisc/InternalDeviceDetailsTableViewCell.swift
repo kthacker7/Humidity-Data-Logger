@@ -31,7 +31,7 @@ class InternalDeviceDetailsTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setupUsingDevice(device: TDTempoDisc?) {
+    func setupUsingDevice(device: TempoDiscDevice?) {
         if device == nil {
             self.uuidLabel.text = "-"
             self.versionLabel.text = "-"

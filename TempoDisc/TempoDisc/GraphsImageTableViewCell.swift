@@ -40,10 +40,10 @@ class GraphsImageTableViewCell: UITableViewCell {
     }
     
     
-    func switchTo(type: GraphType, device: TDTempoDisc) {
+    func switchTo(type: GraphType, device: TempoDiscDevice) {
         self.humidityGraphView.isHidden = true
         self.dewpointGraphView.isHidden = true
-        self.helper.selectedDevice = TempoHelperMethods.td(toTempo: device)
+        self.helper.selectedDevice = device
         var hostViewTemperature : CPTGraphHostingView = CPTGraphHostingView()
         hostViewTemperature = helper.configureHost(temperatureGraphView, forGraph: hostViewTemperature)
         var graphTemperature: CPTGraph = CPTXYGraph(frame: hostViewTemperature.bounds.insetBy(dx: 10, dy: 10))

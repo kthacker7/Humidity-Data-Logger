@@ -15,7 +15,7 @@ enum SelecedTab {
 }
 
 class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewControllerDelegate {
-
+    
     @IBOutlet weak var devicesButtonView: UIView!
     
     var navTitle: String?
@@ -35,6 +35,8 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     @IBOutlet weak var cancelButton: UIButton!
     
     var deviceGroup : TempoDeviceGroup?
+    var internalIndex = 0
+    var downloader = (TDUARTDownloader.shared())!
     
     // UI Variable Elements
     @IBOutlet weak var externalAHLabel: UILabel!
@@ -53,16 +55,23 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.setup()
         self.setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.hideButtonsIfNeeded()
+        NotificationCenter.default.addObserver(self, selector: #selector(DeviceHistoryDetailsViewController.downloadLogForInternalDevices), name: Notification.Name.init("DownloadComplete"), object: nil)
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,14 +115,14 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
             var internalGPKgAverage = 0.0
             var internalVPAverage = 0.0
             for intern in group.internalDevices {
-//                if let intern = internalDevice as? TempoDiscDevice {
-                    let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
-                    let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
-                    let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
-                    let gpkg = gpm3 * 0.83174
-                    internalGPKgAverage += gpkg
-                    internalVPAverage += vp
-//                }
+                //                if let intern = internalDevice as? TempoDiscDevice {
+                let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
+                let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
+                let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
+                let gpkg = gpm3 * 0.83174
+                internalGPKgAverage += gpkg
+                internalVPAverage += vp
+                //                }
             }
             if group.internalDevices.count != 0 {
                 internalVPAverage /= Double(group.internalDevices.count)
@@ -239,50 +248,77 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     
     @IBAction func downloadAllTapped(_ sender: Any) {
         if self.deviceGroup != nil {
-            if let downloader = TDUARTDownloader.shared() {
-                if let externalDevice = self.deviceGroup!.externalDevice as? TempoDiscDevice {
-                    TDDefaultDevice.shared().selectedDevice = externalDevice
-                    downloader.downloadData(for: externalDevice, withCompletion: { success in
-                        if success {
-                            externalDevice.peripheral?.disconnect(completion: { (error) in
-                                if  (error == nil) {
-                                    for device in self.deviceGroup!.internalDevices {
-                                        downloader.refreshDownloader()
-                                        if let internalDevice = device as? TempoDiscDevice {
-                                            TDDefaultDevice.shared().selectedDevice = internalDevice
-                                            downloader.downloadData(for: internalDevice, withCompletion: { (success) in
-                                                if (!success) {
-                                                    let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
-                                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                                    self.present(alert, animated: true, completion: nil)
-                                                } else {
-                                                    let alert = UIAlertController(title: "Success", message: "Download of logs were successful! You can now see the logs in the History tab.", preferredStyle: UIAlertControllerStyle.alert)
-                                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                                    self.present(alert, animated: true, completion: nil)
-                                                }
-                                            })
-                                            
-                                        }
-                                    }
-                                    self.setupUI()
-                                } else {
-                                    let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
-                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                    self.present(alert, animated: true, completion: nil)
-                                    self.setupUI()
-                                }
-                            })
-                        } else {
-                            let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                            self.present(alert, animated: true, completion: nil)
-                        }
-                    })
-                }
-                
+            
+            let externalTDDevice = self.deviceGroup!.externalDevice
+            if let externalDevice = externalTDDevice {
+                TDDefaultDevice.shared().selectedDevice = externalDevice
+                downloader.downloadData(for: externalDevice, withCompletion: { success in
+                    if success {
+                        externalDevice.peripheral?.disconnect(completion: { (error) in
+                            if  (error == nil) {
+                                self.internalIndex = 0
+                                NotificationCenter.default.post(name: Notification.Name.init("DownloadComplete"), object: self)
+                            } else {
+                                let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                                self.setupUI()
+                            }
+                        })
+                    } else {
+                        let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                })
             }
         }
         self.hideOverlay()
+    }
+    
+    func downloadLogForInternalDevices(notification: Notification) {
+        if (self.internalIndex > 0) {
+            let prevDevice = self.deviceGroup!.internalDevices[self.internalIndex-1]
+            prevDevice.peripheral?.disconnect(completion: { (error) in
+                if error == nil {
+                    if self.internalIndex < self.deviceGroup!.internalDevices.count {
+                        self.downloadDataFor(device: self.deviceGroup!.internalDevices[self.internalIndex], downloader: self.downloader)
+                        self.internalIndex += 1
+                    } else {
+                        let alert = UIAlertController(title: "Success", message: "Download of logs were successful! You can now see the logs in the History tab.", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                    self.setupUI()
+                } else {
+                    let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            })
+        } else {
+            if self.internalIndex < self.deviceGroup!.internalDevices.count {
+                self.downloadDataFor(device: self.deviceGroup!.internalDevices[self.internalIndex], downloader: downloader)
+                self.internalIndex += 1
+            }
+            self.setupUI()
+        }
+    }
+    
+    func downloadDataFor(device: TempoDiscDevice, downloader: TDUARTDownloader){
+        downloader.refreshDownloader()
+        let internalDevice = device
+        TDDefaultDevice.shared().selectedDevice = internalDevice
+        downloader.downloadData(for: internalDevice, withCompletion: { (success) in
+            if (!success) {
+                let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                NotificationCenter.default.post(name: Notification.Name.init("DownloadComplete"), object: self)
+            }
+            
+        })
     }
     
     @IBAction func downloadNewTapped(_ sender: Any) {
@@ -312,15 +348,15 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

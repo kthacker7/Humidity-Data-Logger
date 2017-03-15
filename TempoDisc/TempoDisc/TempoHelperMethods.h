@@ -25,8 +25,8 @@
 @property (nonatomic, assign) BOOL didDisconnect;
 @property (nonatomic, assign) BOOL allDataSelected;
 
-- (void)connectAndWrite:(NSString*)data;
-- (void)setupDevice;
+- (void)connectAndWrite:(NSString*)data withCompletion:(void (^)(BOOL))completion;
+- (void)setupDeviceWithCompletion:(void (^)(BOOL))completion;
 + (NSString *)createCSVFileFordevice:(TempoDevice *) device;
 + (void)configureAxesForGraph:(CPTGraph *)graph plot:(CPTScatterPlot *)plot;
 + (NSString*)createFileNameWithAttachmentType:(NSString *)type withPath:(BOOL)includePath;

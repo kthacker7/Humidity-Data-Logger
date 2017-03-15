@@ -13,7 +13,7 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
 
     @IBOutlet weak var tableView: UITableView!
     
-    var deviceList : [TDTempoDisc] = []
+    var deviceList : [TempoDiscDevice] = []
     var deviceGroupsList : [TempoDeviceGroup] = []
     
     override func viewDidLoad() {
@@ -101,9 +101,12 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         let request = NSFetchRequest<TempoDiscDevice>(entityName: NSStringFromClass(TempoDiscDevice.classForCoder()))
         request.predicate = NSPredicate(format: "readingTypes.@count > 0")
         do {
-            
             if let delegate =  (UIApplication.shared.delegate) as? AppDelegate {
-                let resultt = try delegate.managedObjectContext.fetch(request)
+                let result = try delegate.managedObjectContext.fetch(request)
+                self.deviceList = result
+                self.groupDevices()
+                self.tableView.reloadData()
+                
 //                if let result = (resultt as? [TDTempoDisc]) {
 //                    self.deviceList = result
 //                    self.groupDevices()
@@ -118,7 +121,7 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func groupDevices() {
-        var externals : [TDTempoDisc] = []
+        var externals : [TempoDiscDevice] = []
         for device in self.deviceList {
             if device.name != nil && device.name!.hasSuffix("-E") {
                 externals.append(device)
@@ -127,7 +130,7 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         var deviceGroups : [TempoDeviceGroup] = []
         for external in externals {
             if external.name != nil {
-                var internals : [TDTempoDisc] = []
+                var internals : [TempoDiscDevice] = []
                 var groupName = ""
                 let range = (external.name! as NSString).range(of: "-", options: .backwards)
                 if range.location != NSNotFound {
@@ -142,7 +145,9 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
                 newTempGroup.externalDevice = external
                 newTempGroup.internalDevices = internals
                 newTempGroup.groupName = groupName
-                deviceGroups.append(newTempGroup)
+                if (newTempGroup.externalDevice != nil || newTempGroup.externalDiscDevice != nil) && (newTempGroup.internalDiscDevices.count > 0 || newTempGroup.internalDevices.count > 0) {
+                    deviceGroups.append(newTempGroup)
+                }
             }
         }
         self.deviceGroupsList = deviceGroups
@@ -155,20 +160,20 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         var internalGPKgAverage = 0.0
         var internalVPAverage = 0.0
         for internalDevice in group.internalDevices {
-            if let intern = internalDevice as? TempoDiscDevice {
-                let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
-                let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
-                let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
-                let gpkg = gpm3 * 0.83174
-                internalGPKgAverage += gpkg
-                internalVPAverage += vp
-            }
+            let intern = internalDevice
+            let svp = 610.78 * exp((Double(intern.averageDayTemperature!) * 17.2694) / (Double(intern.averageDayTemperature!) + 238.3))
+            let vp = (svp / 1000.0) * (Double(intern.averageDayHumidity!) / 100.0)
+            let gpm3 = ((vp * 1000.0) / ((273.0 + Double(intern.averageDayTemperature!)) * 461.5)) * 1000.0
+            let gpkg = gpm3 * 0.83174
+            internalGPKgAverage += gpkg
+            internalVPAverage += vp
+            
         }
         if group.internalDevices.count != 0 {
             internalVPAverage /= Double(group.internalDevices.count)
             internalGPKgAverage /= Double(group.internalDevices.count)
         }
-        if let externalDevice = group.externalDevice as? TempoDiscDevice {
+        if let externalDevice = group.externalDevice {
             let svp = 610.78 * exp((Double(externalDevice.averageDayTemperature!) * 17.2694) / (Double(externalDevice.averageDayTemperature!) + 238.3))
             let vp = (svp / 1000.0) * (Double(externalDevice.averageDayHumidity!) / 100.0)
             
