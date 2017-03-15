@@ -18,10 +18,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 	// Override point for customization after application launch.
 //	[[UINavigationBar appearance] setBackgroundImage:[SCHelper imageWithColor:[UIColor blueMaestroBlue] size:CGSizeMake([UIScreen mainScreen].bounds.size.width, 64.0)] forBarMetrics:UIBarMetricsDefault];
-//	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont regularFontWithSize:18.0]}];
-//	[[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont regularFontWithSize:16.0]} forState:UIControlStateNormal];
-//	[[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont regularFontWithSize:16.0]} forState:UIControlStateNormal];
+	[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+	[[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont regularFontWithSize:18.0]}];
+	[[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont regularFontWithSize:16.0]} forState:UIControlStateNormal];
+	[[UIBarButtonItem appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont regularFontWithSize:16.0]} forState:UIControlStateNormal];
+    [[UINavigationBar appearance] setTranslucent:NO];
+//    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 	return YES;
 }
 

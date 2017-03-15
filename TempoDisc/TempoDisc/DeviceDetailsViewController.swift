@@ -25,6 +25,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
 
         // Do any additional setup after loading the view.
         self.setup()
+//        UIApplication.shared.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +51,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
 //            // Fallback on earlier versions
 //        }
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
