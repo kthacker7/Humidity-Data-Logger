@@ -23,12 +23,12 @@
 
 - (instancetype)init {
     if ( (self = [super init]) ) {
-        [self setupDevice];
+        [self setupDeviceWithCompletion:nil];
     }
     return self;
 }
 
-- (void)setupDevice {
+- (void)setupDeviceWithCompletion:(void (^)(BOOL))completion{
     __weak typeof(self) weakself = self;
     
     [[TDDefaultDevice sharedDevice].selectedDevice.peripheral connectWithTimeout:kDeviceConnectTimeout completion:^(NSError *error) {
@@ -74,49 +74,68 @@
                                     if (!weakself.writeCharacteristic) {
                                     }
                                     if (weakself.writeCharacteristic && weakself.dataToSend) {
-                                        [weakself writeData:weakself.dataToSend toCharacteristic:weakself.writeCharacteristic];
+                                        [weakself writeData:weakself.dataToSend toCharacteristic:weakself.writeCharacteristic withCompletion:completion];
                                         weakself.dataToSend = nil;
                                     }
                                 }
                                 else {
+                                    if (completion != nil) {
+                                        completion(NO);
+                                    }
                                 }
                             }];
                             break;
                         }
                     }
                     if (!uartService) {
+                        if (completion != nil) {
+                            completion(NO);
+                        }
                     }
                 }
                 else {
+                    if (completion != nil) {
+                        completion(NO);
+                    }
                 }
             }];
         }
         else {
+            if (completion != nil) {
+                completion(NO);
+            }
         }
     }];
 }
 
-- (void)writeData:(NSString*)data toCharacteristic:(LGCharacteristic*)characteristic {
+- (void)writeData:(NSString*)data
+ toCharacteristic:(LGCharacteristic*)characteristic
+   withCompletion:(void (^)(BOOL))completion{
     //    __weak typeof(self) weakself = self;
     [characteristic writeValue:[data dataUsingEncoding:NSUTF8StringEncoding] completion:^(NSError *error) {
         if (!error) {
             //			[weakself addLogMessage:@"Sucessefully wrote data to write characteristic" type:LogMessageTypeInbound];
+            if (completion != nil) {
+                completion(YES);
+            }
         }
         else {
+            if (completion != nil) {
+                completion(NO);
+            }
         }
     }];
 }
 
 
-- (void)connectAndWrite:(NSString*)data {
-    TempoDiscDevice *device = (TempoDiscDevice*)[TDDefaultDevice sharedDevice].selectedDevice;
+- (void)connectAndWrite:(NSString*)data withCompletion:(void (^)(BOOL))completion{
 //    NSLog([device.averageDayDew description]);
 //    NSLog([device.averageDayHumidity description]);
 //    NSLog([device.averageDayTemperature description]);
-    if (_writeCharacteristic) {
-        [self writeData:data toCharacteristic:_writeCharacteristic];
-    }
-    else {
+//    if (_writeCharacteristic) {
+//        [self writeData:data toCharacteristic:_writeCharacteristic withCompletion:completion];
+//    }
+//    else {
         _dataToSend = data;
         
         /**
@@ -127,17 +146,17 @@
                 for (LGPeripheral *peripheral in peripherals) {
                     if ([peripheral.UUIDString isEqualToString:[TDDefaultDevice sharedDevice].selectedDevice.peripheral.UUIDString]) {
                         [TDDefaultDevice sharedDevice].selectedDevice.peripheral = peripheral;
-                        [self setupDevice];
+                        [self setupDeviceWithCompletion: completion];
                         break;
                     }
                 }
             }];
         }
         else {
-            [self setupDevice];
+            [self setupDeviceWithCompletion: completion];
         }
         
-    }
+//    }
 }
 
 +(NSString*)createFileNameWithAttachmentType:(NSString *)type withPath:(BOOL)includePath
