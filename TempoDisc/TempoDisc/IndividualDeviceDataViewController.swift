@@ -146,19 +146,20 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         var tempList : [Reading] = []
         var humidityList : [Reading] = []
         var dewList : [Reading] = []
+        let readingTypes = ["Temperature", "Humidity", "DewPoint"]
         if let device = self.selectedDevice {
-            for readingType in (device.readingTypes)! {
-                if readingType.type == "Temperature" {
-                    for reading in (readingType.readings)! {
-                        tempList.append(reading)
+            for readingType in readingTypes {
+                if readingType == "Temperature" {
+                    for reading in device.readings(forType: readingType) {
+                        tempList.append(reading as! Reading)
                     }
-                } else if readingType.type == "Humidity" {
-                    for reading in (readingType.readings)! {
-                        humidityList.append(reading)
+                } else if readingType == "Humidity" {
+                    for reading in device.readings(forType: readingType) {
+                        humidityList.append(reading as! Reading)
                     }
-                } else if readingType.type == "DewPoint" {
-                    for reading in (readingType.readings)! {
-                        dewList.append(reading)
+                } else if readingType == "DewPoint" {
+                    for reading in device.readings(forType: readingType) {
+                        dewList.append(reading as! Reading)
                     }
                 }
             }
@@ -173,19 +174,18 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
             return reading1.timestamp!.compare(reading2.timestamp!) == ComparisonResult.orderedAscending
         }
         var i = 0
-        if dewList.count == humidityList.count && dewList.count == tempList.count {
-            while i < dewList.count {
-                if let dew = dewList[i].avgValue {
-                    if let humidity = humidityList[i].avgValue {
-                        if let temp = tempList[i].avgValue {
-                            readingList.append(CombinedReading(dewReading: dew, tempReading: temp, dateReading: tempList[i].timestamp as NSDate?, logNumber: i, humidityReading: humidity))
-                        }
+        let minCount = min(a: min(a: humidityList.count, b: dewList.count), b: tempList.count)
+        
+        while i < minCount {
+            if let dew = dewList[i].avgValue {
+                if let humidity = humidityList[i].avgValue {
+                    if let temp = tempList[i].avgValue {
+                        readingList.append(CombinedReading(dewReading: dew, tempReading: temp, dateReading: tempList[i].timestamp as NSDate?, logNumber: i, humidityReading: humidity))
                     }
                 }
-                i += 1
             }
+            i += 1
         }
-        
         // Setup graph views
         self.dewpointGraphView.isHidden = true
         self.temperatureGraphView.isHidden = true
@@ -213,6 +213,13 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         self.exportAsCSVButton.layer.cornerRadius = 5.0
         self.exportAsCSVButton.layer.borderWidth = 1.0
         self.exportAsCSVButton.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
+    }
+    
+    func min(a:Int, b: Int) -> Int{
+        if (a<b) {
+            return a
+        }
+        return b
     }
     
     func getDetailsCell(indexPath: IndexPath) -> UITableViewCell {
