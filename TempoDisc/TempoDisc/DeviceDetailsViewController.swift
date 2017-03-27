@@ -11,7 +11,7 @@ import CoreData
 import CoreBluetooth
 
 class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var tableView: UITableView!
     let flatTexts = ["Flat No. 1 (3)", "Flat No. 12 (2)", "Flat No. 15 (4)", "Flat No. 34 (4)"]
     
@@ -22,34 +22,34 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
         self.setup()
-//        UIApplication.shared.
+        //        UIApplication.shared.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Devices count setup
         self.firstAttempt = true
-
+        
         self.greyView.isHidden = true
-//        if #available(iOS 10.0, *) {
-//        let bluetoothManager: CBCentralManager = CBCentralManager()
-//            switch bluetoothManager.state {
-//            case CBManagerState.poweredOff:
-//                let alert = UIAlertController(title: "Oops!", message: "Please turn on bluetooth to be able to use Cornerstone Data Logger app!", preferredStyle: UIAlertControllerStyle.alert)
-//                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-//                break
-//            case CBManagerState.poweredOn:
-//                self.scanButtonTapped()
-//                break
-//            default :
-//                break
-//            }
-//        } else {
-//            // Fallback on earlier versions
-//        }
+        //        if #available(iOS 10.0, *) {
+        //        let bluetoothManager: CBCentralManager = CBCentralManager()
+        //            switch bluetoothManager.state {
+        //            case CBManagerState.poweredOff:
+        //                let alert = UIAlertController(title: "Oops!", message: "Please turn on bluetooth to be able to use Cornerstone Data Logger app!", preferredStyle: UIAlertControllerStyle.alert)
+        //                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        //                break
+        //            case CBManagerState.poweredOn:
+        //                self.scanButtonTapped()
+        //                break
+        //            default :
+        //                break
+        //            }
+        //        } else {
+        //            // Fallback on earlier versions
+        //        }
     }
     
     
@@ -138,47 +138,50 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func scanButtonTapped() {
-        greyView.isHidden = false
+        self.greyView.isHidden = false
         LGCentralManager.sharedInstance().scanForPeripherals(byInterval: 5, services: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey : true], completion: { peripherals in
-            if (peripherals == nil || peripherals!.count == 0)  {
-                if (self.firstAttempt) {
-                    self.firstAttempt = false
-                    self.scanButtonTapped()
+            DispatchQueue.main.async {
+                if (peripherals == nil || peripherals!.count == 0)  {
+                    if (self.firstAttempt) {
+                        self.firstAttempt = false
+                        self.scanButtonTapped()
+                    } else {
+                        let alert = UIAlertController(title: "Oops", message: "Oops, no nearby devices found. Please try to scan again, or check if the data loggers are out of battery!", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        self.greyView.isHidden = true
+                    }
                 } else {
-                    let alert = UIAlertController(title: "Oops", message: "Oops, no nearby devices found. Please try to scan again, or check if the data loggers are out of battery!", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                }
-            } else {
-                for peripheral in peripherals as! [LGPeripheral] {
-                    let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
-//                    [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
-                    
-                    // [TempoDiscDevice deviceWithName:peripheral.name data:peripheral.advertisingData uuid:peripheral.cbPeripheral.identifier.UUIDString context:context];
-                    var toAdd = true
-                    var i = 0
-                    if let newDevice = TDHelper.findOrCreateDevice(for: peripheral) {
-                        newDevice.peripheral = peripheral
-                        for device in self.devices {
-                            if device.uuid != nil && device.uuid == newDevice.uuid {
-                                toAdd = false
-                                break
+                    for peripheral in peripherals as! [LGPeripheral] {
+                        //                    let context = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+                        //                    [(AppDelegate*)[UIApplication sharedApplication].delegate managedObjectContext];
+                        
+                        // [TempoDiscDevice deviceWithName:peripheral.name data:peripheral.advertisingData uuid:peripheral.cbPeripheral.identifier.UUIDString context:context];
+                        var toAdd = true
+                        var i = 0
+                        if let newDevice = TDHelper.findOrCreateDevice(for: peripheral) {
+                            newDevice.peripheral = peripheral
+                            for device in self.devices {
+                                if device.uuid != nil && device.uuid == newDevice.uuid {
+                                    toAdd = false
+                                    break
+                                }
+                                i += 1
                             }
-                            i += 1
-                        }
-                        if toAdd {
-                            
-                            self.devices.append(newDevice)
-                        } else {
-                            self.devices.remove(at: i)
-                            self.devices.append(newDevice)
+                            if toAdd {
+                                
+                                self.devices.append(newDevice)
+                            } else {
+                                self.devices.remove(at: i)
+                                self.devices.append(newDevice)
+                            }
                         }
                     }
+                    self.groupDevices()
+                    self.tableView.reloadData()
+                    self.greyView.isHidden = true
                 }
-                self.groupDevices()
-                self.tableView.reloadData()
             }
-            self.greyView.isHidden = true
         })
     }
     
@@ -254,15 +257,15 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         }
         return 0.0
     }
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
