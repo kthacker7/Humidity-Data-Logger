@@ -74,16 +74,22 @@ class ResetDevicesViewController: UIViewController {
                 TDDefaultDevice.shared().selectedDevice = externalDevice
                 helper.connectAndWrite("*clr", withCompletion: {success in
                     if (success) {
+                        self.helper.didDisconnect = true
                         externalDevice.peripheral?.disconnect(completion: { (error) in
-//                            if  (error == nil) {
-                                self.internalIndex = 0
-                                self.toWriteData = dateToWrite
-                                NotificationCenter.default.post(name: Notification.Name.init("ResetComplete"), object: self)
-//                            } else {
-//                                let alert = UIAlertController(title: "Oops!", message: "Failed to reset devices, please try again!", preferredStyle: UIAlertControllerStyle.alert)
-//                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-//                                self.present(alert, animated: true, completion: nil)
-//                            }
+                            self.internalIndex = 0
+                            self.toWriteData = dateToWrite
+                            self.helper.connectAndWrite(dateToWrite, withCompletion: { success in
+                                if (success) {
+                                    externalDevice.peripheral?.disconnect(completion: { (error) in
+                                        self.helper.didDisconnect = true
+                                        NotificationCenter.default.post(name: Notification.Name.init("ResetComplete"), object: self)
+                                    })
+                                } else {
+                                    let alert = UIAlertController(title: "Oops!", message: "Failed to reset devices, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                            })
                         })
                     } else {
                         let alert = UIAlertController(title: "Oops!", message: "Failed to reset devices, please try again!", preferredStyle: UIAlertControllerStyle.alert)
@@ -91,46 +97,42 @@ class ResetDevicesViewController: UIViewController {
                         self.present(alert, animated: true, completion: nil)
                     }
                 })
-//                helper.connectAndWrite(dateToWrite)
-                
             }
         }
     }
     
     func resetInternalDevices(notification: Notification) {
-        if (self.internalIndex > 0) {
-            let prevDevice = self.deviceGroup!.internalDevices[self.internalIndex-1]
-            prevDevice.peripheral?.disconnect(completion: { (error) in
-//                if error == nil {
-                    if self.internalIndex < self.deviceGroup!.internalDevices.count {
-                        self.resetDataFor(device: self.deviceGroup!.internalDevices[self.internalIndex], helper: self.helper)
-                        self.internalIndex += 1
-                    } else {
-                        let alert = UIAlertController(title: "Success", message: "Download of logs were successful! You can now see the logs in the History tab.", preferredStyle: UIAlertControllerStyle.alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-                    }
-//                } else {
-//                    let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
-//                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-//                    self.present(alert, animated: true, completion: nil)
-//                }
-            })
-        } else {
-            if self.internalIndex < self.deviceGroup!.internalDevices.count {
-                self.resetDataFor(device: self.deviceGroup!.internalDevices[self.internalIndex], helper: self.helper)
-                self.internalIndex += 1
-            }
+        
+        if self.internalIndex < self.deviceGroup!.internalDevices.count {
+            self.resetDataFor(device: self.deviceGroup!.internalDevices[self.internalIndex], helper: self.helper)
+            self.internalIndex += 1
+        } else if self.internalIndex == self.deviceGroup!.internalDevices.count {
+            let alert = UIAlertController(title: "Success!", message: "Resetting data was successful!", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
+        
     }
     
     func resetDataFor(device: TempoDiscDevice, helper: TempoHelperMethods) {
         TDDefaultDevice.shared().selectedDevice = device
         helper.connectAndWrite("*clr", withCompletion: { success in
             if (success) {
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                    NotificationCenter.default.post(name: Notification.Name.init("ResetComplete"), object: self)
-//                })
+                device.peripheral?.disconnect(completion: { (error) in
+                    self.helper.didDisconnect = true
+                    self.helper.connectAndWrite(self.toWriteData, withCompletion: { success in
+                        if (success) {
+                            self.helper.didDisconnect = true
+                            device.peripheral?.disconnect(completion: { (error) in
+                                NotificationCenter.default.post(name: Notification.Name.init("ResetComplete"), object: self)
+                            })
+                        } else {
+                            let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
+                    })
+                })
             } else {
                 let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
