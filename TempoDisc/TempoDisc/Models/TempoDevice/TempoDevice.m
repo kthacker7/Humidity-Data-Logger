@@ -194,12 +194,12 @@ int getInt(char lsb,char msb)
     
     NSString *readingType;
     readingType = type;
-//    for (ReadingType *type in [TDSharedDevice sharedDevice].selectedDevice.readingTypes) {
-//        if ([type.type isEqualToString:readingType]) {
-//            [[TDSharedDevice sharedDevice].selectedDevice removeReadingTypesObject:type];
-//            break;
-//        }
-//    }
+    for (ReadingType *type in [TDDefaultDevice sharedDevice].selectedDevice.readingTypes) {
+        if ([type.type isEqualToString:readingType]) {
+            [[TDDefaultDevice sharedDevice].selectedDevice removeReadingTypesObject:type];
+            break;
+        }
+    }
     /*
      ReadingType *targetReadingType;
      for (ReadingType *readingType in self.readingTypes) {
@@ -232,6 +232,7 @@ int getInt(char lsb,char msb)
 
 
 - (void)addData:(NSArray *)data forReadingType:(NSString *)type startTimestamp:(NSDate*)timeStamp interval:(NSInteger)interval context:(NSManagedObjectContext *)context {
+    NSLog(@"Start time: %@", timeStamp.description);
     ReadingType *targetReadingType;
     for (ReadingType *readingType in self.readingTypes) {
         if ([readingType.type isEqualToString:type]) {

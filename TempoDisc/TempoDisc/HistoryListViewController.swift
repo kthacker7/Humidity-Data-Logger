@@ -89,7 +89,7 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         tableView.estimatedRowHeight = 100
         
         // Navigation bar setup
-        self.navigationItem.title = "Batch List"
+        self.navigationItem.title = "History List"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: nil, action: nil)
         self.navigationController?.navigationBar.backIndicatorImage = UIImage()
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()

@@ -59,9 +59,9 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lc-Fs-f4j">
                         <rect key="frame" x="0.0" y="128" width="320" height="1.5"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.77690016778523485" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1.5" id="gk6-rz-ZTU"/>
+                            <constraint firstAttribute="height" constant="1" id="gk6-rz-ZTU"/>
                         </constraints>
                     </view>
                 </subviews>

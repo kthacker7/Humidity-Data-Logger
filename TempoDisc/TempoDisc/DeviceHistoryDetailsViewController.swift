@@ -85,8 +85,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
         self.devicesButtonView.addGestureRecognizer(gestureRecognizer)
         let gestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(DeviceHistoryDetailsViewController.resetButtonTapped))
         self.resetDevicesButtonView.addGestureRecognizer(gestureRecognizer2)
-        let gestureRecognizer3 = UITapGestureRecognizer(target: self, action: #selector(DeviceHistoryDetailsViewController.hideOverlay))
-        self.greyView.addGestureRecognizer(gestureRecognizer3)
+        
         
         // Setup navigation bar
         self.navigationItem.title = self.navTitle
@@ -196,8 +195,6 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     
     func showOverlay() {
         self.greyView.isHidden = false
-        self.cancelButton.isHidden = false
-        self.downloadButtonsView.isHidden = false
     }
     
     func devicesButtonTapped() {
@@ -238,11 +235,41 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     
     
     @IBAction func downloadLogPressed(_ sender: Any) {
-        self.showOverlay()
+        self.greyView.isHidden = false
+        if self.deviceGroup != nil {
+            
+            let externalTDDevice = self.deviceGroup!.externalDevice
+            if let externalDevice = externalTDDevice {
+                TDDefaultDevice.shared().selectedDevice = externalDevice
+                downloader.refreshDownloader()
+                downloader.downloadData(for: externalDevice, withCompletion: { success in
+                    if success {
+                        externalDevice.peripheral?.disconnect(completion: { (error) in
+                            if  (error == nil) {
+                                self.internalIndex = 0
+                                NotificationCenter.default.post(name: Notification.Name.init("DownloadComplete"), object: self)
+                            } else {
+                                self.greyView.isHidden = true
+                                let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                                self.setupUI()
+                            }
+                        })
+                    } else {
+                        self.greyView.isHidden = true
+                        let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                })
+            }
+        }
+//        self.showOverlay()
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
-        self.hideOverlay()
+//        self.hideOverlay()
     }
     
     
@@ -259,6 +286,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                                 self.internalIndex = 0
                                 NotificationCenter.default.post(name: Notification.Name.init("DownloadComplete"), object: self)
                             } else {
+                                self.greyView.isHidden = true
                                 let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                 self.present(alert, animated: true, completion: nil)
@@ -266,6 +294,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                             }
                         })
                     } else {
+                        self.greyView.isHidden = true
                         let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
@@ -285,12 +314,14 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                         self.downloadDataFor(device: self.deviceGroup!.internalDevices[self.internalIndex], downloader: self.downloader)
                         self.internalIndex += 1
                     } else {
+                        self.greyView.isHidden = true
                         let alert = UIAlertController(title: "Success", message: "Download of logs were successful! You can now see the logs in the History tab.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
                     }
                     self.setupUI()
                 } else {
+                    self.greyView.isHidden = true
                     let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
@@ -311,6 +342,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
         TDDefaultDevice.shared().selectedDevice = internalDevice
         downloader.downloadData(for: internalDevice, withCompletion: { (success) in
             if (!success) {
+                self.greyView.isHidden = true
                 let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)

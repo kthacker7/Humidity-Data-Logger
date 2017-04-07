@@ -46,7 +46,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
     @IBOutlet weak var segmentedControlHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var exportAsCSVButton: UIButton!
-    let leftLabelValues = ["UUID", "VERSION", "RSSI", "BATTERY", "LOGGING INTERVAL", "NUMBER OF RECORDS", "MODE", "CURRENT", "TEMPERATURE", "HUMIDITY", "DEW POINT", "HIGHEST AND LOWEST RECORDED", "HIGHEST TEMEPERATURE", "HIGHEST HUMIDITY", "LOWEST TEMEPERATURE", "LOWEST HUMIDITY", "LAST 24 HOURS", "HIGHEST TEMEPERATURE", "LOWEST TEMEPERATURE"]
+    var leftLabelValues = ["UUID", "VERSION", "RSSI", "BATTERY", "LOGGING INTERVAL", "NUMBER OF RECORDS", "MODE", "CURRENT", "TEMPERATURE", "HUMIDITY", "DEW POINT", "HIGHEST AND LOWEST RECORDED", "HIGHEST TEMEPERATURE", "HIGHEST HUMIDITY", "LOWEST TEMEPERATURE", "LOWEST HUMIDITY", "LAST 24 HOURS", "HIGHEST TEMEPERATURE", "LOWEST TEMEPERATURE"]
     
     let navigationTitles = ["History Device Details", "Device Graphs", "Table"]
     
@@ -213,6 +213,10 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         self.exportAsCSVButton.layer.cornerRadius = 5.0
         self.exportAsCSVButton.layer.borderWidth = 1.0
         self.exportAsCSVButton.layer.borderColor = UIColor(colorLiteralRed: 197.0/255.0, green: 10.0/255.0, blue: 39.0/255.0, alpha: 1.0).cgColor
+        
+        if self.selectedTab == .Devices {
+            self.leftLabelValues[5] = "LAST DOWNLOADED DATE"
+        }
     }
     
     func min(a:Int, b: Int) -> Int{
@@ -271,10 +275,18 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 return "-"
             }
         case 6:
-            if let numberOfRecords = tempoDiscDevice?.readings(forType: "Temperature").count {
-                return "\(numberOfRecords)"
+            if self.selectedTab == .History {
+                if let numberOfRecords = tempoDiscDevice?.readings(forType: "Temperature").count {
+                    return "\(numberOfRecords)"
+                } else {
+                    return "-"
+                }
             } else {
-                return "-"
+                if let lastDownload = tempoDiscDevice?.lastDownload {
+                    return lastDownload.description
+                } else {
+                    return "-"
+                }
             }
         case 7:
             if let mode = tempoDiscDevice?.mode {
@@ -354,6 +366,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 cell.dewLabel.text = "\(reading.dewReading!) °C"
                 cell.tempLabel.text = "\(reading.tempReading!) °C"
                 cell.humidityLabel.text = "\(reading.humidityReading!) RH"
+                cell.logNumberLabel.text = (indexPath.row + 1).description
             }
             return cell
         }

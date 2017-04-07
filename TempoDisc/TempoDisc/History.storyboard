@@ -271,9 +271,27 @@
                                     <constraint firstAttribute="height" constant="1" id="Zaj-AK-Tce"/>
                                 </constraints>
                             </view>
-                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-C7-44h">
+                            <view clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-C7-44h">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloading Logs.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7r-E8-yEV">
+                                        <rect key="frame" x="112" y="292" width="150.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vJJ-6L-sFB">
+                                        <rect key="frame" x="177" y="323" width="20" height="20"/>
+                                        <color key="color" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vJJ-6L-sFB" firstAttribute="top" secondItem="G7r-E8-yEV" secondAttribute="bottom" constant="10" id="Q50-cM-bTe"/>
+                                    <constraint firstItem="vJJ-6L-sFB" firstAttribute="centerX" secondItem="6kL-C7-44h" secondAttribute="centerX" id="cDc-8p-biI"/>
+                                    <constraint firstItem="G7r-E8-yEV" firstAttribute="centerX" secondItem="vJJ-6L-sFB" secondAttribute="centerX" id="oji-sX-mqL"/>
+                                    <constraint firstItem="vJJ-6L-sFB" firstAttribute="centerY" secondItem="6kL-C7-44h" secondAttribute="centerY" id="zjU-MP-chm"/>
+                                </constraints>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyN-r9-yu3">
                                 <rect key="frame" x="20" y="492" width="335" height="100"/>

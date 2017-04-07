@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 
 typedef void(^DataDownloadCompletion)(BOOL);
+typedef void(^DataProgressUpdate)(float progress);
 typedef enum : NSInteger {
     DataDownloadTypeTemperature,
     DataDownloadTypeHumidity,
@@ -24,5 +25,6 @@ typedef enum : NSInteger {
 + (TDUARTDownloader*)shared;
 - (void)refreshDownloader;
 - (void)downloadDataForDevice:(TempoDiscDevice*)device withCompletion:(DataDownloadCompletion)completion;
+- (void)setNewTimeStamp: (NSInteger)sendRecordsNeeded;
 
 @end

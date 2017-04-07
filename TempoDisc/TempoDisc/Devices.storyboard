@@ -12,7 +12,7 @@
         <!--Reset Devices View Controller-->
         <scene sceneID="6vh-w9-bkg">
             <objects>
-                <viewController storyboardIdentifier="ResetDevicesViewController" id="4dq-oy-QYb" customClass="ResetDevicesViewController" customModule="Cornerstone_Humidity_Data_Logger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ResetDevicesViewController" id="4dq-oy-QYb" customClass="ResetDevicesViewController" customModule="Tempo_Utility" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WNN-FJ-8Vx"/>
                         <viewControllerLayoutGuide type="bottom" id="s3b-fr-4DV"/>
@@ -49,9 +49,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r0e-HU-1yx">
-                                <rect key="frame" x="30" y="400" width="315" height="44"/>
+                                <rect key="frame" x="30" y="400" width="315" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="ZyJ-nG-Bwf"/>
+                                    <constraint firstAttribute="height" constant="50" id="ZyJ-nG-Bwf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Reset">
@@ -75,14 +75,38 @@
                                     <constraint firstAttribute="height" constant="1" id="qRT-Fe-Wtt"/>
                                 </constraints>
                             </view>
+                            <view clipsSubviews="YES" alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MZy-Bz-voC">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resetting devices.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viZ-Hl-0nX">
+                                        <rect key="frame" x="115" y="292" width="145" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="yLj-Uz-qRP">
+                                        <rect key="frame" x="177.5" y="323" width="20" height="20"/>
+                                        <color key="color" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="yLj-Uz-qRP" firstAttribute="centerX" secondItem="MZy-Bz-voC" secondAttribute="centerX" id="4hd-8c-iVi"/>
+                                    <constraint firstItem="yLj-Uz-qRP" firstAttribute="top" secondItem="viZ-Hl-0nX" secondAttribute="bottom" constant="10" id="MxV-CG-F1H"/>
+                                    <constraint firstItem="yLj-Uz-qRP" firstAttribute="centerY" secondItem="MZy-Bz-voC" secondAttribute="centerY" id="Sj1-Ln-6n7"/>
+                                    <constraint firstItem="viZ-Hl-0nX" firstAttribute="centerX" secondItem="yLj-Uz-qRP" secondAttribute="centerX" id="ybR-IP-hcj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="s3b-fr-4DV" firstAttribute="top" secondItem="MZy-Bz-voC" secondAttribute="bottom" id="8yl-G7-lo6"/>
                             <constraint firstAttribute="trailing" secondItem="Urd-Hx-RKf" secondAttribute="trailing" id="DtA-qj-yAI"/>
                             <constraint firstItem="qg3-Zj-03l" firstAttribute="top" secondItem="COe-bq-J4w" secondAttribute="bottom" constant="10" id="GbL-2I-GtJ"/>
                             <constraint firstItem="COe-bq-J4w" firstAttribute="leading" secondItem="ufP-T0-xad" secondAttribute="leading" constant="30" id="HTe-u8-XZG"/>
                             <constraint firstItem="Urd-Hx-RKf" firstAttribute="top" secondItem="ro0-2W-W96" secondAttribute="bottom" constant="20" id="LKY-9t-KMi"/>
                             <constraint firstItem="PdH-Uc-oPk" firstAttribute="leading" secondItem="ufP-T0-xad" secondAttribute="leading" id="PWf-32-pAB"/>
+                            <constraint firstItem="MZy-Bz-voC" firstAttribute="top" secondItem="ufP-T0-xad" secondAttribute="top" id="Qjx-Ky-NYj"/>
                             <constraint firstItem="COe-bq-J4w" firstAttribute="top" secondItem="WNN-FJ-8Vx" secondAttribute="bottom" constant="30" id="YQj-Ka-Tob"/>
                             <constraint firstItem="ro0-2W-W96" firstAttribute="width" secondItem="ufP-T0-xad" secondAttribute="width" id="cvK-qh-GPp"/>
                             <constraint firstItem="r0e-HU-1yx" firstAttribute="top" secondItem="Urd-Hx-RKf" secondAttribute="bottom" constant="30" id="dBe-GT-W4T"/>
@@ -92,6 +116,8 @@
                             <constraint firstItem="Urd-Hx-RKf" firstAttribute="leading" secondItem="ufP-T0-xad" secondAttribute="leading" id="hwO-5W-7Em"/>
                             <constraint firstItem="r0e-HU-1yx" firstAttribute="leading" secondItem="ufP-T0-xad" secondAttribute="leading" constant="30" id="i4A-3W-d5r"/>
                             <constraint firstItem="r0e-HU-1yx" firstAttribute="centerX" secondItem="ufP-T0-xad" secondAttribute="centerX" id="lgy-Rm-UsN"/>
+                            <constraint firstAttribute="trailing" secondItem="MZy-Bz-voC" secondAttribute="trailing" id="rLl-c8-0dB"/>
+                            <constraint firstItem="MZy-Bz-voC" firstAttribute="leading" secondItem="ufP-T0-xad" secondAttribute="leading" id="scD-JZ-rYQ"/>
                             <constraint firstAttribute="trailing" secondItem="r0e-HU-1yx" secondAttribute="trailing" constant="30" id="tNr-KG-2Ag"/>
                             <constraint firstItem="ro0-2W-W96" firstAttribute="centerX" secondItem="ufP-T0-xad" secondAttribute="centerX" id="xxw-51-4IB"/>
                             <constraint firstItem="ro0-2W-W96" firstAttribute="top" secondItem="PdH-Uc-oPk" secondAttribute="bottom" constant="20" id="zGU-j2-peD"/>
@@ -100,6 +126,7 @@
                     <connections>
                         <outlet property="dateLabel" destination="qg3-Zj-03l" id="1uF-Ao-UXL"/>
                         <outlet property="datePicker" destination="ro0-2W-W96" id="3Le-f8-nCy"/>
+                        <outlet property="greyView" destination="MZy-Bz-voC" id="Ngz-qg-6Vf"/>
                         <outlet property="resetButton" destination="r0e-HU-1yx" id="LxD-nC-ofA"/>
                     </connections>
                 </viewController>

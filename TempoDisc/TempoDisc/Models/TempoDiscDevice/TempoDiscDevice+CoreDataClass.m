@@ -122,29 +122,29 @@ int largeIntValue(char lsb, char b3, char b2, char msb)
         self.referenceDateRawNumber = fullValue;
         long lowDate = 1700000000; //1 January 2017
         long highDate = 1900000000; //1 January 2019
-        if (([fullValue intValue] != 0) || ([fullValue longValue] > lowDate) || ([fullValue longValue] < highDate)) {
-            NSInteger minutes = fullValue.integerValue % 100;
-            NSInteger hours = (fullValue.integerValue/100) % 100;
-            NSInteger days = (fullValue.integerValue/10000) % 100;
-            NSInteger months = (fullValue.integerValue/1000000) % 100;
-            NSInteger years = (fullValue.integerValue/100000000) % 100;
-            
-            NSCalendar* calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
-            NSDateComponents *components = [[NSDateComponents alloc] init];
-            //MIN is for testing purposes as returning invalid values provides an unexpected date, can be removed once date parse is valid
-            components.minute = MIN(minutes, 60);
-            components.hour = MIN(hours, 24);
-            components.day = MIN(days, 31);
-            components.month = MIN(months, 12);
-            components.year = years+2000;//add century as its only last 2 digits
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.dateFormat = @"yyyy MMM dd HH:mm";
-            NSDate *date = [calendar dateFromComponents:components];
-            
-            self.startTimestamp = [calendar dateFromComponents:components];
-            NSLog(@"%@", [dateFormatter stringFromDate:date]);
-            
-        }
+//        if (([fullValue intValue] != 0) || ([fullValue longValue] > lowDate) || ([fullValue longValue] < highDate)) {
+//            NSInteger minutes = fullValue.integerValue % 100;
+//            NSInteger hours = (fullValue.integerValue/100) % 100;
+//            NSInteger days = (fullValue.integerValue/10000) % 100;
+//            NSInteger months = (fullValue.integerValue/1000000) % 100;
+//            NSInteger years = (fullValue.integerValue/100000000) % 100;
+//            
+//            NSCalendar* calendar = [NSCalendar calendarWithIdentifier:NSCalendarIdentifierGregorian];
+//            NSDateComponents *components = [[NSDateComponents alloc] init];
+//            //MIN is for testing purposes as returning invalid values provides an unexpected date, can be removed once date parse is valid
+//            components.minute = MIN(minutes, 60);
+//            components.hour = MIN(hours, 24);
+//            components.day = MIN(days, 31);
+//            components.month = MIN(months, 12);
+//            components.year = years+2000;//add century as its only last 2 digits
+//            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//            dateFormatter.dateFormat = @"yyyy MMM dd HH:mm";
+//            NSDate *date = [calendar dateFromComponents:components];
+//            
+//            self.startTimestamp = [calendar dateFromComponents:components];
+//            NSLog(@"Start timestamp = %@", [dateFormatter stringFromDate:date]);
+//            
+//        }
         
         NSLog(@"Parsed version 23 data");
     }
@@ -196,7 +196,7 @@ int largeIntValue(char lsb, char b3, char b2, char msb)
     self.battery = [NSDecimalNumber decimalNumberWithDecimal:device.battery.decimalValue];
     self.modelType = device.modelType;
     NSLog(@"Version is %@", device.version);
-    self.version = [device.version description];
+    self.version = device.version;
     self.currentTemperature = device.currentTemperature;
     self.currentMinTemperature = device.currentMinTemperature;
     self.currentMaxTemperature = device.currentMaxTemperature;

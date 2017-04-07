@@ -15,27 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<TempoDiscDevice *> *)fetchRequest;
 
-@property (nullable, nonatomic, retain) NSString *uuid;
-@property (nullable, nonatomic, retain) NSString *name;
-@property (nullable, nonatomic, retain) NSDecimalNumber *battery;
-@property (nullable, nonatomic, retain) NSString *modelType;
-@property (nullable, nonatomic, retain) NSNumber *version;
-@property (nullable, nonatomic, retain) NSNumber *currentTemperature;
-@property (nullable, nonatomic, retain) NSNumber *currentMinTemperature;
-@property (nullable, nonatomic, retain) NSNumber *currentMaxTemperature;
-@property (nullable, nonatomic, retain) NSNumber *currentHumidity;
-@property (nullable, nonatomic, retain) NSNumber *currentPressure;
-@property (nullable, nonatomic, retain) NSNumber *currentPressureData;
-@property (nullable, nonatomic, retain) NSDate *lastDownload;
-@property (nullable, nonatomic, retain) NSNumber *isBlueMaestroDevice;
-@property (nullable, nonatomic, retain) NSNumber *isFahrenheit;//BOOL
-@property (nullable, nonatomic, retain) NSNumber *inRange;//BOOL, transient
-@property (nullable, nonatomic, retain) NSDate *startTimestamp;
-@property (nullable, nonatomic, retain) NSDate *lastDetected;//transient
 @property (nullable, nonatomic, copy) NSNumber *timerInterval;
 @property (nullable, nonatomic, copy) NSNumber *intervalCounter;
 @property (nullable, nonatomic, copy) NSDecimalNumber *dewPoint;
 @property (nullable, nonatomic, copy) NSNumber *mode;
+@property (nullable, nonatomic, copy) NSNumber *version;
 @property (nullable, nonatomic, copy) NSNumber *numBreach;
 @property (nullable, nonatomic, copy) NSNumber *highestTemperature;
 @property (nullable, nonatomic, copy) NSNumber *highestHumidity;
