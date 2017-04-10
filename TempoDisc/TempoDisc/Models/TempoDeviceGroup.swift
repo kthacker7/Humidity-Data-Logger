@@ -24,14 +24,14 @@ import Foundation
                     totalTemp += Double(device.currentTemperature!)
                 }
             }
-            return totalTemp / Double(internalDevices.count)
+            return (round(totalTemp / Double(internalDevices.count)*1000.0))/1000.0
         } else {
             for device in internalDiscDevices {
                 if device.currentTemperature != nil {
                     totalTemp += Double(device.currentTemperature!)
                 }
             }
-            return totalTemp / Double(internalDiscDevices.count)
+            return (round(totalTemp / Double(internalDiscDevices.count)*1000.0))/1000.0
         }
     }
     
@@ -43,7 +43,7 @@ import Foundation
                     totalTemp += Double(device.currentHumidity!)
                 }
             }
-            return totalTemp / Double(internalDevices.count)
+            return (round(totalTemp / Double(internalDevices.count) * 1000.0))/1000.0
         } else {
             if internalDiscDevices.count > 0 {
                 for device in internalDiscDevices {
@@ -51,7 +51,7 @@ import Foundation
                         totalTemp += Double(device.currentHumidity!)
                     }
                 }
-                return totalTemp / Double(internalDiscDevices.count)
+                return (round(totalTemp / Double(internalDiscDevices.count) * 1000.0))/1000.0
             }
         }
         return 0
@@ -60,12 +60,12 @@ import Foundation
     func getCurrentDewPoint() -> Double {
         if let device = self.externalDiscDevice {
             if device.dewPoint != nil {
-                return Double(device.averageDayDew!)
+                return (round(Double(device.averageDayDew!) * 1000.0))/1000.0
             }
         } else {
             if let device = self.externalDevice {
                 if device.dewPoint != nil {
-                    return Double(device.averageDayDew!)
+                    return (round(Double(device.averageDayDew!) * 1000.0))/1000.0
                 }
             }
         }
