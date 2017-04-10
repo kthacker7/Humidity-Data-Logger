@@ -40,12 +40,12 @@ class DeviceDetailsTableViewCell: UITableViewCell {
         }
         if let tempoDiscDevice = device {
             if let temperature = tempoDiscDevice.averageDayTemperature {
-                self.temperatureLabel.text = "\(temperature)°C"
+                self.temperatureLabel.text = "\(Double((round(temperature.doubleValue * 1000.0))/1000.0))°C"
             } else {
                 self.temperatureLabel.text = "-"
             }
             if let dewPoint = tempoDiscDevice.dewPoint {
-                self.dewLabel.text = "\(dewPoint)°C"
+                self.dewLabel.text = "\(Double(round(dewPoint.doubleValue * 1000.0)/1000.0))°C"
             } else {
                 
                 self.dewLabel.text = "-"
@@ -55,7 +55,7 @@ class DeviceDetailsTableViewCell: UITableViewCell {
             self.dewLabel.text = "-"
         }
         if let currHumidity = device!.currentHumidity {
-            self.humidityLabel.text = "\(currHumidity) %"
+            self.humidityLabel.text = "\(Double(round(currHumidity.doubleValue * 1000.0)/1000.0)) %"
         } else {
             self.humidityLabel.text = "-"
         }
