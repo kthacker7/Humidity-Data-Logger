@@ -186,6 +186,8 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
             }
             i += 1
         }
+        readingList.reverse()
+        
         // Setup graph views
         self.dewpointGraphView.isHidden = true
         self.temperatureGraphView.isHidden = true
@@ -512,7 +514,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
                 let data = NSData.dataWithContentsOfMappedFile(filePath)
                 if device.name != nil {
                     let date = dateFormatter.string(from: Date())
-                    mailComposeVC.addAttachmentData(data as! Data, mimeType: "text/csv", fileName: device.name! + " " + date)
+                    mailComposeVC.addAttachmentData(data as! Data, mimeType: "text/csv", fileName: device.name! + " " + date + ".csv")
                 }
                 self.present(mailComposeVC, animated: true, completion: nil)
             }

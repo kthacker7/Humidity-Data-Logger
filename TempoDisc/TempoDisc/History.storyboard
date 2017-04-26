@@ -274,12 +274,6 @@
                             <view clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6kL-C7-44h">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloading Logs.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7r-E8-yEV">
-                                        <rect key="frame" x="112" y="292" width="150.5" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="vJJ-6L-sFB">
                                         <rect key="frame" x="177" y="323" width="20" height="20"/>
                                         <color key="color" red="0.75686274509999996" green="0.039215686270000001" blue="0.1529411765" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -287,12 +281,16 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="vJJ-6L-sFB" firstAttribute="top" secondItem="G7r-E8-yEV" secondAttribute="bottom" constant="10" id="Q50-cM-bTe"/>
                                     <constraint firstItem="vJJ-6L-sFB" firstAttribute="centerX" secondItem="6kL-C7-44h" secondAttribute="centerX" id="cDc-8p-biI"/>
-                                    <constraint firstItem="G7r-E8-yEV" firstAttribute="centerX" secondItem="vJJ-6L-sFB" secondAttribute="centerX" id="oji-sX-mqL"/>
                                     <constraint firstItem="vJJ-6L-sFB" firstAttribute="centerY" secondItem="6kL-C7-44h" secondAttribute="centerY" id="zjU-MP-chm"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Downloading Logs.." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7r-E8-yEV">
+                                <rect key="frame" x="112" y="292" width="150.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zyN-r9-yu3">
                                 <rect key="frame" x="20" y="492" width="335" height="100"/>
                                 <subviews>
@@ -367,6 +365,7 @@
                             <constraint firstItem="abl-hV-sSd" firstAttribute="centerX" secondItem="NfE-Js-KyG" secondAttribute="centerX" id="G95-l5-sSI"/>
                             <constraint firstItem="6kL-C7-44h" firstAttribute="height" secondItem="NfE-Js-KyG" secondAttribute="height" id="Jyn-zS-frS"/>
                             <constraint firstItem="pUg-c9-9BB" firstAttribute="leading" secondItem="NfE-Js-KyG" secondAttribute="leading" constant="20" id="K6w-SZ-4R1"/>
+                            <constraint firstItem="vJJ-6L-sFB" firstAttribute="top" secondItem="G7r-E8-yEV" secondAttribute="bottom" constant="10" id="KOG-kE-Qzl"/>
                             <constraint firstItem="I5D-sz-Wgm" firstAttribute="top" secondItem="9t0-m0-1B8" secondAttribute="bottom" constant="15" id="Lrm-5e-q4s"/>
                             <constraint firstItem="4fI-Cl-8QI" firstAttribute="leading" secondItem="NfE-Js-KyG" secondAttribute="leading" id="MgB-TC-EGg"/>
                             <constraint firstItem="Dnl-bn-XiV" firstAttribute="top" secondItem="c2K-s2-PAN" secondAttribute="bottom" constant="20" id="NHV-OW-Mdp"/>
@@ -401,6 +400,7 @@
                             <constraint firstItem="44g-LJ-YYn" firstAttribute="leading" secondItem="NfE-Js-KyG" secondAttribute="leading" id="qhV-1Y-h1S"/>
                             <constraint firstItem="ai7-2d-rWt" firstAttribute="top" secondItem="abl-hV-sSd" secondAttribute="bottom" id="qvP-iK-U2g"/>
                             <constraint firstItem="ai7-2d-rWt" firstAttribute="leading" secondItem="whS-D5-u6M" secondAttribute="trailing" id="tDl-MS-HOi"/>
+                            <constraint firstItem="G7r-E8-yEV" firstAttribute="centerX" secondItem="vJJ-6L-sFB" secondAttribute="centerX" id="uBr-6C-qij"/>
                             <constraint firstItem="9t0-m0-1B8" firstAttribute="leading" secondItem="NfE-Js-KyG" secondAttribute="leading" constant="20" id="ugX-bz-lyJ"/>
                             <constraint firstItem="c2K-s2-PAN" firstAttribute="leading" secondItem="NfE-Js-KyG" secondAttribute="leading" constant="20" id="unh-2b-Gvn"/>
                             <constraint firstItem="pUg-c9-9BB" firstAttribute="top" secondItem="zyN-r9-yu3" secondAttribute="bottom" constant="10" id="urG-Md-gqL"/>
@@ -421,6 +421,7 @@
                         <outlet property="devicesCountLabel" destination="UFJ-Rv-Ucx" id="DWt-Gu-rCr"/>
                         <outlet property="downloadButtonsView" destination="zyN-r9-yu3" id="h9d-9H-jGP"/>
                         <outlet property="downloadLogButton" destination="9t0-m0-1B8" id="2bd-zX-9kc"/>
+                        <outlet property="downloadingLogsButton" destination="G7r-E8-yEV" id="j3G-uT-drc"/>
                         <outlet property="exportGroupDataAsCsvButton" destination="McR-zx-cys" id="bS4-5e-5gU"/>
                         <outlet property="externalAHLabel" destination="MqL-I8-Qu5" id="I2P-MD-wvl"/>
                         <outlet property="externalPressureLabel" destination="914-wF-K2e" id="I5t-U3-A0F"/>

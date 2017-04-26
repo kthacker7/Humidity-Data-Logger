@@ -31,6 +31,8 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     var selectedTab: SelecedTab = .Devices
     
     @IBOutlet weak var greyView: UIView!
+    @IBOutlet weak var downloadingLogsButton: UILabel!
+    
     @IBOutlet weak var downloadButtonsView: UIView!
     @IBOutlet weak var cancelButton: UIButton!
     
@@ -189,12 +191,14 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     
     func hideOverlay() {
         self.greyView.isHidden = true
+        self.downloadingLogsButton.isHidden = true
         self.cancelButton.isHidden = true
         self.downloadButtonsView.isHidden = true
     }
     
     func showOverlay() {
         self.greyView.isHidden = false
+        self.downloadingLogsButton.isHidden = false
     }
     
     func devicesButtonTapped() {
@@ -236,6 +240,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
     
     @IBAction func downloadLogPressed(_ sender: Any) {
         self.greyView.isHidden = false
+        self.downloadingLogsButton.isHidden = false
         if self.deviceGroup != nil {
             
             let externalTDDevice = self.deviceGroup!.externalDevice
@@ -250,6 +255,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                                 NotificationCenter.default.post(name: Notification.Name.init("DownloadComplete"), object: self)
                             } else {
                                 self.greyView.isHidden = true
+                                self.downloadingLogsButton.isHidden = true
                                 let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                 self.present(alert, animated: true, completion: nil)
@@ -258,6 +264,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                         })
                     } else {
                         self.greyView.isHidden = true
+                        self.downloadingLogsButton.isHidden = true
                         let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
@@ -287,6 +294,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                                 NotificationCenter.default.post(name: Notification.Name.init("DownloadComplete"), object: self)
                             } else {
                                 self.greyView.isHidden = true
+                                self.downloadingLogsButton.isHidden = true
                                 let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                 self.present(alert, animated: true, completion: nil)
@@ -295,6 +303,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                         })
                     } else {
                         self.greyView.isHidden = true
+                        self.downloadingLogsButton.isHidden = true
                         let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
@@ -315,6 +324,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                         self.internalIndex += 1
                     } else {
                         self.greyView.isHidden = true
+                        self.downloadingLogsButton.isHidden = true
                         let alert = UIAlertController(title: "Success", message: "Download of logs were successful! You can now see the logs in the History tab.", preferredStyle: UIAlertControllerStyle.alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                         self.present(alert, animated: true, completion: nil)
@@ -322,6 +332,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
                     self.setupUI()
                 } else {
                     self.greyView.isHidden = true
+                    self.downloadingLogsButton.isHidden = true
                     let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                     alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
@@ -343,6 +354,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
         downloader.downloadData(for: internalDevice, withCompletion: { (success) in
             if (!success) {
                 self.greyView.isHidden = true
+                self.downloadingLogsButton.isHidden = true
                 let alert = UIAlertController(title: "Oops!", message: "Failed to download data, please try again!", preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
