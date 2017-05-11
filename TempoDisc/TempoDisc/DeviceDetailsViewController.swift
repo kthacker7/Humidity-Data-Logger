@@ -78,7 +78,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             
             let group = self.deviceGroups[indexPath.row]
             let bsVal = self.calculateValueForGroup(group: group)
-            cell.groupNameLabel.text = "Group name - " + group.groupName
+            cell.groupNameLabel.text = "Group name - " + group.groupName + "(\(group.internalDevices.count + 1))"
             if bsVal < 0.3 {
                 cell.bsValueLabel.textColor = green
                 cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropDry")
@@ -139,6 +139,8 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func scanButtonTapped() {
         self.greyView.isHidden = false
+        self.deviceGroups = []
+        self.tableView.reloadData()
         LGCentralManager.sharedInstance().scanForPeripherals(byInterval: 5, services: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey : true], completion: { peripherals in
             DispatchQueue.main.async {
                 if (peripherals == nil || peripherals!.count == 0)  {
@@ -189,13 +191,12 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         var externals : [TempoDiscDevice] = []
         
         for device in self.devices {
-            if device.name != nil && device.name!.hasSuffix("-E") {
+            if device.name != nil && (device.name!.hasSuffix("-E") || device.name!.hasSuffix("-e")) {
                 if let toAdd = TempoHelperMethods.td(toTempo: device) {
                     toAdd.peripheral = device.peripheral
                     externals.append(toAdd)
                 }
             }
-            
         }
         var deviceGroups : [TempoDeviceGroup] = []
         for external in externals {
@@ -216,6 +217,11 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                     }
                     
                 }
+                internals.sort(by: { (device1, device2) -> Bool in
+                    let name1 = device1.name?.replacingOccurrences(of: " ", with: "")
+                    let name2 = device2.name?.replacingOccurrences(of: " ", with: "")
+                    return device1.name == nil || device2.name == nil || (name1!.compare(name2!) == .orderedAscending)
+                })
                 let newTempGroup = TempoDeviceGroup()
                 newTempGroup.externalDevice = external
                 newTempGroup.internalDevices = internals

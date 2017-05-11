@@ -867,7 +867,7 @@
 				TargetAttributes = {
 					CB16BA311C82E67E00C99C41 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 5UU7PKMWKJ;
+						DevelopmentTeam = 8JRVVKJ68M;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -1151,7 +1151,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5UU7PKMWKJ;
+				DEVELOPMENT_TEAM = 8JRVVKJ68M;
 				GCC_PREFIX_HEADER = "TempoDisc/Tempo UtilityPCH.pch";
 				INFOPLIST_FILE = TempoDisc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1173,7 +1173,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 5UU7PKMWKJ;
+				DEVELOPMENT_TEAM = 8JRVVKJ68M;
 				GCC_PREFIX_HEADER = "TempoDisc/Tempo UtilityPCH.pch";
 				INFOPLIST_FILE = TempoDisc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

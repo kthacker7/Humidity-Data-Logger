@@ -123,7 +123,7 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
     func groupDevices() {
         var externals : [TempoDiscDevice] = []
         for device in self.deviceList {
-            if device.name != nil && device.name!.hasSuffix("-E") {
+            if device.name != nil && (device.name!.hasSuffix("-E") || device.name!.hasSuffix("-e")){
                 externals.append(device)
             }
         }
@@ -141,6 +141,11 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
                         internals.append(device)
                     }
                 }
+                internals.sort(by: { (device1, device2) -> Bool in
+                    let name1 = device1.name?.replacingOccurrences(of: " ", with: "")
+                    let name2 = device2.name?.replacingOccurrences(of: " ", with: "")
+                    return device1.name == nil || device2.name == nil || (name1!.compare(name2!) == .orderedAscending)
+                })
                 let newTempGroup = TempoDeviceGroup()
                 newTempGroup.externalDevice = external
                 newTempGroup.internalDevices = internals
