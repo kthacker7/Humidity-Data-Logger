@@ -78,7 +78,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             
             let group = self.deviceGroups[indexPath.row]
             let bsVal = self.calculateValueForGroup(group: group)
-            cell.groupNameLabel.text = "Group name - " + group.groupName + "(\(group.internalDevices.count + 1))"
+            cell.groupNameLabel.text = "Group name - " + group.groupName + " (\(group.internalDevices.count + 1))"
             if bsVal < 0.3 {
                 cell.bsValueLabel.textColor = green
                 cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropDry")

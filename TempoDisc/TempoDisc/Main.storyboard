@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0E1-AA-KwQ">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="0E1-AA-KwQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -167,6 +169,7 @@
                         <segue destination="xl6-gE-yCO" kind="relationship" relationship="viewControllers" id="2Zu-rj-vvT"/>
                         <segue destination="CRF-Fl-Pxl" kind="relationship" relationship="viewControllers" id="l3U-ao-rQh"/>
                         <segue destination="BZS-72-CCd" kind="relationship" relationship="viewControllers" id="4fV-CC-vMU"/>
+                        <segue destination="Bwn-ep-y0A" kind="relationship" relationship="viewControllers" id="wCe-PO-d3I"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUi-FV-6PW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,6 +198,90 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIu-Fa-mMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="588" y="-181.25937031484258"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="KI8-qh-xo5">
+            <objects>
+                <navigationController title="About" id="Bwn-ep-y0A" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="About" id="mBb-6p-6Gq"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="IND-pe-j72">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.31372549020000001" green="0.57254901960000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7t2-Im-BFh" kind="relationship" relationship="rootViewController" id="Xqy-6M-Wej"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sqy-uv-laV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1244" y="1228"/>
+        </scene>
+        <!--About-->
+        <scene sceneID="DeY-Y5-Gvc">
+            <objects>
+                <viewController title="About" id="7t2-Im-BFh" customClass="AboutViewController" customModule="Tempo_Utility" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IJi-p9-GL6"/>
+                        <viewControllerLayoutGuide type="bottom" id="OLI-MY-IAt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9ns-Ki-k23">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CornerstoneBadge" translatesAutoresizingMaskIntoConstraints="NO" id="oym-r8-Xqi">
+                                <rect key="frame" x="10" y="74" width="355" height="157.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oym-r8-Xqi" secondAttribute="height" multiplier="358:159" id="4o0-8F-qbw"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STi-fe-C2Y">
+                                <rect key="frame" x="36" y="241.5" width="303" height="316"/>
+                                <mutableString key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Version No." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhj-TZ-FqG">
+                                <rect key="frame" x="30" y="567.5" width="92" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAh-R8-Oze">
+                                <rect key="frame" x="310" y="567.5" width="35" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="oym-r8-Xqi" secondAttribute="trailing" constant="10" id="1h6-vP-tyz"/>
+                            <constraint firstItem="STi-fe-C2Y" firstAttribute="leading" secondItem="9ns-Ki-k23" secondAttribute="leadingMargin" constant="20" id="1qm-sa-MgZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="STi-fe-C2Y" secondAttribute="trailing" constant="20" id="5Xa-0F-UfE"/>
+                            <constraint firstItem="dhj-TZ-FqG" firstAttribute="leading" secondItem="9ns-Ki-k23" secondAttribute="leading" constant="30" id="EYa-Y0-Eqj"/>
+                            <constraint firstItem="STi-fe-C2Y" firstAttribute="top" secondItem="oym-r8-Xqi" secondAttribute="bottom" constant="10" id="FzT-gp-pad"/>
+                            <constraint firstAttribute="trailing" secondItem="nAh-R8-Oze" secondAttribute="trailing" constant="30" id="KHa-c9-nr9"/>
+                            <constraint firstItem="oym-r8-Xqi" firstAttribute="top" secondItem="IJi-p9-GL6" secondAttribute="bottom" constant="10" id="Nme-Ag-1rd"/>
+                            <constraint firstItem="dhj-TZ-FqG" firstAttribute="top" secondItem="STi-fe-C2Y" secondAttribute="bottom" constant="10" id="R5P-BD-cdW"/>
+                            <constraint firstItem="nAh-R8-Oze" firstAttribute="centerY" secondItem="dhj-TZ-FqG" secondAttribute="centerY" id="hqC-Z9-pfp"/>
+                            <constraint firstItem="OLI-MY-IAt" firstAttribute="top" secondItem="dhj-TZ-FqG" secondAttribute="bottom" constant="30" id="mSa-EM-ApC"/>
+                            <constraint firstItem="oym-r8-Xqi" firstAttribute="leading" secondItem="9ns-Ki-k23" secondAttribute="leading" constant="10" id="p4D-Pi-Aet"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="About" id="iTA-BQ-60C"/>
+                    <connections>
+                        <outlet property="aboutDescriptionLabel" destination="STi-fe-C2Y" id="DFb-gn-K3S"/>
+                        <outlet property="versionNumberLabel" destination="nAh-R8-Oze" id="lBB-Ll-0Od"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pe9-mU-8Ua" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1135.2" y="473.6131934032984"/>
         </scene>
         <!--Glossary-->
         <scene sceneID="csf-NB-TPu">
@@ -244,6 +331,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CornerstoneBadge" width="358" height="159"/>
         <image name="DevicesActive" width="24" height="24"/>
         <image name="GlossaryActive" width="24" height="24"/>
         <image name="HistoryActive" width="24" height="24"/>

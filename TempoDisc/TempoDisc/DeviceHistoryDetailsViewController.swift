@@ -112,7 +112,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
             if group.internalDevices.count == 0 || group.externalDevice == nil {
                 return
             }
-            self.devicesCountLabel.text = "(\(group.internalDevices.count + 1))"
+            self.devicesCountLabel.text = " (\(group.internalDevices.count + 1))"
             var internalGPKgAverage = 0.0
             var internalVPAverage = 0.0
             for intern in group.internalDevices {
@@ -231,7 +231,7 @@ class DeviceHistoryDetailsViewController: UIViewController, MFMailComposeViewCon
             let data = NSData.dataWithContentsOfMappedFile(filePath)
             if self.deviceGroup?.groupName != nil {
                 let date = dateFormatter.string(from: Date())
-                mailComposeVC.addAttachmentData(data as! Data, mimeType: "text/csv", fileName: (self.deviceGroup?.groupName)! + " " + date)
+                mailComposeVC.addAttachmentData(data as! Data, mimeType: "text/csv", fileName: (self.deviceGroup?.groupName)! + " " + date + ".csv")
             }
             self.present(mailComposeVC, animated: true, completion: nil)
         }
