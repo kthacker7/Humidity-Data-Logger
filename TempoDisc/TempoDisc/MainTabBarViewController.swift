@@ -15,8 +15,8 @@ class MainTabBarViewController: UITabBarController {
         
         // Do any additional setup after loading the view.
         
-        let selectedImages = [#imageLiteral(resourceName: "DevicesActive"), #imageLiteral(resourceName: "HistoryActive"), #imageLiteral(resourceName: "GlossaryActive"), #imageLiteral(resourceName: "DevicesActive")]
-        let images = [#imageLiteral(resourceName: "DevicesInactive"), #imageLiteral(resourceName: "HistoryInactive"), #imageLiteral(resourceName: "GlossaryInactive"), #imageLiteral(resourceName: "DevicesInactive")]
+        let selectedImages = [#imageLiteral(resourceName: "DevicesActive"), #imageLiteral(resourceName: "HistoryActive"), #imageLiteral(resourceName: "GlossaryActive"), #imageLiteral(resourceName: "AboutActive")]
+        let images = [#imageLiteral(resourceName: "DevicesInactive"), #imageLiteral(resourceName: "HistoryInactive"), #imageLiteral(resourceName: "GlossaryInactive"), #imageLiteral(resourceName: "AboutInactive")]
         var i = 0
         if let items = self.tabBar.items {
             for item in items {
