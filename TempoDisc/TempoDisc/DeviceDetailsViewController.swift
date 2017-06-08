@@ -123,7 +123,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.estimatedRowHeight = 100
         
         // Navigation bar setup
-        self.navigationItem.title = "Device Group List"
+        self.navigationItem.title = "Device Groups in Range"
         let scanButton = UIBarButtonItem(title: "Scan", style: .plain, target: self, action: #selector(DeviceDetailsViewController.scanButtonTapped))
         scanButton.tintColor = UIColor.white
         scanButton.setTitleTextAttributes([NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)], for: .normal)
