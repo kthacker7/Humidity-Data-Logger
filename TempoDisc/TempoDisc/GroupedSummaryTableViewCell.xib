@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,32 +29,46 @@
                         <rect key="frame" x="73" y="0.0" width="247" height="130"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0.28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2Z-tA-MKR">
-                                <rect key="frame" x="15" y="69" width="49" height="29"/>
+                                <rect key="frame" x="163" y="48" width="49" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                 <color key="textColor" red="0.4941176471" green="0.82745098039999998" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kPa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-h5-ZIT">
-                                <rect key="frame" x="69" y="76" width="28" height="20.5"/>
+                                <rect key="frame" x="214" y="55" width="28" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flat no. 11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXv-eH-Vjy">
-                                <rect key="frame" x="15" y="33" width="76" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="5" y="55" width="79.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.31372549020000001" green="0.57254901960000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Downloaded on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVP-LF-EeB">
+                                <rect key="frame" x="5" y="81" width="114" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                <color key="textColor" white="0.38541666666666669" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTY-CK-hCd">
+                                <rect key="frame" x="124" y="81" width="31" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                <color key="textColor" white="0.38541666670000002" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oVM-h5-ZIT" firstAttribute="baseline" secondItem="k2Z-tA-MKR" secondAttribute="baseline" id="C4V-dY-d8g"/>
-                            <constraint firstItem="k2Z-tA-MKR" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jXv-eH-Vjy" secondAttribute="bottom" constant="5" id="DAb-Ow-fHg"/>
-                            <constraint firstItem="oVM-h5-ZIT" firstAttribute="leading" secondItem="k2Z-tA-MKR" secondAttribute="trailing" constant="5" id="Qs5-kg-GRS"/>
-                            <constraint firstItem="jXv-eH-Vjy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XDT-zT-JZG" secondAttribute="top" constant="5" id="XbA-ol-v3H"/>
-                            <constraint firstItem="jXv-eH-Vjy" firstAttribute="leading" secondItem="k2Z-tA-MKR" secondAttribute="leading" id="eyX-Dn-Mcg"/>
-                            <constraint firstItem="k2Z-tA-MKR" firstAttribute="leading" secondItem="XDT-zT-JZG" secondAttribute="leading" constant="15" id="rVs-kE-zcX"/>
+                            <constraint firstItem="oVM-h5-ZIT" firstAttribute="centerY" secondItem="jXv-eH-Vjy" secondAttribute="centerY" id="6JD-9n-zJV"/>
+                            <constraint firstItem="XTY-CK-hCd" firstAttribute="centerY" secondItem="kVP-LF-EeB" secondAttribute="centerY" id="7hx-rD-mR0"/>
+                            <constraint firstItem="kVP-LF-EeB" firstAttribute="leading" secondItem="jXv-eH-Vjy" secondAttribute="leading" id="Ecj-LU-R4M"/>
+                            <constraint firstAttribute="trailing" secondItem="oVM-h5-ZIT" secondAttribute="trailing" constant="5" id="NV7-UP-8Rb"/>
+                            <constraint firstItem="kVP-LF-EeB" firstAttribute="top" secondItem="jXv-eH-Vjy" secondAttribute="bottom" constant="5" id="RNn-ue-Wa1"/>
+                            <constraint firstItem="XTY-CK-hCd" firstAttribute="leading" secondItem="kVP-LF-EeB" secondAttribute="trailing" constant="5" id="UY2-RM-UYZ"/>
+                            <constraint firstItem="oVM-h5-ZIT" firstAttribute="leading" secondItem="k2Z-tA-MKR" secondAttribute="trailing" constant="2" id="ekJ-64-GcA"/>
+                            <constraint firstItem="k2Z-tA-MKR" firstAttribute="baseline" secondItem="oVM-h5-ZIT" secondAttribute="baseline" id="pE4-vy-EUc"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lc-Fs-f4j">
@@ -68,10 +82,10 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="3lc-Fs-f4j" secondAttribute="bottom" id="ALE-Md-6Vy"/>
                     <constraint firstItem="QEj-tV-rTu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="MFH-xn-Zrc"/>
-                    <constraint firstItem="k2Z-tA-MKR" firstAttribute="bottom" secondItem="QEj-tV-rTu" secondAttribute="bottom" id="QQh-ZV-H84"/>
-                    <constraint firstItem="jXv-eH-Vjy" firstAttribute="top" secondItem="QEj-tV-rTu" secondAttribute="top" priority="750" id="RfA-vk-OCo"/>
+                    <constraint firstItem="jXv-eH-Vjy" firstAttribute="centerY" secondItem="QEj-tV-rTu" secondAttribute="centerY" id="UBx-W4-OWB"/>
                     <constraint firstItem="XDT-zT-JZG" firstAttribute="leading" secondItem="QEj-tV-rTu" secondAttribute="trailing" id="Wf3-5a-9ty"/>
                     <constraint firstItem="QEj-tV-rTu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32.5" id="fr8-Yd-nm6"/>
+                    <constraint firstItem="jXv-eH-Vjy" firstAttribute="leading" secondItem="QEj-tV-rTu" secondAttribute="trailing" constant="5" id="hGE-QE-dyI"/>
                     <constraint firstAttribute="bottom" secondItem="XDT-zT-JZG" secondAttribute="bottom" id="jhP-yK-d4k"/>
                     <constraint firstItem="XDT-zT-JZG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="m9U-Q8-Zz2"/>
                     <constraint firstItem="3lc-Fs-f4j" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mFT-QI-Rre"/>
@@ -82,7 +96,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="bsValueLabel" destination="k2Z-tA-MKR" id="s7n-2Q-sdr"/>
+                <outlet property="dateLabel" destination="XTY-CK-hCd" id="s1b-M2-hZX"/>
                 <outlet property="groupNameLabel" destination="jXv-eH-Vjy" id="K42-Fm-qce"/>
+                <outlet property="lastDownloadedAtLabel" destination="kVP-LF-EeB" id="Ohf-FK-zbH"/>
                 <outlet property="waterDropImageView" destination="QEj-tV-rTu" id="L2V-Dm-Z3K"/>
             </connections>
             <point key="canvasLocation" x="57" y="151"/>

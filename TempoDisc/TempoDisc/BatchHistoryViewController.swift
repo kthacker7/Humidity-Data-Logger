@@ -94,7 +94,7 @@ class BatchHistoryViewController: UIViewController, UITableViewDataSource, UITab
         self.tableView.estimatedRowHeight = 150.0
         
         // Navigation Bar setup
-        self.navigationItem.title = "Device List"
+        self.navigationItem.title = "Device List (current conditions)"
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: nil, action: nil)
     }
     

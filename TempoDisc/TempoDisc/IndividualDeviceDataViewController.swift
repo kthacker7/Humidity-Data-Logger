@@ -138,7 +138,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
         if self.selectedTab == .History {
             self.navigationItem.title = self.navigationTitles[self.selectedSegment]
         } else {
-            self.navigationItem.title = "Device Details"
+            self.navigationItem.title = "Device Details (current conditions)"
         }
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: nil, action: nil)
         // Get logs

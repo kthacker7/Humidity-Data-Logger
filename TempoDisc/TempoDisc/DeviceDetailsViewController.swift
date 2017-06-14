@@ -78,7 +78,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
             
             let group = self.deviceGroups[indexPath.row]
             let bsVal = self.calculateValueForGroup(group: group)
-            cell.groupNameLabel.text = "Group name - " + group.groupName + " (\(group.internalDevices.count + 1))"
+            cell.groupNameLabel.text =  group.groupName + " (\(group.internalDevices.count + 1))"
             if bsVal < 0.3 {
                 cell.bsValueLabel.textColor = green
                 cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropDry")
@@ -90,6 +90,8 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropWet")
             }
             cell.bsValueLabel.text = String(round(bsVal * 100)/100)
+            cell.lastDownloadedAtLabel.isHidden = true
+            cell.dateLabel.isHidden = true
         }
         return cell
     }
@@ -123,7 +125,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         tableView.estimatedRowHeight = 100
         
         // Navigation bar setup
-        self.navigationItem.title = "Device Group List"
+        self.navigationItem.title = "Device Groups in Range"
         let scanButton = UIBarButtonItem(title: "Scan", style: .plain, target: self, action: #selector(DeviceDetailsViewController.scanButtonTapped))
         scanButton.tintColor = UIColor.white
         scanButton.setTitleTextAttributes([NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)], for: .normal)

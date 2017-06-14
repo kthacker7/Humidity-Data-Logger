@@ -45,21 +45,32 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DeviceDetailsTableViewCell", for: indexPath) as! DeviceDetailsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GroupedSummaryTableViewCell", for: indexPath) as! GroupedSummaryTableViewCell
+        
         if indexPath.row < self.deviceGroupsList.count {
-            let currDeviceGroup = self.deviceGroupsList[indexPath.row]
-            cell.flatNumberLabel.text = currDeviceGroup.groupName + " (\(currDeviceGroup.internalDevices.count + 1))"
-            cell.dewLabel.text = "\(currDeviceGroup.getCurrentDewPoint()) deg"
-            cell.humidityLabel.text = "\(currDeviceGroup.getCurrentHumidity()) % RH"
-            cell.temperatureLabel.text = "\(currDeviceGroup.getAverageTemperature()) Celsius"
-            let bsVal = self.calculateValueForGroup(group: currDeviceGroup)
+            let green = UIColor(colorLiteralRed: 110.0/255.0, green: 206.0/255.0, blue: 26.0/255.0, alpha: 1.0)
+            let orange = UIColor(colorLiteralRed: 238.0/255.0, green: 169.0/255.0, blue: 28.0/255.0, alpha: 1.0)
+            let red = UIColor(colorLiteralRed: 201.0/255.0, green: 0.0/255.0, blue: 25.0/255.0, alpha: 1.0)
+            
+            let group = self.deviceGroupsList[indexPath.row]
+            let bsVal = self.calculateValueForGroup(group: group)
+            cell.groupNameLabel.text =  group.groupName + " (\(group.internalDevices.count + 1))"
             if bsVal < 0.3 {
-                cell.humidityImageView.image = #imageLiteral(resourceName: "WaterDropDry")
+                cell.bsValueLabel.textColor = green
+                cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropDry")
             } else if bsVal >= 0.3 && bsVal < 0.6 {
-                cell.humidityImageView.image = #imageLiteral(resourceName: "WaterDropMoist")
+                cell.bsValueLabel.textColor = orange
+                cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropMoist")
             } else {
-                cell.humidityImageView.image = #imageLiteral(resourceName: "WaterDropWet")
+                cell.bsValueLabel.textColor = red
+                cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropWet")
             }
+            cell.bsValueLabel.text = String(round(bsVal * 100)/100)
+            cell.lastDownloadedAtLabel.isHidden = true
+            if group.externalDevice != nil {
+                cell.dateLabel.text = group.externalDevice!.lastDownload!.description
+            }
+            cell.dateLabel.isHidden = false
         }
         return cell
     }
@@ -83,6 +94,8 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
         // Register Nibs
         let nib = UINib(nibName: "DeviceDetailsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "DeviceDetailsTableViewCell")
+        let nib2 = UINib(nibName: "GroupedSummaryTableViewCell", bundle: nil)
+        tableView.register(nib2, forCellReuseIdentifier: "GroupedSummaryTableViewCell")
         
         // Height setup
         tableView.rowHeight = UITableViewAutomaticDimension

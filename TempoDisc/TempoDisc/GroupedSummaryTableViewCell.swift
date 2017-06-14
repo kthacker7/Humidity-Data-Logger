@@ -11,6 +11,8 @@ import UIKit
 class GroupedSummaryTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var lastDownloadedAtLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var groupNameLabel: UILabel!
     @IBOutlet weak var bsValueLabel: UILabel!
     @IBOutlet weak var waterDropImageView: UIImageView!
