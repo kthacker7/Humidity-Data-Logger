@@ -67,8 +67,10 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
             }
             cell.bsValueLabel.text = String(round(bsVal * 100)/100)
             cell.lastDownloadedAtLabel.isHidden = true
-            if group.externalDevice != nil {
+            if group.externalDevice != nil && group.externalDevice!.lastDownload != nil {
                 cell.dateLabel.text = group.externalDevice!.lastDownload!.description
+            } else {
+                cell.dateLabel.text = "-"
             }
             cell.dateLabel.isHidden = false
         }
