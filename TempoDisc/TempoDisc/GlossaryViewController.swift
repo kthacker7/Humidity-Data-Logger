@@ -12,7 +12,7 @@ class GlossaryViewController: UIViewController, UITableViewDataSource, UITableVi
 
     @IBOutlet weak var tableView: UITableView!
     
-    let leftTitles = ["Temp", "RH", "TD", "G/kg", "VP", "G/M3"]
+    let leftTitles = ["Temp", "RH", "TD", "G/kg", "VP", "G/m3 Absolute"]
     let rightTitles = ["Air Temperature", "Relative Humidity", "Dew Point Temp °C", "Specific Humidity G/kg", "Vapour Pressure (kPa - kilopascals)", "Specific Humidity in Grams per cubic m"]
     
     override func viewDidLoad() {
