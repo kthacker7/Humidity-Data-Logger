@@ -66,17 +66,25 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropWet")
             }
             cell.bsValueLabel.text = String(round(bsVal * 100)/100)
-            cell.lastDownloadedAtLabel.isHidden = true
+            //cell.lastDownloadedAtLabel.isHidden = true
+           
             if group.externalDevice != nil && group.externalDevice!.lastDownload != nil {
-                cell.dateLabel.text = group.externalDevice!.lastDownload!.description
+                let dateFormat = group.externalDevice!.lastDownload!
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "MM/dd/yy' at 'h:mm a."
+                let selectedDate = dateFormatter.string(from: dateFormat)
+                cell.dateLabel.text = selectedDate
+                
             } else {
                 cell.dateLabel.text = "-"
             }
             cell.dateLabel.isHidden = false
+            cell.lastDownloadedAtLabel.isHidden = false
         }
         return cell
     }
-
+    
+    
     // MARK: Table View Delegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

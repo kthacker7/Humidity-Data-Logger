@@ -118,7 +118,7 @@
 		308A59FC1E0A9C5700D84D46 /* IndividualDeviceDataTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualDeviceDataTableViewCell.xib; sourceTree = "<group>"; };
 		308A5A031E0A9C8000D84D46 /* GlossaryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlossaryTableViewCell.swift; sourceTree = "<group>"; };
 		308A5A041E0A9C8000D84D46 /* GlossaryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GlossaryTableViewCell.xib; sourceTree = "<group>"; };
-		308A5A091E0A9CF400D84D46 /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryListViewController.swift; sourceTree = "<group>"; };
+		308A5A091E0A9CF400D84D46 /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = HistoryListViewController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		308A5A0A1E0A9CF400D84D46 /* DeviceHistoryDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceHistoryDetailsViewController.swift; sourceTree = "<group>"; };
 		308A5A0B1E0A9CF400D84D46 /* BatchHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchHistoryViewController.swift; sourceTree = "<group>"; };
 		308A5A0C1E0A9CF400D84D46 /* IndividualDeviceDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualDeviceDataViewController.swift; sourceTree = "<group>"; };
