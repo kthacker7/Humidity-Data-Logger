@@ -14,45 +14,45 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="GroupedSummaryTableViewCell" rowHeight="130" id="KGk-i7-Jjw" customClass="GroupedSummaryTableViewCell" customModule="Tempo_Utility" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WaterDropDry" translatesAutoresizingMaskIntoConstraints="NO" id="QEj-tV-rTu">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="WaterDropDry" translatesAutoresizingMaskIntoConstraints="NO" id="QEj-tV-rTu">
                         <rect key="frame" x="5" y="33" width="68" height="65"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="65" id="0Og-fr-khF"/>
                             <constraint firstAttribute="width" constant="67.5" id="Vtp-L5-ydB"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDT-zT-JZG">
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XDT-zT-JZG">
                         <rect key="frame" x="73" y="0.0" width="247" height="130"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="0.28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2Z-tA-MKR">
-                                <rect key="frame" x="163" y="48" width="49" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" ambiguous="YES" text="0.28" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2Z-tA-MKR">
+                                <rect key="frame" x="158" y="48" width="49" height="29"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                 <color key="textColor" red="0.4941176471" green="0.82745098039999998" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kPa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-h5-ZIT">
-                                <rect key="frame" x="214" y="55" width="28" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="kPa" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVM-h5-ZIT">
+                                <rect key="frame" x="209" y="55" width="28" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flat no. 11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXv-eH-Vjy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Flat no. 11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jXv-eH-Vjy">
                                 <rect key="frame" x="5" y="55" width="79.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <color key="textColor" red="0.31372549020000001" green="0.57254901960000004" blue="0.80784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Downloaded on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVP-LF-EeB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Last Downloaded on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVP-LF-EeB">
                                 <rect key="frame" x="5" y="81" width="114" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
                                 <color key="textColor" white="0.38541666666666669" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTY-CK-hCd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTY-CK-hCd">
                                 <rect key="frame" x="124" y="81" width="31" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
                                 <color key="textColor" white="0.38541666670000002" alpha="1" colorSpace="calibratedWhite"/>
@@ -64,14 +64,14 @@
                             <constraint firstItem="oVM-h5-ZIT" firstAttribute="centerY" secondItem="jXv-eH-Vjy" secondAttribute="centerY" id="6JD-9n-zJV"/>
                             <constraint firstItem="XTY-CK-hCd" firstAttribute="centerY" secondItem="kVP-LF-EeB" secondAttribute="centerY" id="7hx-rD-mR0"/>
                             <constraint firstItem="kVP-LF-EeB" firstAttribute="leading" secondItem="jXv-eH-Vjy" secondAttribute="leading" id="Ecj-LU-R4M"/>
-                            <constraint firstAttribute="trailing" secondItem="oVM-h5-ZIT" secondAttribute="trailing" constant="5" id="NV7-UP-8Rb"/>
+                            <constraint firstAttribute="trailing" secondItem="oVM-h5-ZIT" secondAttribute="trailing" constant="10" id="NV7-UP-8Rb"/>
                             <constraint firstItem="kVP-LF-EeB" firstAttribute="top" secondItem="jXv-eH-Vjy" secondAttribute="bottom" constant="5" id="RNn-ue-Wa1"/>
                             <constraint firstItem="XTY-CK-hCd" firstAttribute="leading" secondItem="kVP-LF-EeB" secondAttribute="trailing" constant="5" id="UY2-RM-UYZ"/>
                             <constraint firstItem="oVM-h5-ZIT" firstAttribute="leading" secondItem="k2Z-tA-MKR" secondAttribute="trailing" constant="2" id="ekJ-64-GcA"/>
                             <constraint firstItem="k2Z-tA-MKR" firstAttribute="baseline" secondItem="oVM-h5-ZIT" secondAttribute="baseline" id="pE4-vy-EUc"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lc-Fs-f4j">
+                    <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3lc-Fs-f4j">
                         <rect key="frame" x="0.0" y="128" width="320" height="1.5"/>
                         <color key="backgroundColor" white="0.77690016778523485" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

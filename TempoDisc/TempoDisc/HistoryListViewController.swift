@@ -46,7 +46,8 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupedSummaryTableViewCell", for: indexPath) as! GroupedSummaryTableViewCell
-        
+        cell.dateLabel.isHidden = false
+        cell.lastDownloadedAtLabel.isHidden = false
         if indexPath.row < self.deviceGroupsList.count {
             let green = UIColor(colorLiteralRed: 110.0/255.0, green: 206.0/255.0, blue: 26.0/255.0, alpha: 1.0)
             let orange = UIColor(colorLiteralRed: 238.0/255.0, green: 169.0/255.0, blue: 28.0/255.0, alpha: 1.0)
@@ -66,7 +67,6 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
                 cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropWet")
             }
             cell.bsValueLabel.text = String(round(bsVal * 100)/100)
-            //cell.lastDownloadedAtLabel.isHidden = true
            
             if group.externalDevice != nil && group.externalDevice!.lastDownload != nil {
                 let dateFormat = group.externalDevice!.lastDownload!
@@ -78,8 +78,6 @@ class HistoryListViewController: UIViewController, UITableViewDataSource, UITabl
             } else {
                 cell.dateLabel.text = "-"
             }
-            cell.dateLabel.isHidden = false
-            cell.lastDownloadedAtLabel.isHidden = false
         }
         return cell
     }

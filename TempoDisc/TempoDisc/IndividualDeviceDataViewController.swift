@@ -139,6 +139,7 @@ class IndividualDeviceDataViewController: UIViewController, UITableViewDataSourc
             self.navigationItem.title = self.navigationTitles[self.selectedSegment]
         } else {
             self.navigationItem.title = "Device Details (current conditions)"
+            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.white]
         }
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .done, target: nil, action: nil)
         // Get logs

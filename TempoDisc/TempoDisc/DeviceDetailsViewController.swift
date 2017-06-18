@@ -70,7 +70,8 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GroupedSummaryTableViewCell", for: indexPath) as! GroupedSummaryTableViewCell
-        
+        cell.lastDownloadedAtLabel.isHidden = true
+        cell.dateLabel.isHidden = true
         if indexPath.row < self.deviceGroups.count {
             let green = UIColor(colorLiteralRed: 110.0/255.0, green: 206.0/255.0, blue: 26.0/255.0, alpha: 1.0)
             let orange = UIColor(colorLiteralRed: 238.0/255.0, green: 169.0/255.0, blue: 28.0/255.0, alpha: 1.0)
@@ -90,8 +91,6 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
                 cell.waterDropImageView.image = #imageLiteral(resourceName: "WaterDropWet")
             }
             cell.bsValueLabel.text = String(round(bsVal * 100)/100)
-            cell.lastDownloadedAtLabel.isHidden = true
-            cell.dateLabel.isHidden = true
         }
         return cell
     }
@@ -135,6 +134,7 @@ class DeviceDetailsViewController: UIViewController, UITableViewDelegate, UITabl
         self.navigationController?.navigationBar.backIndicatorImage = UIImage()
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage()
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 14.0), NSForegroundColorAttributeName: UIColor.white]
         
         
     }
