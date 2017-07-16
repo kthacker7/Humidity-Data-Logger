@@ -11,12 +11,23 @@ import UIKit
 class AboutViewController: UIViewController {
 
     @IBOutlet weak var aboutDescriptionLabel: UILabel!
-    
     @IBOutlet weak var versionNumberLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            self.versionNumberLabel.text = version
+        } else if let version = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            self.versionNumberLabel.text = version
+        } else {
+            self.versionNumberLabel.text = "-"
+        }
     }
 
     override func didReceiveMemoryWarning() {

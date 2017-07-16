@@ -100,6 +100,12 @@ class TempoHelperMethodsSwift {
                 writer.writeField("BS:5250 outcome:")
                 writer.writeField("\(internalAverageVP - externalVPVal)")
                 writer.finishLine()
+                writer.writeField("Date:")
+                writer.writeField("")
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd-MM-yyyy"
+                let date = dateFormatter.string(from: Date())
+                wrtier.writeField(date)
                 writer.closeStream()
                 let buffer = output.property(forKey: Stream.PropertyKey.dataWrittenToMemoryStreamKey) as? Data
                 FileManager.default.createFile(atPath: fileName, contents: buffer, attributes: nil)
